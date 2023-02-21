@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import './fonts/Roboto/Roboto-Black.ttf';
+import './fonts/Roboto/Roboto-Bold.ttf';
+import './fonts/Roboto/Roboto-Light.ttf';
+import './fonts/Roboto/Roboto-Medium.ttf';
+import './fonts/Roboto/Roboto-Regular.ttf';
+import './fonts/Roboto/Roboto-Thin.ttf';
+import '../src/style/App.scss';
+
+import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+        <div class="reactRoot">
+            <Header></Header>
+            <SideBar></SideBar>
+            <Main></Main>
+        </div>
+	);
 }
 
 export default App;

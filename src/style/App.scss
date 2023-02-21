@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "Thin";
+    src:local("Thin"),
+        url("../fonts/Roboto/Roboto-Thin.ttf") format("truetype");
+    font-weight: 100;
+}
+@font-face {
+    font-family: "Light";
+    src:local("Light"),
+        url("../fonts/Roboto/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Regular";
+    src:local("Regular"),
+        url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Medium";
+    src:local("Medium"),
+        url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Bold";
+    src:local("Bold"),
+        url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Black";
+    src:local("Black"),
+        url("../fonts/Roboto/Roboto-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+@import './_color.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Regular';
+    font-size: 10px;
+}
+.reactRoot{
+    min-height: 100vh;
+    height: auto!important;
+    position: relative;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
