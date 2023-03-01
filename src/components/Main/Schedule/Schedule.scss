@@ -1,0 +1,9 @@
+@import '/src/style/_color.scss';
+
+.schudle-block{
+    &__items{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

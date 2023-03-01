@@ -1,0 +1,48 @@
+
+.header{
+    position: fixed;
+    z-index: 899;
+    top: 0px;
+    right: 0px;
+    left: 240px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background: #fff;
+    border-radius: 0.8rem;
+    margin: 2rem 2rem 0;
+    padding: 0 2rem;
+    &__calendar, &__settings{
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        svg{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__left{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+.userbox{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    &__textbox{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    &__icon{
+        width: 5rem;
+        height: 5rem;
+        svg{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

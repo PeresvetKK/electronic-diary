@@ -43,6 +43,11 @@
     font-family: 'Regular';
     font-size: 10px;
 }
+svg{
+    width: initial;
+    height: initial;
+    display: block;
+}
 .reactRoot{
     min-height: 100vh;
     height: auto!important;
@@ -56,4 +61,14 @@
     -moz-box-direction: normal;
     -ms-flex-flow: row wrap;
     flex-flow: row wrap;
+    background: #F2F2F2;
+}
+
+.row{
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    &__item{
+        width: calc(33% - 1rem);
+    }
 }

@@ -1,0 +1,17 @@
+@import '/src/style/_color.scss';
+
+.schudle-block__item_peremena{
+    display: flex;
+    align-items: center;
+    svg{
+        width: 3.2rem;
+        height: 3.2rem;
+        path{
+            fill: #9FA3A7;
+        }
+    }
+    .peremena-item{
+        color: #9FA3A7;
+        font-size: 1.4rem;
+    }
+}

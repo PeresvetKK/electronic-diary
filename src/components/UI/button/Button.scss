@@ -1,0 +1,31 @@
+@import '/src/style/_color.scss';
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3.8rem;
+    border-radius: 0.8rem;
+    color: #fff;
+    outline: none;
+    border: none;
+    width: fit-content;
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    min-width: 8.5rem;
+    &-orange{
+        background: $orange;
+    }
+    &-red{
+        background: $red;
+    }
+    &-green{
+        background: $green;
+    }
+    &-disabled{
+        background: $lightGray;
+        pointer-events: none;
+        color: #000;
+    }
+}
