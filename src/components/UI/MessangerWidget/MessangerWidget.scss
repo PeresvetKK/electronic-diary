@@ -1,0 +1,12 @@
+@import '/src/style/_color.scss';
+
+.message-block{
+    &__items{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    &__item{
+        cursor: pointer;
+    }
+}

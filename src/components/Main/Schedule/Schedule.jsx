@@ -20,8 +20,8 @@ const Schedule = (props) => {
                     urokStart="8:30" 
                     urokStop="9:10"
                     lesson="Русский язык" 
-                    lessonType="Контрольная" 
-                    lessonClass="schudle-block-lesson__control"
+                    lessonType="" 
+                    lessonClass=""
                     ocenka="5">
                 </LessonWidget>
                 <Peremena peremenaLength="10"></Peremena>

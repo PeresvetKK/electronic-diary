@@ -1,5 +1,6 @@
 import React from 'react'
-import classes from './Messanger.scss'
+import classes from './MessangerWidget.scss'
+import MessangerWidgetItem from './MessangerWidgetItem/MessangerWidgetItem'
 
 const Messanger = (props) => {
   return (
@@ -8,7 +9,10 @@ const Messanger = (props) => {
                 <p className="block-widget__title text-s font-b">{props.title}</p>
             </div>
             <div className="message-block__items block-widget__items">
-                
+                <MessangerWidgetItem></MessangerWidgetItem>
+                <MessangerWidgetItem></MessangerWidgetItem>
+                <MessangerWidgetItem></MessangerWidgetItem>
+                <MessangerWidgetItem></MessangerWidgetItem>
             </div>
         </div>
   )

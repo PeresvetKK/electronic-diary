@@ -1,0 +1,34 @@
+@import '/src/style/_color.scss';
+
+.message-block{
+    &__item{
+        width: 48%;
+        min-width: 23rem;
+        min-height: 15rem;
+        background: #fff;
+        -webkit-box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+        -moz-box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+        border-radius: 0.8rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+}
+.teacher{
+    &__icon{
+        width: 7rem;
+        height: 7rem;
+    }
+    &__name{
+        font-size: 1.4rem;
+        text-align: center;
+        font-weight: bold;
+    }
+    &__dolzhnost{
+        font-size: 1.4rem;
+    }
+}

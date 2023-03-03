@@ -68,6 +68,8 @@ svg{
     margin: 2rem 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
     &__item{
         width: calc(33% - 1rem);
     }

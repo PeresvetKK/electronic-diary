@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '../UI/button/Button';
-import HoumWork from './HoumWork/HoumWork';
 import classes from './Main.scss';
-import Messanger from './Messanger/Messanger';
+import HoumWorkWidget from '../UI/HoumWorkWidget/HoumWorkWidget';
+import MessangerWidget from '../UI/MessangerWidget/MessangerWidget';
 import Schedule from './Schedule/Schedule';
 
 const Main = () => {
@@ -10,8 +10,8 @@ const Main = () => {
         <main className='main'>
             <div className="row">
                 <Schedule class="row__item" title="Расписание"></Schedule>
-                <Messanger class="row__item" title="Диалоги"></Messanger>
-                <HoumWork class="row__item" title="Домашнее задание"></HoumWork>
+                <MessangerWidget class="row__item" title="Диалоги"></MessangerWidget>
+                <HoumWorkWidget class="row__item" title="Домашнее задание"></HoumWorkWidget>
             </div>
         </main>
     )

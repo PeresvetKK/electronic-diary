@@ -15,6 +15,8 @@
     background: #fff;
     border-radius: 0.8rem;
     padding: 2rem;
+    min-width: 45rem;
+    flex: 1;
     &__header{
         display: flex;
         align-items: center;
