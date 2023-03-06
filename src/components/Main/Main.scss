@@ -1,20 +1,19 @@
-@import '../../style/_color.scss';
-
 .main{
+    overflow: hidden;
+    height: calc(100vh - 12rem);
+    overflow-y: auto;
+    margin: 10rem 0rem 2rem 2rem;
+    padding: 0rem 2rem 0 0;
     box-sizing: border-box;
     flex: 1 1;
-    overflow: unset;
     display: flex;
     flex-direction: column;
     background: #F2F2F2;
-    height: calc(100vh - 8rem);
-    margin: 8rem 2rem 0;
     border-radius: 0.8rem;
 }
 .block-widget{
     background: #fff;
     border-radius: 0.8rem;
-    padding: 2rem;
     min-width: 45rem;
     flex: 1;
     &__header{
@@ -22,12 +21,18 @@
         align-items: center;
         justify-content: space-between;
         height: 3.8rem;
+        padding: 0 2rem;
+        margin: 1rem 0 0rem;
         &_right{
             display: flex;
             gap: 1rem;
         }
     }
     &__items{
-        margin-top: 1.5rem;
+        margin-top: 1rem;
+        max-height: 51rem;
+        overflow: hidden;
+        overflow-y: auto;
+        padding: 1rem 1rem 2rem;
     }
 }

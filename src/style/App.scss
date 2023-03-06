@@ -1,56 +1,52 @@
-@font-face {
-    font-family: "Thin";
-    src:local("Thin"),
-        url("../fonts/Roboto/Roboto-Thin.ttf") format("truetype");
-    font-weight: 100;
-}
-@font-face {
-    font-family: "Light";
-    src:local("Light"),
-        url("../fonts/Roboto/Roboto-Light.ttf") format("truetype");
-    font-weight: 300;
-}
-@font-face {
-    font-family: "Regular";
-    src:local("Regular"),
-        url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
-    font-weight: 400;
-}
-@font-face {
-    font-family: "Medium";
-    src:local("Medium"),
-        url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
-    font-weight: 500;
-}
-@font-face {
-    font-family: "Bold";
-    src:local("Bold"),
-        url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
-    font-weight: 700;
-}
-@font-face {
-    font-family: "Black";
-    src:local("Black"),
-        url("../fonts/Roboto/Roboto-Black.ttf") format("truetype");
-    font-weight: 900;
-}
 @import './_color.scss';
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Regular';
     font-size: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #2E5FFF #DFE9EB;
 }
-svg{
+*::-webkit-scrollbar {
+    width: 7px;
+    width: 7px;
+}
+*::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+}
+*::-webkit-scrollbar-track:hover {
+    background-color: #DFE9EB;
+}
+*::-webkit-scrollbar-track:active {
+    background-color: #DFE9EB;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #2E5FFF;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #7788FC;
+}
+*::-webkit-scrollbar-thumb:active {
+    background-color: #7788FC;
+}
+
+a {
+    text-decoration: none;
+}
+
+svg {
     width: initial;
     height: initial;
     display: block;
 }
-.reactRoot{
+
+.reactRoot {
     min-height: 100vh;
-    height: auto!important;
+    height: auto !important;
     position: relative;
     display: -webkit-flex;
     display: -moz-box;
@@ -64,13 +60,14 @@ svg{
     background: #F2F2F2;
 }
 
-.row{
-    margin: 2rem 0;
+.row {
+    margin: 0 0 2rem 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
-    &__item{
+
+    &__item {
         width: calc(33% - 1rem);
     }
 }

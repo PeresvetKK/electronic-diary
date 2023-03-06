@@ -4,7 +4,7 @@ import MessangerWidgetItem from './MessangerWidgetItem/MessangerWidgetItem'
 
 const Messanger = (props) => {
   return (
-    <div className={`message-block block-widget ${props.class}`}>
+    <div className={`message-block block-widget row__item`}>
             <div className="block-widget__header">
                 <p className="block-widget__title text-s font-b">{props.title}</p>
             </div>

@@ -13,7 +13,7 @@ import SideBar from "./components/SideBar/SideBar";
 
 function App() {
 	return (
-        <div class="reactRoot">
+        <div className="reactRoot">
             <Header></Header>
             <SideBar></SideBar>
             <Main></Main>
