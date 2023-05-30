@@ -1,0 +1,23 @@
+.schudle-block-lesson{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: calc(100% - 12rem);
+    &__title{
+        font-size: 1.4rem;
+    }
+    &__type{
+        display: none;
+        padding: 0.5rem;
+        color: #fff;
+        background: transparent;
+        border-radius: 0.8rem;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    &__control{
+        display: block;
+        background: var(--red);
+    }
+}

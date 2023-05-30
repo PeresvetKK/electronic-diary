@@ -1,0 +1,63 @@
+:root{
+    --orange:    #FDC100;
+    --blue:      #2E5FFF;
+    --red:       #FF5448;
+    --green:     #27BB00;
+    --gray:      #DDDDDD;
+
+    --lightGray: #F2F2F2;
+    --lightBlue: #7788FC;
+    --lightRed:  #F5A597;
+}
+
+@font-face {
+    font-family: "Thin";
+    src:local("Thin"),
+        url("../resources/fonts/Roboto/Roboto-Thin.ttf") format("truetype");
+    font-weight: 100;
+}
+@font-face {
+    font-family: "Light";
+    src:local("Light"),
+        url("../resources/fonts/Roboto/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "Regular";
+    src:local("Regular"),
+        url("../resources/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Medium";
+    src:local("Medium"),
+        url("../resources/fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Bold";
+    src:local("Bold"),
+        url("../resources/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Black";
+    src:local("Black"),
+        url("../resources/fonts/Roboto/Roboto-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+.text-xs{
+    font-size: 1.2rem;
+    line-height: 100%;
+}
+.text-s{
+    font-size: 1.6rem;
+    line-height: 100%;
+}
+.font-m{
+    font-family: 'Medium';
+}
+.font-b{
+    font-family: 'Bold';
+}

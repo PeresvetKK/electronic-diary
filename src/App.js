@@ -1,22 +1,31 @@
 import React from "react";
-import './fonts/Roboto/Roboto-Black.ttf';
-import './fonts/Roboto/Roboto-Bold.ttf';
-import './fonts/Roboto/Roboto-Light.ttf';
-import './fonts/Roboto/Roboto-Medium.ttf';
-import './fonts/Roboto/Roboto-Regular.ttf';
-import './fonts/Roboto/Roboto-Thin.ttf';
-import '../src/style/App.scss';
+import './resources/fonts/Roboto/Roboto-Black.ttf';
+import './resources/fonts/Roboto/Roboto-Bold.ttf';
+import './resources/fonts/Roboto/Roboto-Light.ttf';
+import './resources/fonts/Roboto/Roboto-Medium.ttf';
+import './resources/fonts/Roboto/Roboto-Regular.ttf';
+import './resources/fonts/Roboto/Roboto-Thin.ttf';
+import './style/App.scss';
 
 import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
+import Main from "./pages/Main/Main";
 import SideBar from "./components/SideBar/SideBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import News from "./pages/News/News";
+import Journal from "./pages/Journal/Journal";
 
 function App() {
 	return (
         <div className="reactRoot">
-            <Header></Header>
-            <SideBar></SideBar>
-            <Main></Main>
+            <BrowserRouter>
+                <Header></Header>
+                <SideBar></SideBar>
+                <Routes>
+                    <Route path="/" element={<Main/>}/>
+                    <Route path="/news" element={<News/>}/>
+                    <Route path="/journal" element={<Journal/>}/>
+                </Routes>
+            </BrowserRouter>
         </div>
 	);
 }

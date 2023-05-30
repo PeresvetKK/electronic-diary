@@ -1,0 +1,23 @@
+.tabs__btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tabs__btns button {
+  
+  transition: all 0.7s;
+}
+.tabs__btns button:hover {
+  -webkit-box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+}
+
+.tabs__btns .active{
+  background: var(--orange);
+}
+.tabs__content {
+  font-size: 2rem;
+  text-align: center;
+}
