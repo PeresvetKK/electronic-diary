@@ -16,9 +16,9 @@ export const LogoSVG = () => (
 
 export const BurgerSVG = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 17H21" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M3 12H21" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M3 7H21" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 17H21" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 12H21" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 7H21" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 )
 
@@ -33,16 +33,16 @@ export const NewsSVG = () => (
 
 export const JournalSVG = () => (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 1H2C1.44772 1 1 1.44772 1 2V16C1 16.5523 1.44772 17 2 17H16C16.5523 17 17 16.5523 17 16V2C17 1.44772 16.5523 1 16 1Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M9 8H13" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M9 5H13" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 17L5 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 1H2C1.44772 1 1 1.44772 1 2V16C1 16.5523 1.44772 17 2 17H16C16.5523 17 17 16.5523 17 16V2C17 1.44772 16.5523 1 16 1Z" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M9 8H13" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M9 5H13" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M5 17L5 1" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 
 )
 
 export const HomeSVG = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" version="1.1" height="64" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" version="1.1" height="64" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
         <g>
             <path fill="#fff" d="m2.765,33.28c0.479,0 0.965-0.172 1.351-0.521l6.257-5.673v28.762c0,3.331 2.709,6.041 6.041,6.041h32.223c3.331,0 6.041-2.71 6.041-6.041v-28.545l5.95,5.45c0.386,0.354 0.873,0.527 1.357,0.527 0.547,0 1.09-0.219 1.487-0.651 0.751-0.822 0.693-2.096-0.126-2.847l-29.46-26.987c-0.08-0.07-0.178-0.1-0.261-0.155-0.114-0.078-0.223-0.159-0.346-0.208-0.122-0.051-0.246-0.066-0.373-0.093-0.126-0.024-0.249-0.057-0.377-0.057-0.13,0-0.251,0.032-0.378,0.056s-0.251,0.039-0.373,0.09c-0.124,0.047-0.228,0.129-0.34,0.202-0.089,0.058-0.188,0.085-0.267,0.159l-29.763,26.987c-0.822,0.747-0.886,2.021-0.14,2.845 0.399,0.437 0.946,0.659 1.497,0.659zm34.792,24.58h-10.066v-16.214c0-1.111 0.903-2.015 2.014-2.015h6.038c1.111,0 2.014,0.903 2.014,2.015v16.214zm13.091-33.944v31.932c0,1.109-0.904,2.013-2.013,2.013h-7.051v-16.215c0-3.332-2.711-6.042-6.042-6.042h-6.038c-3.332,0-6.04,2.71-6.04,6.042v16.214h-7.052c-1.109,0-2.015-0.903-2.015-2.013v-31.931c0-0.146-0.052-0.271-0.081-0.407l18.2-16.502 18.184,16.654c-0.012,0.086-0.052,0.164-0.052,0.255z"/>
         </g>
@@ -51,13 +51,13 @@ export const HomeSVG = () => (
 
 export const LeftArrowSVG = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 18L9.07071 12.0707C9.03166 12.0317 9.03166 11.9683 9.07071 11.9293L15 6" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 18L9.07071 12.0707C9.03166 12.0317 9.03166 11.9683 9.07071 11.9293L15 6" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
     </svg>
 )
 
 export const RightArrowSVG = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 18L14.9293 12.0707C14.9683 12.0317 14.9683 11.9683 14.9293 11.9293L9 6" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 18L14.9293 12.0707C14.9683 12.0317 14.9683 11.9683 14.9293 11.9293L9 6" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
     </svg>
 
 )
@@ -80,8 +80,8 @@ export const CalendarSVG = () => (
 
 export const CircleSVG = () => (
     <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
+        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
         <g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z" fill="#F2F2F2"/> </g>
     </svg>   
 )
@@ -103,7 +103,7 @@ export const PlusSVG = () => (
 )
 
 export const RunManSVG= () => (
-    <svg id="Layer_1" enable-background="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg id="Layer_1" enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="m14.5 5.3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.2 12 .6-2.5 2.1 2v5c0 .5.4 1 1 1s1-.5 1-1v-5.6c0-.6-.2-1.1-.6-1.4l-1.5-1.4.6-3c1.1 1.2 2.6 2.1 4.4 2.4.6.1 1.1-.4 1.1-1 0-.5-.4-.9-.9-1-1.5-.3-2.8-1.1-3.4-2.3l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-4 1.7c-.8.2-1.2.9-1.2 1.7v2.4c0 .6.4 1 1 1s1-.4 1-1v-2.4l1.8-.7-1.6 8.1-4-.8c-.5-.1-1.1.2-1.2.8 0 .5.3 1 .8 1.2l4.2.8c1 .2 2.1-.5 2.3-1.5z" />
     </svg>
 )

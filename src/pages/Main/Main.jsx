@@ -222,7 +222,7 @@ const Main = () => {
     
     return (
         <section className="section">
-            <button onClick={() => dispatch(removeUser())}>Log Out</button>
+            {/* <button onClick={() => dispatch(removeUser())}>Log Out</button> */}
             <Schedule objectsData={schudleData} title="Расписание на"></Schedule>
             <HoumWork houmworkData={schudleData} title="Домашнее задание"></HoumWork>
             <DopZanyatiya dopZanData={dopZanDatas} title="Дополнительные задания"></DopZanyatiya>
