@@ -1,12 +1,47 @@
-import {configureStore} from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+// обертка над стором и обертка редюсеров для удобного хранения
+import {
+    persistStore, 
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
 
-// redux
-const store = configureStore({
-    reducer: {
-        // только 1 редюсер
-        user: userReducer,
-    }
+// набор редюсеров
+const rootReducer = combineReducers({
+    user: userReducer,
 });
 
+
+const persistConfig = {
+    // для того, чтобы создавать несколько хранилищ
+    key: 'root',
+    // сохраненный storage
+    storage: storage,
+    // можно добавить blackList и whiteList
+}
+
+//  принимает конфиг и набор редюсеров
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// во время конфигурации стора передаем созданный редюсер
+const store = configureStore({
+    reducer: persistedReducer,
+
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+// чтобы приложение могло работать с redux-persiston
+export const persistor = persistStore(store);
 export default store;
