@@ -1,0 +1,101 @@
+.aside{
+    width: 8rem;
+    min-height: 100%;
+    z-index: 10;
+    opacity: 1;
+    transition: all 0.5s ease-out 0s;
+    background: #222222;
+    &__open{
+        width: 240px;
+        .logo, .nav__text{
+            display: block;
+        }
+        .aside__header{
+            width: 240px;
+        }
+    }
+    &__header{
+        transition: all 0.4s ease-out 0s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 3rem 0 2rem;
+        text-decoration: none;
+        gap: 1rem;
+        width: 8rem;
+        padding: 0 2rem;
+        // width: 100%;
+        svg{
+            width: 4rem;
+
+        }
+    }
+}
+.nav{
+    height: auto;
+    top: 7.6rem;
+    position: fixed;
+    margin: 3rem 0;
+    &__items{
+        overflow: auto;
+        max-height: calc(100% - 200px);
+    }
+    &__item{
+        border: 1px solid transparent;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 0px 0px 0px 20px;
+        border-radius: 8px;
+        width: fit-content;
+        height: 44px;
+        margin-top: 3px;
+        cursor: pointer;
+        color: rgb(255, 255, 255);
+    }
+    &__link{
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        height: 100%;
+        width: fit-content;
+        gap: 1rem;
+        svg{
+            width: 2.8rem;
+        }
+    }
+    &__text{
+        display: none;
+        color: #fff;
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+}
+a[aria-current="page"]{
+    p{
+        color: var(--blue);
+    }
+    svg{
+        path{
+            fill: var(--blue);
+        }
+    }
+    &[href='/journal']{
+        svg{
+            path{
+                fill: transparent;
+                stroke: var(--blue);
+            }
+        }
+    }
+}
+.logo{
+    display: none;
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.burger{
+    cursor: pointer;
+}

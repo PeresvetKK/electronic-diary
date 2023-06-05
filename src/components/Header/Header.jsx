@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import classes from './Header.scss';
+import './Header.scss';
+import defLogo from '../../resources/images/default-photo.png';
 const Header = () => {
-
-    const [date, setDate] = useState(new Date());
-
+    const userData = {
+        name: "Колтырин Пересвет",
+        role: 'Администратор',
+    }
     return (
         <header className='header'>
             <div className="header__left">
@@ -16,19 +16,13 @@ const Header = () => {
             <div className="header__right">
                 <div className="header__userbox userbox">
                     <div className="userbox__textbox">
-                        <p className="userbox__name text-s font-m">Колтырин Пересвет</p>
-                        <p className="userbox__role text-xs">Администратор</p>
+                        <p className="userbox__name text-s font-m">{userData.name}</p>
+                        <p className="userbox__role text-xs">{userData.role}</p>
                     </div>
                     <a href="#" className="userbox__icon">
-                        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
-                            <g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white" /> <path fillRule="evenodd" clipRule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z" fill="#F2F2F2" /> </g>
-                        </svg>
-                        {/* <picture>
-                            <source srcset='/images/circle.svg' media="(max-width: 800px)"/>
-                            <img src="640.jpg" alt="Абстрактное изображение"/>
-                        </picture> */}
+                        <picture>
+                            <img src={defLogo} alt={userData.name}/>
+                        </picture>
                     </a>
                 </div>
             </div>

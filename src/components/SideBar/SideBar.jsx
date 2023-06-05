@@ -1,40 +1,43 @@
-import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { useEffect } from 'react';
-import classes from './SideBar.scss';
+import React, {useState} from 'react'
+import { NavLink} from 'react-router-dom'
+import s from './SideBar.module.scss';
+import {BurgerSVG, NewsSVG, JournalSVG, HomeSVG} from '../../resources/svg';
 
 const SideBar = () => {
-	const location = useLocation();
-
-	useEffect(() => {
-		console.log('Current location is ', location);
-	  }, [location]);
+	const [open, setOpen] = useState(true)
 
 	return (
-		<aside className='aside'>
-			<NavLink to={`/`} className="aside__logo">ЭЖШ</NavLink>
-			<nav className="nav">
-				<div className="nav__items">
-					<div className="nav__item">
-						<NavLink to={`/journal`} className="nav__link">Мой дневник</NavLink>
+		<aside className={`${s.aside} ${open ? s.aside__open : s.aside__close} `}>
+			<div className={s.aside__header}>
+				<NavLink to={'/'} className={s.logo}>РЭД</NavLink>
+				<div className={s.burger} onClick={() => setOpen(!open)}>
+					<BurgerSVG/>
+				</div>
+			</div>
+			<nav className={s.nav}>
+				<div className={s.nav__items}>
+					<div className={s.nav__item}>
+						<NavLink to={`/`} className={s.nav__link}>
+							<HomeSVG />
+							<p className={s.nav__text}>Главная</p>
+						</NavLink>
 					</div>
-					<div className="nav__item">
-						<a href="" className="nav__link">
-							Журнал оценок
-						</a>
+					<div className={s.nav__item}>
+						<NavLink to={`/journal`} className={s.nav__link}>
+							<JournalSVG />
+							<p className={s.nav__text}>Мой дневник</p>
+						</NavLink>
 					</div>
-					<div className="nav__item">
-						<a href="" className="nav__link">
-							Мои кружки
-						</a>
-					</div>
-					<div className="nav__item">
-						<NavLink to={`/news`} className="nav__link">Новости</NavLink>
+					<div className={s.nav__item}>
+						<NavLink to={`/news`} className={s.nav__link}>
+							<NewsSVG />
+							<p className={s.nav__text}>Новости</p>
+						</NavLink>
 					</div>
 				</div>
 			</nav>
 		</aside>
-	)
-}
+	
+	)}
 
 export default SideBar

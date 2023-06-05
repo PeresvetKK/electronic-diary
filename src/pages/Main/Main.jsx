@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import {useAuth} from '../../hooks/use-auth';
 import {removeUser} from '../../store/slices/userSlice';
-import classes from './Main.scss';
+import './Main.scss';
 
 import HoumWork from '../../components/widgets/HoumWork/HoumWork';
 import Messanger from '../../components/widgets/Messanger/Messanger';
@@ -15,8 +13,7 @@ import News from '../../components/widgets/News/News';
 
 const Main = () => {
     const dispatch = useDispatch();
-    // получает информацию - авторизован или нет
-    const {isAuth, email} = useAuth();
+   
 
     // уроки и их составляющие
     const schudleData = [
@@ -223,8 +220,7 @@ const Main = () => {
         { date: "5 марта", title: 'Русский язык', text: "Школьники посетили выставку 2024" },
     ]
     
-    return isAuth 
-    ? (
+    return (
         <section className="section">
             <button onClick={() => dispatch(removeUser())}>Log Out</button>
             <Schedule objectsData={schudleData} title="Расписание на"></Schedule>
@@ -234,9 +230,6 @@ const Main = () => {
             <Messanger title="Диалоги"></Messanger>
             <News newsData={newsDatas} title="Новости"></News>
         </section>
-    ) 
-    : (
-        <Navigate to ='/login'/>
     )
 }
 
