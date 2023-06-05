@@ -1,0 +1,67 @@
+.table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--lightGray);
+    gap: .2rem;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: .2rem;
+    &:first-child{
+        .cell{font-weight: 700; text-transform: uppercase;}
+        .cell:last-child{border-radius: 0 0.8rem 0 0;}
+    }
+    &:last-child{
+        .cell:last-child{border-radius: 0 0 0.8rem 0;}
+    }
+}
+.cell {
+    display: flex;
+    background: #FFF;
+    height: 5.6rem;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 1.4rem;
+}
+.predmet{
+    flex: 2;
+}
+.houmwork{
+    flex: 3;
+}
+.score{
+    width: 9rem;
+    justify-content: center;
+}
+.comment{
+    flex: 3;
+}
+.number{
+    width: 5.4rem;
+}
+
+
+.table-date{
+    background: var(--red);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: inherit;
+    border-radius: 0.8rem 0 0 0.8rem;
+    padding: 2rem 0;
+    h2{
+        text-transform: uppercase;
+        writing-mode: tb-rl;
+        span{
+            font-weight: 700;
+            font-size: 2rem;
+        }
+    }
+}
+.journal-item{
+    display: flex;
+}

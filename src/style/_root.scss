@@ -1,9 +1,12 @@
 :root{
     --orange:    #FDC100;
-    --blue:      #2E5FFF;
-    --red:       #FF5448;
     --green:     #27BB00;
     --gray:      #DDDDDD;
+    
+    --newWhite:  #eff2ee;
+    --blue:      #3d7bec;
+    --red:       #ed312f;
+    --dark:      #221f1f;
 
     --lightGray: #F2F2F2;
     --lightBlue: #7788FC;
@@ -60,4 +63,13 @@
 }
 .font-b{
     font-family: 'Bold';
+}
+h1{
+    font-size: 3.2rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.6rem;
 }

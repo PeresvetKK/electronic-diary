@@ -5,7 +5,7 @@
 }
 
 .tabs__btns button {
-  
+  color: var(--dark);
   transition: all 0.7s;
 }
 .tabs__btns button:hover {
@@ -15,7 +15,8 @@
 }
 
 .tabs__btns .active{
-  background: var(--orange);
+  color: #fff;
+  background: var(--blue);
 }
 .tabs__content {
   font-size: 2rem;

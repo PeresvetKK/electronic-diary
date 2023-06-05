@@ -8,6 +8,7 @@
     font-size: 10px;
     scrollbar-width: thin;
     scrollbar-color: #2E5FFF #DFE9EB;
+    outline: none;
 }
 *::-webkit-scrollbar {
     width: 7px;
@@ -37,13 +38,11 @@
 a {
     text-decoration: none;
 }
-
 svg {
     width: initial;
     height: initial;
     display: block;
 }
-
 .reactRoot {
     min-height: 100vh;
     height: auto !important;
@@ -52,15 +51,10 @@ svg {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-flow: row wrap;
-    -moz-box-orient: horizontal;
-    -moz-box-direction: normal;
-    -ms-flex-flow: row wrap;
-    flex-flow: row wrap;
+    
     background: #F2F2F2;
 }
-
-.row {
+.section {
     margin: 0 0 2rem 0;
     display: flex;
     justify-content: space-between;
@@ -69,5 +63,28 @@ svg {
 
     &__item {
         width: calc(33% - 1rem);
+    }
+}
+.main{
+    overflow: hidden;
+    height: calc(100vh - 14rem);
+    overflow-y: auto;
+    margin: 4rem 0rem 2rem 2rem;
+    padding: 0rem 2rem 0 0;
+    box-sizing: border-box;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    background: #F2F2F2;
+}
+.content{
+    width: 100%;
+}
+.arrows-box{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    svg{
+        cursor: pointer;
     }
 }
