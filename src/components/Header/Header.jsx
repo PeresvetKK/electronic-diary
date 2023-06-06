@@ -1,11 +1,7 @@
 import 'react-calendar/dist/Calendar.css';
 import './Header.scss';
 import defLogo from '../../resources/images/default-photo.png';
-const Header = () => {
-    const userData = {
-        name: "Колтырин Пересвет",
-        role: 'Администратор',
-    }
+const Header = ({userData, children, ...props}) => {
     return (
         <header className='header'>
             <div className="header__left">
@@ -20,9 +16,14 @@ const Header = () => {
                         <p className="userbox__role text-xs">{userData.role}</p>
                     </div>
                     <a href="#" className="userbox__icon">
-                        <picture>
+                        {userData.imageLink != ''
+                        ? <picture>
+                            <img src={userData.imageLink} alt={userData.name}/>
+                        </picture>
+                        :<picture>
                             <img src={defLogo} alt={userData.name}/>
                         </picture>
+                        }
                     </a>
                 </div>
             </div>

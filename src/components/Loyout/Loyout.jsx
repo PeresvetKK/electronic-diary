@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Navigate, Outlet} from 'react-router-dom';
 import {useAuth} from '../../hooks/use-auth';
 import SideBar from '../SideBar/SideBar';
@@ -8,12 +8,23 @@ const Loyout = () => {
     // получает информацию - авторизован или нет
     const { isAuth, email } = useAuth();
 
+    const userUchenick = { 
+        name: 'Колтырин Пересвет',
+        role: 'Ученик',
+        imageLink: '',
+	}
+    const userTeacher = { 
+        name: 'Колтырин Пересвет',
+        role: 'Учитель',
+        imageLink: '',
+	}
+
     return isAuth
     ? (
         <>
-            <SideBar />
+            <SideBar role={userTeacher.role} />
             <div className="content">
-                <Header />
+                <Header userData={userTeacher} />
                 <div className='main'>
                     <Outlet />
                 </div>
