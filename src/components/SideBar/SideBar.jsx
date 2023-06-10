@@ -1,54 +1,14 @@
-import React, {useState} from 'react'
-import { NavLink} from 'react-router-dom'
+import React, {useState, useContext} from 'react'
+import {NavLink} from 'react-router-dom'
+import { UserContext } from '../Loyout/Loyout';
 import s from './SideBar.module.scss';
 import {BurgerSVG, NewsSVG, JournalSVG, HomeSVG} from '../../resources/svg';
 
-const SideBar = ({role, children, ...props }) => {
+const SideBar = ({children, ...props }) => {
+	// содержит информацию о юзере
+	const userData = useContext(UserContext)
+	// открытие и закрытие бокового меню
 	const [open, setOpen] = useState(true)
-
-	const getNavLinkWithRole = (role) =>{
-		switch(role){
-			case 'Учитель':
-				return [
-					{
-						path: '/',
-						text: 'Главная',
-						icon: <HomeSVG/>,
-					},
-					{
-						path: '/journal',
-						text: 'Журнал',
-						icon: <JournalSVG/>,
-					},
-					{
-						path: '/news',
-						text: 'Новости',
-						icon: <NewsSVG/>,
-					},
-				]
-				break;
-			case 'Ученик':
-				return [
-					{
-						path: '/',
-						text: 'Главная',
-						icon: <HomeSVG/>,
-					},
-					{
-						path: '/journal',
-						text: 'Мой дневник',
-						icon: <JournalSVG/>,
-					},
-					{
-						path: '/news',
-						text: 'Новости',
-						icon: <NewsSVG/>,
-					},
-				]
-				break;
-		}
-	}
-	const linksArray = getNavLinkWithRole(role);
 	
 	return (
 		<aside className={`${s.aside} ${open ? s.aside__open : s.aside__close} `}>
@@ -60,14 +20,31 @@ const SideBar = ({role, children, ...props }) => {
 			</div>
 			<nav className={s.nav}>
 				<div className={s.nav__items}>
-					{linksArray.map((item, index) => (
-						<div className={s.nav__item} key={index}>
-							<NavLink to={item.path} className={s.nav__link}>
-								{item.icon}
-								<p className={s.nav__text}>{item.text}</p>
+						<div className={s.nav__item}>
+							<NavLink to='/' className={s.nav__link}>
+								<HomeSVG/>
+								<p className={s.nav__text}>Домой</p>
 							</NavLink>
 						</div>
-					))}
+						<div className={s.nav__item}>
+							{userData.role == 'Ученик'
+								?<NavLink to={'/journal'} className={s.nav__link}>
+									<JournalSVG/>
+									<p className={s.nav__text}>Мой дневник</p>
+								</NavLink>
+								
+								:<NavLink to={'/journal'} className={s.nav__link}>
+									<JournalSVG/>
+									<p className={s.nav__text}>Журнал</p>
+								</NavLink>
+							}
+						</div>
+						<div className={s.nav__item}>
+							<NavLink to='/news' className={s.nav__link}>
+								<NewsSVG/>
+								<p className={s.nav__text}>Новости</p>
+							</NavLink>
+						</div>
 				</div>
 			</nav>
 		</aside>

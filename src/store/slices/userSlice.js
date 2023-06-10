@@ -12,6 +12,7 @@ const userSlice = createSlice({
     initialState,
     // экшены
     reducers: {
+        // сюда отдаем наши данные при авторизации
         // регистрация и вход
         setUser(state, action) {
             state.email = action.payload.email;

@@ -27,7 +27,7 @@ const persistConfig = {
     // можно добавить blackList и whiteList
 }
 
-//  принимает конфиг и набор редюсеров
+//  принимает конфигов и набор редюсеров
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // во время конфигурации стора передаем созданный редюсер
