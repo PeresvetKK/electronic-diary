@@ -5,7 +5,6 @@ import HoumWorkItem from './HoumWorkItem/HoumWorkItem'
 
 const HoumWork = ({title}) => {
     const userData = useContext(UserContext)
-
     return (
         <div className={`houmwork-block block-widget row__item`}>
             <div className="block-widget__header">

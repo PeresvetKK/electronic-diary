@@ -15,6 +15,14 @@
     &-orange{
         background: var(--orange);
     }
+    &-blue{
+        background: var(--blue);
+        color: #fff;
+    }
+    &-gray{
+        background-color: var(--gray);
+        color: var(--dark);
+    }
     &-red{
         background: var(--red);
     }
@@ -25,6 +33,12 @@
         background: var(--lightGray);
         pointer-events: none;
         color: #000;
+    }
+
+    &-big{
+        width: 15rem;
+        height: 5rem;
+        font-size: 1.6rem;
     }
     
 }

@@ -13,7 +13,7 @@ const Journal = () => {
                     <RightArrowSVG/>
                 </div>
             </div>
-            <div className={`${s['table-section']}`}>
+            <div className={s['table-section']}>
                 <Table />
                 <Table />
             </div>

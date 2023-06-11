@@ -1,0 +1,44 @@
+.urok-detail{
+    background: #fff;
+    padding: 2rem;
+    height: 100%;
+    &__title{
+        width: 100%;
+        display: flex;
+        align-items: center;    
+        justify-content: space-between;
+        p{
+            font-size: 3rem;
+            font-weight: 700;
+        }
+    }
+}
+.urok-detail-main{
+    height: calc(100% - 12rem);
+    .block-widget__header{
+        padding: 0;
+        margin-top: 3rem;
+    }
+}
+.urok-detail-footer{
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+}
+.inf-urok{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    &-box{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 2rem;
+        &__title{
+            font-size: 1.8rem;
+            min-width: 17rem;
+            text-align: left;
+        }
+    }
+}

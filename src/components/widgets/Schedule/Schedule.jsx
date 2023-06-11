@@ -1,53 +1,49 @@
 import React, {useState, useContext} from 'react'
 import { UserContext } from '../../Loyout/Loyout'
 import './Schedule.scss'
-import Lesson from '../Lessons/Lesson'
 import Tabs from '../../Tabs/Tabs'
-import TabNavItem from '../../Tabs/TabNavItem/TabNavItem'
+import Button from '../../UI/button/Button'
 import TabContent from '../../Tabs/TabContent/TabContent'
-import LessonTeacher from '../Lessons/LessonTeacher'
 
-function addPropsToReactElement(element, props) {
-    if (React.isValidElement(element)) {
-      return React.cloneElement(element, props)
-    }
-    return element
-}
-function addPropsToChildren(children, props) {
-    if (!Array.isArray(children)) {
-      return addPropsToReactElement(children, props)
-    }
-    return children.map(childElement =>
-      addPropsToReactElement(childElement, props)
-    )
-}
-
-const Schedule = ({countTabData, children, ...props }) => {
+const Schedule = ({children, title}) => {
     const userData = useContext(UserContext)
+    const tabContent = userData.schedule.slice(0, 2)
+    function addPropsToReactElement(element, props) {
+        if (React.isValidElement(element)) {
+          return React.cloneElement(element, props)
+        }
+        return element
+    }
+    function addPropsToChildren(children, props) {
+        if (!Array.isArray(children)) {
+          return addPropsToReactElement(children, props)
+        }
+        return children.map(childElement =>
+          addPropsToReactElement(childElement, props)
+        )
+    }
     
-    // хук для логики табов
-    const [activeTab, setActiveTab] = useState(`${userData.schedule[0].id}`);
-
     return (
         <div className={`schudle-block block-widget row__item ${userData.role === 'Учитель' ? 'schudle-block-teacher' : ''}`}>
-            <Tabs>
-                <div className="block-widget__header">
-                    <p className="block-widget__title text-s font-b">{props.title}</p>
+            <Tabs 
+                title={title}>
                     <div className="tabs__btns block-widget__header_right">
-                        {userData.schedule.map((object, index) =>
-                            <TabNavItem title={object.title} id={object.id} activeTab={activeTab} setActiveTab={setActiveTab} key={index}/>
-                        )}
+                        <Button>Сегодня</Button>
+                        <Button>Завтра</Button>
                     </div>
-                </div>
-                <div className="tabs__content schudle-block__items block-widget__items">
-                    {userData.schedule.map((object, index) =>
-                        <TabContent id={object.id} activeTab={activeTab} key={index}>
-                            {object.lessons.map((object, index) =>
+                    <div className="tabs__content schudle-block__items block-widget__items">
+                        <TabContent>
+                            {tabContent[0].lessons.map((object, index) =>
                                 addPropsToChildren(children, {'key': index, 'posts': object})
                             )}
                         </TabContent>
-                    )}
-                </div>
+
+                        <TabContent>
+                            {tabContent[1].lessons.map((object, index) =>
+                                addPropsToChildren(children, {'key': index, 'posts': object})
+                            )}
+                        </TabContent>
+                    </div>
             </Tabs>
         </div>
     )

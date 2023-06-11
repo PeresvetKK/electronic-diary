@@ -1,0 +1,7 @@
+input{
+    border-radius: 0.8rem;
+    border: 1px solid var(--lightGray);
+    &:focus, &:active, &:hover{
+        border: 1px solid var(--gray);
+    }    
+}

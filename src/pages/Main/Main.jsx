@@ -1,6 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import './Main.scss';
-import { UserContext } from '../../components/Loyout/Loyout';
+import {UserContext} from '../../components/Loyout/Loyout';
 
 import HoumWork from '../../components/widgets/HoumWork/HoumWork';
 import Messanger from '../../components/widgets/Messanger/Messanger';

@@ -16,6 +16,7 @@ import Journal from "./pages/Journal/Journal";
 import NotFound from './pages/NotFound/NotFound';
 import LoginPage from './pages/Login-Registration/LoginPage/LoginPage';
 import RegisterPage from './pages/Login-Registration/RegistrationPage/RegistrationPage';
+import UrokDetail from "./components/UrokDetail/UrokDetail";
 
 function App() {
     // получает информацию - авторизован или нет
@@ -32,6 +33,7 @@ function App() {
                     : null}
                     <Route path="/" element={<Loyout/>}>
                         <Route index element={<Main/>}/>
+                        <Route path="edit-lesson/:id" element={<UrokDetail/>}/>
                         <Route path="news" element={<News/>}/>
                         <Route path="journal" element={<Journal/>}/>
                         <Route path="*" element={<NotFound />}/>

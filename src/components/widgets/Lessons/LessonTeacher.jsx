@@ -1,24 +1,58 @@
 import React from 'react'
-import './Lesson.scss'
-import Ocenka from './Ocenka/Ocenka'
+import s from './LessonTeacher.module.scss'
 import LessonItem from './LessonItem/LessonItem'
 import NumberUrok from './NumberUrok/NumberUrok'
-import {RunManSVG} from '../../../resources/svg'
+import {EditSVG, RunManSVG} from '../../../resources/svg'
+import {Link} from 'react-router-dom'
 
 const LessonTeacher = ({posts}) => {
     return (
         // строка расписания. Получает массив объектов, в котором данные для заполнения контента
-        <div className="schudle-block__item">
-            <div className="schudle-block__inner_item">
-                <NumberUrok urokCount={posts.urokCount} urokStart={posts.urokStart} urokStop={posts.urokStop}></NumberUrok>
-                <LessonItem lesson={posts.lesson} lessonType={posts.lessonType} lessonClass={posts.lessonClass}></LessonItem>
-                {posts.cabinet != '' ? <span>Кабинет: {posts.cabinet}</span> : null}
-                {posts.classLesson != '' ? <span>Класс: {posts.classLesson}</span> : null}
+        <div className={s.item}>
+            <div className={s.textbox}>
+                <div className={s.item__cell}>
+                    <NumberUrok
+                        urokCount={posts.urokCount} 
+                        urokStart={posts.urokStart} 
+                        urokStop={posts.urokStop}
+                    />
+                </div>
+                <div className={s.item__cell}>
+                    <LessonItem
+                        lesson={posts.lesson} 
+                        lessonType={posts.lessonType} 
+                        lessonClass={posts.lessonClass}
+                    />
+                </div>
+                <div className={s.item__cell}>
+                    {posts.classLesson != '' && posts.classLesson != null
+                        ? <div className={s.textbox__text}>
+                            Класс: <span>{posts.classLesson}</span>
+                          </div> 
+                        : null
+                    }
+                </div>
+                <div className={s.item__cell}>
+                    {posts.cabinet != '' && posts.cabinet !== null 
+                        ? <div className={s.textbox__text}>
+                            Кабинет: <span>{posts.cabinet}</span>
+                          </div> 
+                        : null
+                    }
+                </div>
+                <div className={s.item__cell}>
+                    {posts.lesson != '' && posts.lesson !== null
+                        ?<Link to={`/edit-lesson/${15}`}>
+                            <EditSVG/>
+                        </Link>
+                        : null
+                    }
+                </div>
             </div>
             {posts.peremenaLength != ''
-                ? <div className="schudle-block__item_peremena">
+                ? <div className={s.peremena}>
                     <RunManSVG></RunManSVG>
-                    <p className="peremena-item">Перемена {posts.peremenaLength} минут</p>
+                    <p className={s.peremena__text}>Перемена {posts.peremenaLength} минут</p>
                  </div>
                 : false
             }
