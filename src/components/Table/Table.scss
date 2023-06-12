@@ -5,40 +5,22 @@
     background: var(--lightGray);
     gap: .2rem;
 }
-.row {
-    display: flex;
-    flex-direction: row;
-    gap: .2rem;
-    &:first-child{
-        .cell{font-weight: 700; text-transform: uppercase;}
-        .cell:last-child{border-radius: 0 0.8rem 0 0;}
-    }
-    &:last-child{
-        .cell:last-child{border-radius: 0 0 0.8rem 0;}
-    }
-}
-.cell {
-    display: flex;
-    background: #FFF;
-    height: 5.6rem;
-    align-items: center;
-    padding: 0 20px;
-    font-size: 1.4rem;
-}
-.predmet{
+
+
+.journal-predmet{
     flex: 2;
 }
-.houmwork{
+.journal-houmwork{
     flex: 3;
 }
-.score{
+.journal-score{
     width: 9rem;
     justify-content: center;
 }
-.comment{
+.journal-comment{
     flex: 3;
 }
-.number{
+.journal-number{
     width: 5.4rem;
 }
 
@@ -62,6 +44,6 @@
         }
     }
 }
-.journal-item{
+.table-item{
     display: flex;
 }

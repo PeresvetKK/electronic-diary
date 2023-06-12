@@ -12,12 +12,16 @@
             font-weight: 700;
         }
     }
+    .table-header p{
+        padding: 0 2rem;
+        font-size: 1.4rem;
+    }
 }
 .urok-detail-main{
     height: calc(100% - 12rem);
     .block-widget__header{
         padding: 0;
-        margin-top: 3rem;
+        margin: 3rem 0;
     }
 }
 .urok-detail-footer{
@@ -25,20 +29,30 @@
     justify-content: flex-end;
     gap: 3rem;
 }
-.inf-urok{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 3rem;
-    &-box{
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 2rem;
-        &__title{
-            font-size: 1.8rem;
-            min-width: 17rem;
-            text-align: left;
-        }
+.cell-fio{
+    flex: 2;
+}
+.cell-score{
+    flex: 1;
+    max-width: 9rem;
+    padding: 0 !important;
+    justify-content: center;
+}
+.cell-comment{
+    flex: 2;
+    padding: 0 !important;
+}
+.tabs{
+    height: 100%;
+    &__content{
+        height: 100%;
+    }
+    .table-item, .block-widget__footer{
+        height: 100%;
+    }
+    .table{
+        height: calc(100% - 10rem);
+        overflow: hidden;
+        overflow-y: auto;
     }
 }

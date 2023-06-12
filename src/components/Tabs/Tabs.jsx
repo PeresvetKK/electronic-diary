@@ -25,17 +25,17 @@ const Tabs = ({classes, title, children}) => {
                     ))}
                 </div>
             </div>
-                <div className={children[1].props.className}>
-                    {children[1].props.children.map((content, index) => (
-                        <TabContent 
-                            key={index} 
-                            activeTab={activeTab}
-                            id={index}
-                        >
-                            {content.props.children}
-                        </TabContent>
-                    ))}
-                </div>
+            <div className={`block-widget__footer ${children[1].props.className}`}>
+                {children[1].props.children.map((content, index) => (
+                    <TabContent 
+                        key={index} 
+                        activeTab={activeTab}
+                        id={index}
+                    >
+                        {content.props.children}
+                    </TabContent>
+                ))}
+            </div>
         </div>
     )
 }

@@ -4,8 +4,11 @@ import './UrokDetail.scss'
 import Button from '../UI/button/Button'
 import TabContent from '../Tabs/TabContent/TabContent'
 import Tabs from '../Tabs/Tabs'
-import Input from '../UI/input/Input/Input'
-import FileInput from '../UI/input/FileInput/FileInput'
+import InfoUrok from './InfoUrok/InfoUrok'
+import Table from '../Table/Table'
+import Row from '../Table/Row/Row'
+import CellText from '../Table/CellText/CellText'
+import CellInput from '../Table/CellInput/CellInput'
 
 const UrokDetail = () => {
     // для получения информации из url
@@ -26,19 +29,83 @@ const UrokDetail = () => {
         
     //     fetchData()
     // }, [id])
-    const initialValues = {
-        lessonTitle: '',
-        houmwork: "",
-    };
-    const [values, setValues] = useState(initialValues);
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setValues({
-        ...values,
-        [name]: value,
-        });
-    };
+    const detiArray = [
+        {
+            name: "Лукин Владимир Наумович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Доронин Даниил Филиппович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Носов Евдоким Георгьевич",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Поляков Адриан Львович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Зуев Аверкий Семёнович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Яковлев Велор Оскарович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Михеев Филипп Русланович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Горшков Августин Рубенович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Кулагин Осип Александрович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Антонов Виктор Христофорович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Герасимов Давид Давидович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Юдин Людвиг Дмитриевич",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Данилов Пантелеймон Романович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Игнатов Алан Серапионович",
+            ocenka: '',
+            comment: '',
+        },
+        {
+            name: "Ильин Климент Михайлович",
+            ocenka: '',
+            comment: '',
+        },
+    ]
     return (
         <section className='urok-detail'>
             <div className='urok-detail__title'>
@@ -53,33 +120,26 @@ const UrokDetail = () => {
                     </div>
                     <div>
                         <TabContent>  
-                            <div className="inf-urok">
-                            <div className="inf-urok-box">
-                                    <p className="inf-urok-box__title">Тема урока:</p>
-                                    <Input 
-                                        placeholder={'Введите тему урока'} 
-                                        type='text'
-                                        value={values.lessonTitle}
-                                        onChange={handleInputChange}
-                                        name="lessonTitle"
-                                    />
-                                </div>
-                                <div className="inf-urok-box">
-                                    <p className="inf-urok-box__title">Домашнее задание:</p>
-                                    <Input 
-                                        placeholder={'Введите домашнее задание'} 
-                                        type='text'
-                                        value={values.houmwork}
-                                        onChange={handleInputChange}
-                                        name="houmwork"
-                                    />
-                                </div>
-                            </div>  
-                            
+                            <InfoUrok/>
                         </TabContent>
 
                         <TabContent>
-                            выставление оценок
+                            <Table>
+                                <div className='table-header'>
+                                    <Row>
+                                        <CellText classNameElement={`cell-fio`}>ФИО</CellText>
+                                        <CellText classNameElement={`cell-score`}>Оценка</CellText>
+                                        <CellText classNameElement={`cell-comment`}><p>Комментарий</p></CellText>
+                                    </Row>
+                                </div>
+                                {detiArray.map((rebenok, index) => (
+                                  <Row key={index}>
+                                    <CellText classNameElement={`cell-fio`}>{rebenok.name}</CellText>
+                                    <CellInput classNameElement={`cell-score`}></CellInput>
+                                    <CellInput classNameElement={`cell-comment`}></CellInput>
+                                  </Row>  
+                                ))}
+                            </Table>
                         </TabContent>
                     </div>
                 </Tabs>

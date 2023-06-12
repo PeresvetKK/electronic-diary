@@ -5,6 +5,8 @@ import Tabs from '../../Tabs/Tabs'
 import Button from '../../UI/button/Button'
 import TabContent from '../../Tabs/TabContent/TabContent'
 
+
+
 const Schedule = ({children, title}) => {
     const userData = useContext(UserContext)
     const tabContent = userData.schedule.slice(0, 2)
@@ -26,7 +28,8 @@ const Schedule = ({children, title}) => {
     return (
         <div className={`schudle-block block-widget row__item ${userData.role === 'Учитель' ? 'schudle-block-teacher' : ''}`}>
             <Tabs 
-                title={title}>
+                title={title}
+                tabContent={tabContent}>
                     <div className="tabs__btns block-widget__header_right">
                         <Button>Сегодня</Button>
                         <Button>Завтра</Button>

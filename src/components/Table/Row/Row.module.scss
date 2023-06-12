@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: .2rem;
+    &:first-child{
+        .cell{font-weight: 700; text-transform: uppercase;}
+        .cell:last-child{border-radius: 0 0.8rem 0 0;}
+    }
+    &:last-child{
+        .cell:last-child{border-radius: 0 0 0.8rem 0;}
+    }
+}
