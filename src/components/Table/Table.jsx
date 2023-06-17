@@ -10,7 +10,7 @@ const Table = ({children, ...props}) => {
     <div className='table-item'>
         {props.title &&
             <div className='table-date'>
-                <h2>Понедельник <span>{props.date}</span></h2>
+                <h2>{props.dateName} <span>{props.date}</span></h2>
             </div>
         }
         <div className={'table'}>

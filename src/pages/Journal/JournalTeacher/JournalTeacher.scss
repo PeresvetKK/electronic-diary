@@ -1,0 +1,20 @@
+.table-section{
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    background: var(--newWhite);
+}
+.journal-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.journal-time{
+    flex: 1;
+}
+.journal-cabinet{
+    flex: 1;
+}

@@ -3,7 +3,7 @@ import classes from './DopZanyatiya.scss'
 import DopZanyatiyaItem from './DopZanyatiyaItem/DopZanyatiyaItem'
 import { UserContext } from '../../Loyout/Loyout'
 
-const DopZanyatiya = ({dopZanData, title, ...props}) => {
+const DopZanyatiya = ({title, children, ...props}) => {
     const userData = useContext(UserContext)
     return (
         <div className='dopzan-block block-widget row__item'>

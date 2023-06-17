@@ -1,5 +1,4 @@
 import React, {createContext, useState, useEffect} from 'react'
-import axios from 'axios';
 import {Navigate, Outlet} from 'react-router-dom';
 import {useAuth} from '../../hooks/use-auth';
 import SideBar from '../SideBar/SideBar';
@@ -35,21 +34,21 @@ const Loyout = () => {
     }, [])
     return isAuth
         ? ( 
-            userData.length ? (
+            userData.length 
+            ? (
                 <UserContext.Provider value={userData[1]}>
                     <SideBar />
                     <div className="content">
                         <Header isAuth={isAuth} />
                         <div className='main'>
                             <NewsContext.Provider value={newsDatas}>
-                                <Outlet />
+                                <Outlet/>
                             </NewsContext.Provider>
                         </div>
                     </div>
                 </UserContext.Provider>
-            ) : (
-                <Loader/>
-            )
+            ) 
+            : (<Loader/>)
             
         )
         : (
