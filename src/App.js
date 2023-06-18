@@ -29,8 +29,11 @@ function App() {
             <BrowserRouter>
                 <Routes> 
                     {!isAuth
-                        && <Route path="/login" element={<LoginPage/>}/>
-                        && <Route path="/register" element={<RegisterPage/>}/>
+                        ?<>
+                            <Route path="/login" element={<LoginPage/>}/>
+                            <Route path="/register" element={<RegisterPage/>}/>
+                        </> 
+                        : null
                     }
                     <Route path="/" element={<Loyout/>}>
                         <Route index element={<Main/>}/>

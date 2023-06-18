@@ -21,6 +21,7 @@ const Main = () => {
                         <Lesson/>
                     </Schedule>
                     <HoumWork title="Домашнее задание"></HoumWork>
+                    <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
                     <Grade gradeData={userData.gradeData}></Grade>
                     <Messanger title="Диалоги"></Messanger>
                 </>
@@ -28,10 +29,11 @@ const Main = () => {
                     <Schedule title="Расписание на">
                         <LessonTeacher/>
                     </Schedule>
+                    <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
                 </>
             }
             <News title="Новости"></News>
-            <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
+            
         </section>
     )
 }
