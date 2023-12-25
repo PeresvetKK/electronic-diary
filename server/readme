@@ -1,0 +1,8 @@
+validations - папка всех валидаций
+models - папка моделей
+index.js - главный файл сервера
+
+запуск: cd server
+node index.js
+mongoCompass
+insomnia

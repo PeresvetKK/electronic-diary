@@ -58,7 +58,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "10.03.2023"
                         },
                         {
                             "urokCount": "5",
@@ -70,7 +70,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "10.03.2023"
                         },
                         {
                             "urokCount": "6",
@@ -82,7 +82,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "10.03.2023"
                         },
                         {
                             "urokCount": "7",
@@ -94,7 +94,7 @@
                             "ocenka": "",
                             "peremenaLength": "",
                             "dz": "",
-                            "date": ""
+                            "date": "10.03.2023"
                         }
                     ]
                 },
@@ -109,12 +109,12 @@
                             "urokStart": "8:30",
                             "urokStop": "9:10",
                             "lesson": "Математика",
-                            "lessonType": "",
-                            "lessonClass": "",
-                            "ocenka": "4",
+                            "lessonType": "Контрольная",
+                            "lessonClass": "schudle-block-lesson__control",
+                            "ocenka": "",
                             "peremenaLength": "10",
-                            "dz": "",
-                            "date": ""
+                            "dz": "подготовиться к контрольной работе",
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "2",
@@ -126,7 +126,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "3",
@@ -138,7 +138,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "4",
@@ -147,10 +147,10 @@
                             "lesson": "Математика",
                             "lessonType": "",
                             "lessonClass": "",
-                            "ocenka": "5",
+                            "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "5",
@@ -162,7 +162,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "6",
@@ -174,7 +174,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         },
                         {
                             "urokCount": "7",
@@ -186,7 +186,7 @@
                             "ocenka": "",
                             "peremenaLength": "",
                             "dz": "",
-                            "date": ""
+                            "date": "11.03.2023"
                         }
                     ]
                 },
@@ -203,7 +203,7 @@
                             "lesson": "Русский язык",
                             "lessonType": "",
                             "lessonClass": "",
-                            "ocenka": "5",
+                            "ocenka": "4",
                             "peremenaLength": "10",
                             "dz": "стр. 25, упр. 48 - 52",
                             "date": "12.03.2023"
@@ -215,7 +215,7 @@
                             "lesson": "Русский язык",
                             "lessonType": "Контрольная",
                             "lessonClass": "schudle-block-lesson__control",
-                            "ocenka": "3",
+                            "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "стр. 25, упр. 48 - 52",
                             "date": "12.03.2023"
@@ -227,7 +227,7 @@
                             "lesson": "Русский язык",
                             "lessonType": "",
                             "lessonClass": "",
-                            "ocenka": "5",
+                            "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "стр. 25, упр. 48 - 52",
                             "date": "12.03.2023"
@@ -239,10 +239,10 @@
                             "lesson": "Русский язык",
                             "lessonType": "",
                             "lessonClass": "",
-                            "ocenka": "",
+                            "ocenka": "5",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "12.03.2023"
                         },
                         {
                             "urokCount": "5",
@@ -251,10 +251,10 @@
                             "lesson": "Русский язык",
                             "lessonType": "",
                             "lessonClass": "",
-                            "ocenka": "",
+                            "ocenka": "5",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "12.03.2023"
                         },
                         {
                             "urokCount": "6",
@@ -266,7 +266,7 @@
                             "ocenka": "",
                             "peremenaLength": "20",
                             "dz": "",
-                            "date": ""
+                            "date": "12.03.2023"
                         },
                         {
                             "urokCount": "7",
@@ -278,7 +278,7 @@
                             "ocenka": "",
                             "peremenaLength": "",
                             "dz": "",
-                            "date": ""
+                            "date": "12.03.2023"
                         }
                     ]
                 }
@@ -289,16 +289,16 @@
                     "predmet": "Русский язык"
                 },
                 {
-                    "date": "5 марта",
-                    "predmet": "Русский язык"
+                    "date": "7 марта",
+                    "predmet": "Геометрия"
                 },
                 {
                     "date": "5 марта",
                     "predmet": "Русский язык"
                 },
                 {
-                    "date": "5 марта",
-                    "predmet": "Русский язык"
+                    "date": "8 марта",
+                    "predmet": "Информатика"
                 }
             ],
             "gradeData": [
