@@ -32,8 +32,9 @@ const Loyout = () => {
         
         fetchData()
     }, [])
-    return isAuth
-        ? ( 
+    // return isAuth
+    //     ? ( 
+        return(
             userData.length 
             ? (
                 <UserContext.Provider value={userData[1]}>
@@ -51,9 +52,9 @@ const Loyout = () => {
             : (<Loader/>)
             
         )
-        : (
-            <Navigate to='/login' />
-        )
+        // : (
+        //     <Navigate to='/login' />
+        // )
 }
 
 export default Loyout

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-// начальное состояние редакса
+// начальное состояние
 const initialState = {
     email: null,
     token: null,
@@ -10,10 +10,8 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    // экшены
     reducers: {
         // сюда отдаем наши данные при авторизации
-        // регистрация и вход
         setUser(state, action) {
             state.email = action.payload.email;
             state.token = action.payload.token;

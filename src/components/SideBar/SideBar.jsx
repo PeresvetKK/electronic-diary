@@ -35,7 +35,7 @@ const SideBar = ({children, ...props }) => {
 								
 								:<NavLink to={'/journal'} className={s.nav__link}>
 									<JournalSVG/>
-									<p className={s.nav__text}>Журнал</p>
+									<p className={s.nav__text}>Расписание</p>
 								</NavLink>
 							}
 						</div>

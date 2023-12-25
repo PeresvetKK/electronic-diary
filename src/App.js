@@ -22,7 +22,6 @@ import UrokDetail from "./components/UrokDetail/UrokDetail";
 function App() {
     // получает информацию - авторизован или нет
     const { isAuth, email } = useAuth();
-    
     const roleTeacher = true
 	return (
         <div className="reactRoot">

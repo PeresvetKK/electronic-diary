@@ -7,6 +7,7 @@ import { UserContext } from '../../../components/Loyout/Loyout';
 import Row from '../../../components/Table/Row/Row';
 import CellText from '../../../components/Table/CellText/CellText';
 import Ocenka from '../../../components/widgets/Lessons/Ocenka/Ocenka';
+import NumberUrok from '../../../components/widgets/Lessons/NumberUrok/NumberUrok';
 
 const Journal = () => {
     const user = useContext(UserContext)
@@ -25,6 +26,7 @@ const Journal = () => {
                     <Table key={index} date={day.date} dateName={day.dateName} title={true}>
                         <Row>
                             <CellText classNameElement={`journal-number`}>№</CellText>
+                            <CellText classNameElement={`journal-time`}>Время</CellText>
                             <CellText classNameElement={`journal-predmet`}>Предмет</CellText>
                             <CellText classNameElement={`journal-houmwork`}>Домашнее задание</CellText>
                             <CellText classNameElement={`journal-score`}>Оценка</CellText>
@@ -33,6 +35,12 @@ const Journal = () => {
                         {day.lessons.map((row, index) => (
                             <Row key={index}>
                                 <CellText classNameElement={'journal-number'}>{row.urokCount}</CellText>
+                                <CellText classNameElement={'journal-time'}>
+                                    <NumberUrok
+                                        urokStart={row.urokStart} 
+                                        urokStop={row.urokStop}
+                                    />
+                                </CellText>
                                 <CellText classNameElement={`journal-predmet`}>{row.lesson}</CellText>
                                 <CellText classNameElement={`journal-houmwork`}>{row.dz}</CellText>
                                 <CellText classNameElement={`journal-score`}><Ocenka ocenka={row.ocenka}></Ocenka></CellText>

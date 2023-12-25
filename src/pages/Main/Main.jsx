@@ -23,7 +23,7 @@ const Main = () => {
                     <HoumWork title="Домашнее задание"></HoumWork>
                     <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
                     <Grade gradeData={userData.gradeData}></Grade>
-                    <Messanger title="Диалоги"></Messanger>
+                    {/* s<Messanger title="Диалоги"></Messanger> */}
                 </>
                 : <>
                     <Schedule title="Расписание на">

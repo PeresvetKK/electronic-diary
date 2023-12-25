@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store, {persistor} from './store/index.js';
-import './firebase'; 
+
 import {PersistGate} from 'redux-persist/integration/react';
 import App from './App';
 import Loader from './components/Loader/Loader.jsx';

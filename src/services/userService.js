@@ -7,6 +7,6 @@ export const UserService = {
     },
     async getLessonById(id) {
         const response = await axios.get(`http://localhost:4020/users?id=${id}`)
-        return response.data[0];
+        return response.data;
     },
 };

@@ -1,9 +1,9 @@
 import Form from './Form'
-import { useDispatch } from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom';
 import {setUser} from '../../store/slices/userSlice';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {useState} from 'react';
 import Loader from '../Loader/Loader';
 
 const Login = () => {

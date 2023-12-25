@@ -20,14 +20,11 @@ const rootReducer = combineReducers({
 
 
 const persistConfig = {
-    // для того, чтобы создавать несколько хранилищ
     key: 'root',
-    // сохраненный storage
     storage: storage,
-    // можно добавить blackList и whiteList
 }
 
-//  принимает конфигов и набор редюсеров
+//  принимает конфиг и набор редюсеров
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // во время конфигурации стора передаем созданный редюсер
