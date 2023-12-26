@@ -5,6 +5,7 @@ import {setUser} from '../../store/slices/userSlice';
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {useState} from 'react';
 import Loader from '../Loader/Loader';
+import { UserService } from '../../services/userService';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -13,23 +14,22 @@ const Login = () => {
     
     const handleLogin = (email, password) => {
         setLoader(true)
-        setTimeout(() => {
-            const auth = getAuth();
-            signInWithEmailAndPassword(auth, email, password)
-                .then(({user}) => {
-                    dispatch(setUser({
-                        email: user.email,
-                        id: user.uid,
-                        token: user.accessToken, 
-                    }))
-                    // для переадресации пользователя
-                    navigate('/');
-                })
-                .catch(() => {
-                    setLoader(false);
-                })     
-        }, "2000");
-        
+        const auth = UserService.login(email, password).then(result => {
+            dispatch(setUser({
+                email: result.email,
+                id: result.code,
+                token: result.token,
+                userType: result.userType,
+                userFirstName: result.userData.firstName,  
+                userLastName: result.userData.lastName,  
+                userLastLastName: result.userData.lasLastName,  
+                userNumberClass: result.userData.numberClass,
+                userLetterClass: result.userData.letterClass,
+            }))
+            
+            // для переадресации пользователя
+            navigate('/');
+        })   
     }
     return (
         <>

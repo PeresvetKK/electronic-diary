@@ -1,9 +1,10 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import {registrValidation} from './validations/registr.js';
 import checkAuth from './utils/checkAuth.js';
 
-import {register, login, getMe} from './controllers/UserController.js'
+import {register, login, getMe, usersAll} from './controllers/UserController.js'
 
 mongoose
 .connect('mongodb+srv://koltyrin02:jSjiSdcFw9h1kBBA@cluster0.adbonz9.mongodb.net/blog')
@@ -12,6 +13,7 @@ mongoose
 
 const app = express();
 
+app.use(cors())
 // позволяет json, который будет приходить
 app.use(express.json());
 
@@ -19,10 +21,13 @@ app.use(express.json());
 app.post('/auth/register', register);
 
 // авторизация
-app.post('/auth/login', login)
+app.post('/auth/login', login,)
 
 // авторизован ли
 app.get('/auth/me', checkAuth, getMe)
+
+// временно посылаю массив данных для отображения
+app.get('/users/all', usersAll);
 
 app.listen(4444, (err) => {
     // если сервер не смог запуститься

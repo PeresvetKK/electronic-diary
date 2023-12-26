@@ -27,17 +27,17 @@ const Loyout = () => {
         const fetchData = async () => {
             // получаем с сервера пользователя и помещаем в стейт
             const data= await UserService.getAll()
-            setUserData(data)
+            setUserData(data.users)
         }
         
         fetchData()
     }, [])
-    // return isAuth
-    //     ? ( 
-        return(
+    console.log(isAuth)
+    return isAuth
+        ?(
             userData.length 
             ? (
-                <UserContext.Provider value={userData[1]}>
+                <UserContext.Provider value={userData[0]}>
                     <SideBar />
                     <div className="content">
                         <Header isAuth={isAuth} />
@@ -50,11 +50,11 @@ const Loyout = () => {
                 </UserContext.Provider>
             ) 
             : (<Loader/>)
-            
+     
         )
-        // : (
-        //     <Navigate to='/login' />
-        // )
+        : (
+            <Navigate to='/login' />
+        )
 }
 
 export default Loyout

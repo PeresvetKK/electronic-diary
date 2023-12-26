@@ -170,3 +170,652 @@ export const getMe = async(req, res) => {
         })
     }
 }
+
+export const usersAll = async(req, res) => {
+    try{
+        res.json(
+            {
+                "users": 
+                [
+                    {
+                        "id": 1,
+                        "name": "Колтырин Пересвет",
+                        "role": "Ученик",
+                        "imageLink": "",
+                        "schedule": [
+                            {
+                                "dateName": "Понедельник",
+                                "date": "10.03.2023",
+                                "title": "Сегодня",
+                                "id": 1,
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "5",
+                                        "peremenaLength": "10",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "ocenka": "3",
+                                        "peremenaLength": "20",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "5",
+                                        "peremenaLength": "20",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": "10.03.2023"
+                                    }
+                                ]
+                            },
+                            {
+                                "dateName": "Вторник",
+                                "date": "11.06.2023",
+                                "title": "Завтра",
+                                "id": 2,
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Математика",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "ocenka": "",
+                                        "peremenaLength": "10",
+                                        "dz": "подготовиться к контрольной работе",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": "11.03.2023"
+                                    }
+                                ]
+                            },
+                            {
+                                "dateName": "Среда",
+                                "date": "12.06.2023",
+                                "title": "",
+                                "id": "",
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "4",
+                                        "peremenaLength": "10",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "5",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "5",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": "12.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "Русский язык",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "ocenka": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": "12.03.2023"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dopZanyatiya": [
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            },
+                            {
+                                "date": "7 марта",
+                                "predmet": "Геометрия"
+                            },
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            },
+                            {
+                                "date": "8 марта",
+                                "predmet": "Информатика"
+                            }
+                        ],
+                        "gradeData": [
+                            12,
+                            19,
+                            3,
+                            5
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "Колтырин Пересвет",
+                        "role": "Учитель",
+                        "imageLink": "",
+                        "schedule": [
+                            {
+                                "dateName": "Понедельник",
+                                "date": "10.03.2023",
+                                "title": "Сегодня",
+                                "id": 1,
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "210",
+                                        "classLesson": "5 \"А\"",
+                                        "peremenaLength": "10",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Геометрия",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "400",
+                                        "classLesson": "11 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "стр. 25, упр. 48 - 52",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Информатика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "400",
+                                        "classLesson": "10 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "подготовка к кр",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "314",
+                                        "classLesson": "8 \"Б\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "113",
+                                        "classLesson": "8 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "dateName": "Вторник",
+                                "date": "11.03.2023",
+                                "title": "Завтра",
+                                "id": 2,
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Математика",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "308",
+                                        "classLesson": "8 \"А\"",
+                                        "peremenaLength": "10",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "110",
+                                        "classLesson": "9 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "230",
+                                        "classLesson": "6 \"Б\"",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "314",
+                                        "classLesson": "8 \"Б\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "113",
+                                        "classLesson": "8 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "dateName": "Среда",
+                                "date": "12.03.2023",
+                                "title": "",
+                                "id": "",
+                                "lessons": [
+                                    {
+                                        "urokCount": "1",
+                                        "urokStart": "8:30",
+                                        "urokStop": "9:10",
+                                        "lesson": "Математика",
+                                        "lessonType": "Контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "308",
+                                        "classLesson": "8 \"А\"",
+                                        "peremenaLength": "10",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "2",
+                                        "urokStart": "9:20",
+                                        "urokStop": "10:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "110",
+                                        "classLesson": "9 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "3",
+                                        "urokStart": "10:20",
+                                        "urokStop": "11:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "230",
+                                        "classLesson": "6 \"Б\"",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "4",
+                                        "urokStart": "11:20",
+                                        "urokStop": "12:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "314",
+                                        "classLesson": "8 \"Б\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "5",
+                                        "urokStart": "12:20",
+                                        "urokStop": "13:00",
+                                        "lesson": "Математика",
+                                        "lessonType": "контрольная",
+                                        "lessonClass": "schudle-block-lesson__control",
+                                        "cabinet": "113",
+                                        "classLesson": "8 \"Н\"",
+                                        "peremenaLength": "20",
+                                        "dz": "не задано",
+                                        "date": "10.03.2023"
+                                    },
+                                    {
+                                        "urokCount": "6",
+                                        "urokStart": "13:20",
+                                        "urokStop": "14:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "20",
+                                        "dz": "",
+                                        "date": ""
+                                    },
+                                    {
+                                        "urokCount": "7",
+                                        "urokStart": "14:20",
+                                        "urokStop": "15:00",
+                                        "lesson": "",
+                                        "lessonType": "",
+                                        "lessonClass": "",
+                                        "cabinet": "",
+                                        "classLesson": "",
+                                        "peremenaLength": "",
+                                        "dz": "",
+                                        "date": ""
+                                    }
+                                ]
+                            }
+                            
+                        ],
+                        "dopZanyatiya": [
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            },
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            },
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            },
+                            {
+                                "date": "5 марта",
+                                "predmet": "Русский язык"
+                            }
+                        ]
+                    }
+                ]
+            }
+        )
+    }catch (error){
+        console.log(err)
+        res.status(404).json({
+            message: 'Нет доступа'
+        })
+    }
+}
