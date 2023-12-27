@@ -7,6 +7,7 @@ import {register, login, getMe, usersAll} from './controllers/UserController.js'
 import {createSchedule, getStudentSchedule, getTeacherSchedule} from './controllers/ScheduleController.js';
 import {createHomeWork, getHomeWork, editHomeWork} from './controllers/HomeWorkController.js';
 import {createMissed} from './controllers/MissedClassController.js';
+import {createGrade} from './controllers/GradesLessonController.js';
 
 mongoose
 .connect('mongodb+srv://koltyrin02:jSjiSdcFw9h1kBBA@cluster0.adbonz9.mongodb.net/blog')
@@ -35,6 +36,9 @@ app.put("/editHomeWork", editHomeWork);
 
 // пропуски
 app.post("/missed/create", createMissed);
+
+// оценка
+app.post('/students/createGrades', createGrade);
 
 // временно посылаю массив данных для отображения
 app.get('/users/all', usersAll);
