@@ -5,6 +5,7 @@ import checkAuth from './utils/checkAuth.js';
 
 import {register, login, getMe, usersAll} from './controllers/UserController.js'
 import {createSchedule, getStudentSchedule, getTeacherSchedule} from './controllers/ScheduleController.js';
+import {createHomeWork, getHomeWork, editHomeWork} from './controllers/HomeWorkController.js';
 
 mongoose
 .connect('mongodb+srv://koltyrin02:jSjiSdcFw9h1kBBA@cluster0.adbonz9.mongodb.net/blog')
@@ -22,8 +23,16 @@ app.get('/auth/me', checkAuth, getMe)
 
 // расписание
 app.post('/schedule/newSchedule', createSchedule)
-app.post('/schedule/getSchedule', getStudentSchedule)
-app.post('/schedule/getTeacherSchedule', getTeacherSchedule)
+app.get('/schedule/getSchedule/:classNumber/:classLetter', getStudentSchedule)
+app.get('/schedule/getTeacherSchedule/:lastName/:firstName/:lastLastName', getTeacherSchedule)
+
+// домашнее задание
+// app.get('/homework/:classNumber/:classLetter', getHomeWork);
+// Таким образом, запросы вида /homework/11/A будут передавать classNumber равный 11 и classLetter равный "A" в вашей функции getHomeWork.
+app.post('/homeWork/create', createHomeWork)
+app.get('/homeWork/:classNumber/:classLetter', getHomeWork)
+app.put("/editHomeWork", editHomeWork);
+
 
 // временно посылаю массив данных для отображения
 app.get('/users/all', usersAll);
