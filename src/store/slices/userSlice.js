@@ -5,6 +5,10 @@ const initialState = {
     email: null,
     token: null,
     id: null,
+    userType: null,
+    userName: null,
+    userNumberClass: null,
+    userLetterClass: null
 };
 
 const userSlice = createSlice({
@@ -17,9 +21,7 @@ const userSlice = createSlice({
             state.token = action.payload.token;
             state.id = action.payload.id;
             state.userType = action.payload.userType;
-            state.userFirstName = action.payload.userFirstName;
-            state.userLastName = action.payload.userLastName;
-            state.userLastLastName = action.payload.userLastLastName;
+            state.userName = `${action.payload.userLastName} ${action.payload.userFirstName} ${action.payload.userLastLastName}`;
             state.userNumberClass = action.payload.userNumberClass;
             state.userLetterClass = action.payload.userLetterClass;
         },
@@ -28,6 +30,10 @@ const userSlice = createSlice({
             state.email = null;
             state.token = null;
             state.id = null;
+            state.userType = null;
+            state.userName = null;
+            state.userNumberClass = null;
+            state.userLetterClass = null;
         },
     },
 });

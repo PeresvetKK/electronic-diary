@@ -32,7 +32,6 @@ const Loyout = () => {
         
         fetchData()
     }, [])
-    console.log(isAuth)
     return isAuth
         ?(
             userData.length 

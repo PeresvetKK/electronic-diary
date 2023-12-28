@@ -1,13 +1,16 @@
-import './Header.scss';
-import defLogo from '../../resources/images/default-photo.png';
 import {useDispatch} from 'react-redux';
 import {removeUser} from '../../store/slices/userSlice';
-import {useContext} from 'react';
-import {UserContext} from '../Loyout/Loyout';
+import {useSelector} from "react-redux";
+
+import './Header.scss';
+import defLogo from '../../resources/images/default-photo.png';
 import Button from '../UI/button/Button';
+
+
 const Header = ({isAuth, children, ...props}) => {
     const dispatch = useDispatch();
-    const userData = useContext(UserContext)
+    const {userType, userName, userNumberClass, userLetterClass} = useSelector(state => state.user);
+
 
     return (
         <header className='header'>
@@ -20,18 +23,18 @@ const Header = ({isAuth, children, ...props}) => {
             <div className="header__right">
                 <div className="header__userbox userbox">
                     <div className="userbox__textbox">
-                        <p className="userbox__name text-s font-m">{userData.name}</p>
-                        <p className="userbox__role text-xs">{userData.role}</p>
+                        <p className="userbox__name text-s font-m">{userName}</p>
+                        <p className="userbox__role text-xs">{userType}</p>
                     </div>
                     <a href="#" className="userbox__icon">
-                        {userData.imageLink != ''
-                            ? <picture>
+                        {/* {userData.imageLink != '' */}
+                            {/* ? <picture>
                                 <img src={userData.imageLink} alt={userData.name}/>
+                            </picture> */}
+                            {/*:*/} <picture>
+                                <img src={defLogo} alt={userName}/>
                             </picture>
-                            :<picture>
-                                <img src={defLogo} alt={userData.name}/>
-                            </picture>
-                        }
+                        {/* } */}
                     </a>
                 </div>
             </div>

@@ -22,7 +22,7 @@ const Login = () => {
                 userType: result.userType,
                 userFirstName: result.userData.firstName,  
                 userLastName: result.userData.lastName,  
-                userLastLastName: result.userData.lasLastName,  
+                userLastLastName: result.userData.lastLastName,  
                 userNumberClass: result.userData.numberClass,
                 userLetterClass: result.userData.letterClass,
             }))
