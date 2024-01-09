@@ -1,6 +1,5 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {removeUser} from '../../store/slices/userSlice';
-import {useSelector} from "react-redux";
 
 import './Header.scss';
 import defLogo from '../../resources/images/default-photo.png';
@@ -24,7 +23,9 @@ const Header = ({isAuth, children, ...props}) => {
                 <div className="header__userbox userbox">
                     <div className="userbox__textbox">
                         <p className="userbox__name text-s font-m">{userName}</p>
-                        <p className="userbox__role text-xs">{userType}</p>
+                        <p className="userbox__role text-xs">
+                            {userType == 'Student' ? `ученик ${userNumberClass}${userLetterClass} класса` : "учитель"}
+                        </p>
                     </div>
                     <a href="#" className="userbox__icon">
                         {/* {userData.imageLink != '' */}

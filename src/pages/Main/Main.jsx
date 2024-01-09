@@ -1,34 +1,33 @@
 import React, {useContext} from 'react';
+import {useSelector} from 'react-redux';
 import './Main.scss';
 import {UserContext} from '../../components/Loyout/Loyout';
 
 import HoumWork from '../../components/widgets/HoumWork/HoumWork';
 import Messanger from '../../components/widgets/Messanger/Messanger';
-import Schedule from '../../components/widgets/Schedule/Schedule';
+import ScheduleTeacher from '../../components/widgets/Schedule/ScheduleTeacher';
+import ScheduleStudent from '../../components/widgets/Schedule/ScheduleStudent';
 import Grade from '../../components/widgets/Grade/Grade';
 import DopZanyatiya from '../../components/widgets/DopZanyatiya/DopZanyatiya';
 import News from '../../components/widgets/News/News';
 import Lesson from '../../components/widgets/Lessons/Lesson';
-import LessonTeacher from '../../components/widgets/Lessons/LessonTeacher';
 
 const Main = () => {
     const userData = useContext(UserContext)
+    const role = useSelector(state => state.user.userType);
+
     return (
         <section className="section">
-            {userData.role == 'Ученик'
+            {role == 'Student'
                 ? <>
-                    <Schedule title="Расписание на">
-                        <Lesson/>
-                    </Schedule>
+                    <ScheduleStudent title="Расписание на"/>
                     <HoumWork title="Домашнее задание"></HoumWork>
                     <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
                     <Grade gradeData={userData.gradeData}></Grade>
                     {/* s<Messanger title="Диалоги"></Messanger> */}
                 </>
                 : <>
-                    <Schedule title="Расписание на">
-                        <LessonTeacher/>
-                    </Schedule>
+                    <ScheduleTeacher role={role} title="Расписание на"/>
                     <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
                 </>
             }

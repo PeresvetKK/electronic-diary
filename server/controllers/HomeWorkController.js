@@ -33,8 +33,8 @@ export const createHomeWork = async (req, res) => {
 
 export const getHomeWork = async (req, res) => {
     try {
-        const { classNumber, classLetter } = req.body;
-
+        let { classNumber, classLetter } = req.params;
+        classNumber = parseInt(classNumber)
         // Поиск домашнего задания по номеру и букве класса
         const homeWorkList = await HomeWorkSchema.find({
             classNumber: parseInt(classNumber), // Преобразуем в число, если необходимо

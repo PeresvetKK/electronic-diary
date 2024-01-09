@@ -6,12 +6,13 @@ import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import { UserService } from '../../services/userService';
 
+
 export const UserContext = createContext({})
 export const NewsContext = createContext([])
 
 const Loyout = () => {
     // получает информацию - авторизован или нет
-    const { isAuth, email } = useAuth();
+    const isAuth = useAuth();
     // новости
     const newsDatas = [
         { date: "5 марта", title: 'Русский язык', text: "Школьники посетили выставку 2024" },
@@ -32,6 +33,7 @@ const Loyout = () => {
         
         fetchData()
     }, [])
+
     return isAuth
         ?(
             userData.length 

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useAuth } from "./hooks/use-auth";
 import './resources/fonts/Roboto/Roboto-Black.ttf';
 import './resources/fonts/Roboto/Roboto-Bold.ttf';
@@ -21,8 +22,8 @@ import UrokDetail from "./components/UrokDetail/UrokDetail";
 
 function App() {
     // получает информацию - авторизован или нет
-    const { isAuth, email } = useAuth();
-    const roleTeacher = true
+    const {isAuth} = useAuth();
+    const role = useSelector(state => state.user.userType);
 	return (
         <div className="reactRoot">
             <BrowserRouter>
@@ -36,7 +37,7 @@ function App() {
                     }
                     <Route path="/" element={<Loyout/>}>
                         <Route index element={<Main/>}/>
-                        {roleTeacher
+                        {role == "Teacher"
                             ?<>
                                 <Route path="edit-lesson/:id" element={<UrokDetail/>}/>
                                 <Route path="journal" element={<JournalTeacher/>}/>

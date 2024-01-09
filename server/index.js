@@ -25,8 +25,8 @@ app.get('/auth/me', checkAuth, getMe)
 
 // расписание
 app.post('/schedule/newSchedule', createSchedule)
-app.get('/schedule/getSchedule/:classNumber/:classLetter', getStudentSchedule)
-app.get('/schedule/getTeacherSchedule/:lastName/:firstName/:lastLastName', getTeacherSchedule)
+app.get('/schedule/getSchedule/:classNumber/:classLetter/:startDate/:endDate', getStudentSchedule)
+app.get('/schedule/getTeacherSchedule/:lastName/:firstName/:lastLastName/:startDate/:endDate', getTeacherSchedule)
 
 // домашнее задание
 app.post('/homeWork/create', createHomeWork)
