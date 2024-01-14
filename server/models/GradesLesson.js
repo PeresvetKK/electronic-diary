@@ -21,9 +21,10 @@ const LessonGradeSchema = new mongoose.Schema({
     ref: 'Subject', // Ссылка на модель предмета
     required: true
   },
-  lessonNumber: {
-    type: Number,
-    required: true
+  comment: {
+    type: String,
+    required: true,
+    default: ""
   }
 });
 

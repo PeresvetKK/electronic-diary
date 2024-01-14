@@ -7,7 +7,8 @@ import {register, login, getMe, usersAll} from './controllers/UserController.js'
 import {createSchedule, getStudentSchedule, getTeacherSchedule} from './controllers/ScheduleController.js';
 import {createHomeWork, getHomeWork, editHomeWork} from './controllers/HomeWorkController.js';
 import {createMissed} from './controllers/MissedClassController.js';
-import {createGrade} from './controllers/GradesLessonController.js';
+import {createGrade, getGrades} from './controllers/GradesLessonController.js';
+import { getStudents } from './controllers/StudentsController.js';
 
 mongoose
 .connect('mongodb+srv://koltyrin02:jSjiSdcFw9h1kBBA@cluster0.adbonz9.mongodb.net/blog')
@@ -39,7 +40,11 @@ app.post("/missed/create", createMissed);
 
 // оценка
 app.post('/students/createGrades', createGrade);
+app.post('/students/getGrades', getGrades);
 
+// получить список класса. По букве и цифре класса искать всех учеников. 
+app.get('/students/getStudents/:classNumber/:classLetter', getStudents)
+// Потом по id урока найти все оценки и комментарии для всех учеников
 // временно посылаю массив данных для отображения
 app.get('/users/all', usersAll);
 

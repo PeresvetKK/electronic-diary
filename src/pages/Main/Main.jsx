@@ -22,13 +22,13 @@ const Main = () => {
                 ? <>
                     <ScheduleStudent title="Расписание на"/>
                     <HoumWork title="Домашнее задание"></HoumWork>
-                    <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
+                    <DopZanyatiya title="Дополнительные занятия"></DopZanyatiya>
                     <Grade gradeData={userData.gradeData}></Grade>
                     {/* s<Messanger title="Диалоги"></Messanger> */}
                 </>
                 : <>
                     <ScheduleTeacher role={role} title="Расписание на"/>
-                    <DopZanyatiya title="Дополнительные задания"></DopZanyatiya>
+                    <DopZanyatiya title="Дополнительные занятия"></DopZanyatiya>
                 </>
             }
             <News title="Новости"></News>

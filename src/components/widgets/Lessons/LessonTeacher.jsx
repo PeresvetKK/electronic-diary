@@ -6,7 +6,7 @@ import {EditSVG, RunManSVG} from '../../../resources/svg'
 import {Link} from 'react-router-dom'
 
 const LessonTeacher = ({urok}) => {
-
+    console.log(urok)
     return (
         // строка расписания. Получает массив объектов, в котором данные для заполнения контента
         <div className={s.item}>

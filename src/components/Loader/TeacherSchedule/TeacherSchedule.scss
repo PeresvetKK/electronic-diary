@@ -1,0 +1,24 @@
+.sceleton-schedule-widget{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 1rem 2rem 2rem;
+    &-header{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        span{
+            border-radius: 0.6rem;
+        }
+    }
+    &-main{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 12px;
+        span{
+            width: 100% !important;
+            border-radius: 0.8rem;
+        }
+    }
+}

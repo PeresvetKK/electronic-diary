@@ -1,0 +1,22 @@
+.no-lessons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 3rem;
+    svg{
+        width: 20rem;
+    }
+    &__title{
+        font-size: 3.6rem;
+        font-family: cursive;
+        color: #333;
+    }
+}
+@media (max-width: 768px){
+    .no-lessons{
+        &__title{
+            font-size: 2.2rem;
+        }
+    }
+}

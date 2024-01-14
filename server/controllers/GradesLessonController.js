@@ -1,10 +1,8 @@
-import SubjectSchema from '../models/Subject.js';
-import StudentSchema from '../models/Student.js';
 import LessonGradeSchema from '../models/GradesLesson.js';
 
 export const createGrade = async (req, res) => {
     try {
-        const { studentId, grade, date, subjectId, lessonNumber } = req.body;
+        const { studentId, grade, date, subjectId, comment } = req.body;
 
         // Создаем новую оценку
         const newGrade = new LessonGradeSchema({
@@ -12,7 +10,7 @@ export const createGrade = async (req, res) => {
             grade,
             date,
             subject: subjectId,
-            lessonNumber,
+            comment,
         });
 
         // Сохраняем оценку в базе данных
@@ -23,4 +21,21 @@ export const createGrade = async (req, res) => {
         console.error("Ошибка при создании оценки:", error);
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
-}
+};
+
+export const getGrades = async (req, res) => {
+    try {
+        const {studentIds, subjectId} = req.body;
+
+        // Поиск оценок в базе данных по параметрам
+        const grades = await LessonGradeSchema.find({
+            student: { $in: studentIds },
+            subject: subjectId
+        });
+
+        res.status(200).json({ grades });
+    } catch (error) {
+        console.error("Ошибка при получении оценок:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    }
+};

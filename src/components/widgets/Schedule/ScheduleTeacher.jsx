@@ -6,7 +6,8 @@ import Button from '../../UI/button/Button'
 import TabContent from '../../Tabs/TabContent/TabContent'
 import {ScheduldeService} from '../../../services/scheduleService';
 import LessonTeacher from '../Lessons/LessonTeacher'
-import LoaderWidtgetSchedule from '../../Loader/LoaderWidtgetSchedule';
+import NoLessons from '../../Loader/NoLessons/NoLessons';
+import TeacherSchedule from '../../Loader/TeacherSchedule/TeacherSchedule';
 
 
 const formatDate = (date) => {
@@ -21,13 +22,17 @@ const tomorrowDate = formatDate(new Date(new Date().setDate(new Date().getDate()
 const Schedule = ({title}) => {
     const userName = useSelector(state => state.user.userName);
     const [schedule, setSchedule] = useState([])
+    const [isFetching, setIsFetching] = useState(false)
+
     
     useEffect(() => {
         const fetchData = async () => {
             // объединяю в одну строку ФИО
             let userNameArray = userName.split(' ')
             const data = await ScheduldeService.getTeacherSchedule(userNameArray[0], userNameArray[1], userNameArray[2], todayDate, tomorrowDate)
+            console.log(data.teacherSchedule)
             setSchedule(data.teacherSchedule)
+            setIsFetching(true)
         }
         fetchData()
     }, [])
@@ -44,8 +49,8 @@ const Schedule = ({title}) => {
     });
 
     return (
-        schedule.length > 0
-        ? <div className={`schudle-block block-widget row__item schudle-block-teacher`}>
+        isFetching
+       ?  <div className={`schudle-block block-widget row__item schudle-block-teacher`}>
             <Tabs title={title}>
                 <div className="tabs__btns block-widget__header_right">
                     <Button>Сегодня</Button>
@@ -57,7 +62,7 @@ const Schedule = ({title}) => {
                             ? filteredByFirstDate.map((object, index) => 
                                 <LessonTeacher key={index} urok={object}/>
                               )
-                            : <span>уроков нет</span>
+                            : <NoLessons title="сегодня"/>
                         }
                     </TabContent>
 
@@ -66,13 +71,16 @@ const Schedule = ({title}) => {
                             ? filteredBySecondDate.map((object, index) => 
                                 <LessonTeacher key={index} urok={object}/>
                               )
-                            : <span>уроков нет</span>
+                            : <NoLessons title="завтра"/>
                         }
                     </TabContent>
                 </div>
             </Tabs>
           </div>
-        : <LoaderWidtgetSchedule />
+        : <div className={`schudle-block block-widget row__item schudle-block-teacher`}>
+                <TeacherSchedule/>
+           </div> 
+        
     )
 }
 
