@@ -89,3 +89,40 @@ svg {
         cursor: pointer;
     }
 }
+
+.dropdown{
+    position: relative;
+    cursor: pointer;
+    &-header{
+        svg{
+            width: 2.4rem;
+        }
+    }
+    &-content{
+        background: #fff;
+        position: absolute;
+        width: max-content;
+        left: -12rem;
+        box-shadow: 0px 0px 7px 0px rgba(34, 60, 80, 0.2);
+        border-radius: 8px;
+        display: none;
+        flex-direction: column;
+        &__item{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.4rem;
+            color: #333;
+            font-weight: 600;
+            padding: 0.8rem 1.6rem;
+            svg{
+                width: 2.4rem;
+                min-width: 2.4rem;
+            }
+        }
+    }
+    &-active{
+        display: flex;
+    }
+}

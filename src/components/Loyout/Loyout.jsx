@@ -12,7 +12,7 @@ export const NewsContext = createContext([])
 
 const Loyout = () => {
     // получает информацию - авторизован или нет
-    const isAuth = useAuth();
+    const {isAuth} = useAuth();
     // новости
     const newsDatas = [
         { date: "5 марта", title: 'Русский язык', text: "Школьники посетили выставку 2024" },

@@ -37,9 +37,9 @@ function App() {
                     }
                     <Route path="/" element={<Loyout/>}>
                         <Route index element={<Main/>}/>
-                        {role == "Teacher"
+                        {role === "Teacher"
                             ?<>
-                                <Route path="edit-lesson/:id" element={<UrokDetail/>}/>
+                                <Route path="/edit-lesson/:classNumber/:classLetter/:id" element={<UrokDetail/>}/>
                                 <Route path="journal" element={<JournalTeacher/>}/>
                              </> 
                             :<>

@@ -30,7 +30,6 @@ const Schedule = ({title}) => {
             // объединяю в одну строку ФИО
             let userNameArray = userName.split(' ')
             const data = await ScheduldeService.getTeacherSchedule(userNameArray[0], userNameArray[1], userNameArray[2], todayDate, tomorrowDate)
-            console.log(data.teacherSchedule)
             setSchedule(data.teacherSchedule)
             setIsFetching(true)
         }

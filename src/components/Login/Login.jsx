@@ -2,7 +2,6 @@ import Form from './Form'
 import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom';
 import {setUser} from '../../store/slices/userSlice';
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {useState} from 'react';
 import Loader from '../Loader/Loader';
 import { UserService } from '../../services/userService';
@@ -14,7 +13,7 @@ const Login = () => {
     
     const handleLogin = (email, password) => {
         setLoader(true)
-        const auth = UserService.login(email, password).then(result => {
+        UserService.login(email, password).then(result => {
             dispatch(setUser({
                 email: result.email,
                 id: result.code,

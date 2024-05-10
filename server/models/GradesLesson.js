@@ -12,13 +12,10 @@ const LessonGradeSchema = new mongoose.Schema({
     min: 1,
     max: 5
   },
-  date: {
-    type: String,
-    required: true
-  },
+  date: { type: Date, required: true },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Subject', // Ссылка на модель предмета
+    ref: 'Schedule', // Ссылка на модель предмета
     required: true
   },
   comment: {

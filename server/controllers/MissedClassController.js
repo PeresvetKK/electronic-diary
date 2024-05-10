@@ -1,17 +1,16 @@
-import SubjectSchema from '../models/Subject.js';
+
 import StudentSchema from '../models/Student.js';
 import MissedClassSchema from '../models/MissedClass.js';
 
 export const createMissed = async (req, res) => {
     try {
-        const { studentId, date, subjectId, lessonNumber } = req.body;
-    
+        const { studentId, date, subjectId} = req.body;
+        const currentDate = new Date(date.split('.').reverse().join('-') + 'T00:00:00.000Z');
         // Создаем объект пропущенного занятия
         const missedClass = new MissedClassSchema({
           student: studentId,
-          date,
+          date: currentDate,
           subject: subjectId,
-          lessonNumber,
         });
     
         // Сохраняем пропущенное занятие в базе данных

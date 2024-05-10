@@ -11,6 +11,10 @@
             margin-left: auto;
         }
     }
+    &__drop{
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 .textbox{
     display: flex;

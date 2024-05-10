@@ -6,11 +6,19 @@ import HoumWorkItem from './HoumWorkItem/HoumWorkItem';
 import './HoumWork.scss';
 
 const HoumWork = ({title}) => {
+    const formatDate = (date) => {
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const yyyy = date.getFullYear(); // Изменено для вывода полного года
+        return `${dd}.${mm}.${yyyy}`;
+    }
+    const todayDate = formatDate(new Date())
+
     const {userNumberClass, userLetterClass} = useSelector(state => state.user);
     const [homeWork, setHomeWork] = useState([])
     useEffect(( ) => {
         const fetchData = async () => {
-            const data = await HomeWorkService.getHomeWork(userNumberClass, userLetterClass)
+            const data = await HomeWorkService.getHomeWork(userNumberClass, userLetterClass, todayDate, todayDate)
             setHomeWork(data.homeworkList)
         }
 

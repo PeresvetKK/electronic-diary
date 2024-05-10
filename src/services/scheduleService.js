@@ -8,5 +8,12 @@ export const ScheduldeService = {
     async getTeacherSchedule(lastName, firstName, lastLastName, today, tomorrow){
         const response = await axios.get(`http://localhost:4444/schedule/getTeacherSchedule/${lastName}/${firstName}/${lastLastName}/${today}/${tomorrow}`)
         return response.data
-    }
+    },
+    async editLessonTopic(lessonId, newTopic) {
+        const response = await axios.put("http://localhost:4444/schedule/editLessonTopic", {
+            lessonId,
+            newTopic,
+        });
+        return response.data;
+    },
 };

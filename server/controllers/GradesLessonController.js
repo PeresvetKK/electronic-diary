@@ -4,11 +4,13 @@ export const createGrade = async (req, res) => {
     try {
         const { studentId, grade, date, subjectId, comment } = req.body;
 
+        const currentDate = new Date(date.split('.').reverse().join('-') + 'T00:00:00.000Z');
+
         // Создаем новую оценку
         const newGrade = new LessonGradeSchema({
             student: studentId,
             grade,
-            date,
+            date: currentDate,
             subject: subjectId,
             comment,
         });

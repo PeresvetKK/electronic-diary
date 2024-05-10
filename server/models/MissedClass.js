@@ -6,17 +6,10 @@ const MissedClassSchema = new mongoose.Schema({
     ref: "Student",
     required: true,
   },
-  date: {
-    type: String,
-    required: true,
-  },
+  date: { type: Date, required: true },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Subject",
-    required: true,
-  },
-  lessonNumber: {
-    type: Number,
+    ref: "Schedule",
     required: true,
   },
 });

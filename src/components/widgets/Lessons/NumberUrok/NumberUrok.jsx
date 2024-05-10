@@ -8,9 +8,7 @@ const NumberUrok = ({children, ...props}) => {
                 <p className="schudle-block__lesson_count">{props.urokCount} урок</p>
             }
             <div className="schudle-block__time">
-                <p className="schudle-block__time_start">{props.urokStart}</p>
-                —
-                <p className="schudle-block__time_stop">{props.urokStop}</p>
+                <p className="schudle-block__time_start">{props.urokStartEnd}</p>
             </div>
         </div>
     )

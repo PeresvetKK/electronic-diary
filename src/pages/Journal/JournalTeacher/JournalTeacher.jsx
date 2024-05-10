@@ -9,7 +9,26 @@ import Row from '../../../components/Table/Row/Row';
 import CellText from '../../../components/Table/CellText/CellText';
 import Ocenka from '../../../components/widgets/Lessons/Ocenka/Ocenka';
 
+/*
+const [grades, setGrades] = useState([]);
+    // присутствие на уроке
+    const [listPeoples, setListPeoples] = useState([])
+    useEffect(() => {
+        const fetchData = () => {
+            ClassPeoplesService.getPeoples(classNumber, classLetter)
+              .then((data) => {
+                setListPeoples(data.students);
+                GradesService.getGrades(data.students, id).then((data) => {
+                    setGrades(data.grades)
+                    setIsFetching(true)
+                })    
+              })
+              
+        };
+        fetchData();
+    }, [classNumber, classLetter])
 
+*/
 const Journal = () => {
     const user = useContext(UserContext)
     const lessonsData = user.schedule

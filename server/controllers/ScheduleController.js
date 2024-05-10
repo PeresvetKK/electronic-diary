@@ -1,5 +1,4 @@
 import TeacherSchema from '../models/Teacher.js';
-import SubjectSchema from '../models/Subject.js';
 import ScheduleSchema from '../models/Schedule.js';
 
 export const createSchedule = async (req, res) => {
@@ -7,7 +6,8 @@ export const createSchedule = async (req, res) => {
         // Получаем данные об учителе из запроса
         const   lastName = req.body.teacher.lastName,
                 firstName = req.body.teacher.firstName,
-                lastLastName = req.body.teacher.lastLastName;
+                lastLastName = req.body.teacher.lastLastName,
+                predmet = req.body.subject;
 
         // Ищем учителя в базе данных на основе предоставленных данных
         const existingTeacher = await TeacherSchema.findOne({
@@ -20,22 +20,6 @@ export const createSchedule = async (req, res) => {
             return res.status(404).json({ error: "Учитель не найден" });
         }
 
-        let predmet;
-        // Проверяем наличие предмета в базе данных
-        const existingSubject = await SubjectSchema.findOne({
-            name: req.body.subject,
-        });
-
-        if (existingSubject) {
-            // Используем существующий предмет
-            predmet = existingSubject._id;
-        } else {
-            // Создаем новый предмет
-            const newSubject = new SubjectSchema({ name: req.body.subject });
-            const savedPredmet = await newSubject.save();
-            predmet = savedPredmet._id;
-        }
-
         // Парсим дату из строки в объект Date
         const lessonDate = new Date(req.body.date.split('.').reverse().join('-') + 'T00:00:00.000Z');
 
@@ -44,11 +28,12 @@ export const createSchedule = async (req, res) => {
             dayOfWeek: req.body.dayOfWeek,
             lessonNumber: req.body.lessonNumber,
             classNumber: req.body.classNumber,
-            subject: predmet,
-            teacher: existingTeacher._id,
             classLetter: req.body.classLetter,
+            subjectName: predmet,
+            teacher: existingTeacher._id,
             classroomNumber: req.body.classroomNumber,
             date: lessonDate, // Добавляем дату
+            topic: req.body.topic
         });
 
         // Сохраняем урок в базе данных
@@ -62,6 +47,7 @@ export const createSchedule = async (req, res) => {
     }
 };
 
+// Получение расписания для ученика
 export const getStudentSchedule = async (req, res) => {
     try {
         // Получаем номер и букву класса из запроса
@@ -84,9 +70,7 @@ export const getStudentSchedule = async (req, res) => {
 
         // Ищем расписание для ученика
         const studentSchedule = await ScheduleSchema.find(query)
-            .populate("subject") // Загружаем данные по предмету
             .populate("teacher", "lastName firstName lastLastName"); // Загружаем данные по учителю
-
         res.json({ studentSchedule });
     } catch (error) {
         console.error("Ошибка при получении расписания для ученика:", error);
@@ -119,12 +103,29 @@ export const getTeacherSchedule = async (req, res) => {
             teacher: existingTeacher._id,
             date: { $gte: start, $lte: end } // Фильтруем расписание по диапазону дат
         })
-        .populate("subject") // Загружаем данные по предмету
         .populate("teacher", "lastName firstName lastLastName"); // Загружаем данные по учителю
-  
+
         res.json({ teacherSchedule });
     } catch (error) {
         console.error("Ошибка при получении расписания для учителя:", error);
         res.status(500).json({ error: "Ошибка сервера" });
+    }
+};
+// Изменение темы урока
+export const editLessonTopic = async (req, res) => {
+    try {
+        const { lessonId, newTopic } = req.body;
+        
+        // Находим урок по его ID и обновляем тему
+        const updatedLesson = await ScheduleSchema.findByIdAndUpdate(
+            lessonId,
+            { topic: newTopic },
+            { new: true } // Возвращать обновленный документ
+        );
+
+        res.status(200).json({ updatedLesson });
+    } catch (error) {
+        console.error("Ошибка при изменении темы урока:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 };

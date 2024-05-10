@@ -13,11 +13,8 @@ const HomeworkSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dueDate: {
-    type: String,
-    required: true,
-  },
-  subject: {type: mongoose.Schema.Types.ObjectId, ref: "Subject"},
+  date: { type: Date, required: true },
+  subject: {type: mongoose.Schema.Types.ObjectId, ref: "Schedule"},
 });
 
 export default mongoose.model("Homework", HomeworkSchema);
