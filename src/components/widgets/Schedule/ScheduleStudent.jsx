@@ -4,7 +4,7 @@ import './Schedule.scss'
 import Tabs from '../../Tabs/Tabs'
 import Button from '../../UI/button/Button'
 import TabContent from '../../Tabs/TabContent/TabContent'
-import {ScheduldeService} from '../../../services/scheduleService';
+import {ScheduleService} from '../../../services/scheduleService';
 import LessonTeacher from '../Lessons/LessonTeacher'
 
 
@@ -23,7 +23,7 @@ const Schedule = ({children, title, role}) => {
     
     useEffect(() => {
         const fetchData = async () => {
-            const data = await ScheduldeService.getSchedule(userNumberClass, userLetterClass)
+            const data = await ScheduleService.getSchedule(userNumberClass, userLetterClass)
             setSchedule(data.homeworkList)
         }
         fetchData()

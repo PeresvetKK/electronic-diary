@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import s from './LessonTeacher.module.scss'
 import LessonItem from './LessonItem/LessonItem'
 import NumberUrok from './NumberUrok/NumberUrok'
@@ -8,8 +8,15 @@ import { getTimesLessons } from '../../../hooks/getTimesLessons'
 import { getPeremenaSize } from '../../../hooks/getPeremenaSize'
 
 const LessonTeacher = ({urok}) => {
+    console.log(urok)
+    const catMenu = useRef(null)
     const [isOpen, setOpen] = useState(false);
-
+    const closeOpenMenus = (e)=>{
+        if(isOpen && !catMenu.current?.contains(e.target)){
+          setOpen(false)
+        }
+    }
+    document.addEventListener('mousedown',closeOpenMenus)
     return (
         // строка расписания. Получает массив объектов, в котором данные для заполнения контента
         <div className={s.item}>
@@ -41,7 +48,7 @@ const LessonTeacher = ({urok}) => {
                     }
                 </div>
                 <div className={[s.item__cell, s.item__drop]}>
-                    <div className="dropdown">
+                    <div className="dropdown" ref={catMenu}>
                         <div 
                             className="dropdown-header"
                             onClick={() => setOpen(!isOpen)}

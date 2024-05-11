@@ -4,7 +4,7 @@ import './Schedule.scss'
 import Tabs from '../../Tabs/Tabs'
 import Button from '../../UI/button/Button'
 import TabContent from '../../Tabs/TabContent/TabContent'
-import {ScheduldeService} from '../../../services/scheduleService';
+import {ScheduleService} from '../../../services/scheduleService';
 import LessonTeacher from '../Lessons/LessonTeacher'
 import NoLessons from '../../Loader/NoLessons/NoLessons';
 import TeacherSchedule from '../../Loader/TeacherSchedule/TeacherSchedule';
@@ -29,7 +29,7 @@ const Schedule = ({title}) => {
         const fetchData = async () => {
             // объединяю в одну строку ФИО
             let userNameArray = userName.split(' ')
-            const data = await ScheduldeService.getTeacherSchedule(userNameArray[0], userNameArray[1], userNameArray[2], todayDate, tomorrowDate)
+            const data = await ScheduleService.getTeacherSchedule(userNameArray[0], userNameArray[1], userNameArray[2], todayDate, tomorrowDate)
             setSchedule(data.teacherSchedule)
             setIsFetching(true)
         }

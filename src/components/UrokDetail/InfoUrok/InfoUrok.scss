@@ -16,6 +16,14 @@
             font-weight: 600;
             color: #333;
         }
+        button{
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--lightBlue);
+            color: var(--lightBlue);
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
     }
     &-box{
         height: 100%;
@@ -26,13 +34,17 @@
             color: #BFC0C1;
         }
     }
+}
+.info-urok__close{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: .8rem;
     button{
-        width: 100%;
-        background: transparent;
-        border: 1px solid var(--lightBlue);
-        color: var(--lightBlue);
-        font-weight: 700;
-        font-size: 1.8rem;
+        width: 20rem;
+        height: 5rem;
+        font-size: 2rem;
+        font-weight: 400;
     }
 }
 

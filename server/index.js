@@ -6,6 +6,8 @@ import checkAuth from './utils/checkAuth.js';
 import {register, login, getMe, usersAll} from './controllers/UserController.js'
 import {createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic} from './controllers/ScheduleController.js';
 import {createHomeWork, getHomeWork, editHomeWork, getCurrentDayHomeWork, deleteHomeWork} from './controllers/HomeWorkController.js';
+import {createCommentForClass, getCommentsForClass, editCommentForClass, deleteCommentForClass} from './controllers/CommentForClassController.js';
+import {createCommentForStudent, getCommentsForStudent, editCommentForStudent, deleteCommentForStudent} from './controllers/CommentForStudentController.js';
 import {createMissed} from './controllers/MissedClassController.js';
 import {createGrade, getGrades} from './controllers/GradesLessonController.js';
 import { getStudents } from './controllers/StudentsController.js';
@@ -66,6 +68,18 @@ app.get('/students/getStudents/:classNumber/:classLetter', getStudents)
 // Потом по id урока найти все оценки и комментарии для всех учеников
 // временно посылаю массив данных для отображения
 app.get('/users/all', usersAll);
+
+// Комментарии для класса
+app.post('/comments/class', createCommentForClass);
+app.get('/comments/class/:scheduleId', getCommentsForClass);
+app.put('/comments/class/:commentId', editCommentForClass);
+app.delete('/comments/class/:commentId', deleteCommentForClass);
+
+// Комментарии для студента
+app.post('/comments/student', createCommentForStudent);
+app.get('/comments/student/:studentId/:scheduleId', getCommentsForStudent);
+app.put('/comments/student/:commentId', editCommentForStudent);
+app.delete('/comments/student/:commentId', deleteCommentForStudent);
 
 app.listen(4444, (err) => {
     // если сервер не смог запуститься

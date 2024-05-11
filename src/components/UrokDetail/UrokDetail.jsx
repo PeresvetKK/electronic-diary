@@ -1,17 +1,16 @@
 import React, {useState} from 'react'
-import {useNavigate, useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import './UrokDetail.scss'
 import InfoUrok from './InfoUrok/InfoUrok'
 import { getTimesLessons } from '../../hooks/getTimesLessons.js'
 import { ApproveSVG, CloseSVG, EditSVG } from '../../resources/svg'
 import Input from '../UI/input/Input/Input.jsx';
-import { ScheduldeService } from '../../services/scheduleService.js';
+import { ScheduleService } from '../../services/scheduleService.js';
 import { getDayOfWeek } from '../../hooks/getDayOfWeek.js'
 import { getFormatDate } from '../../hooks/getFormatDate.js'
 
 const UrokDetail = () => {
-    const navigate = useNavigate()
-    const goBack = () => navigate(-1)
+    
     const location = useLocation();
     const urok = location.state.urok;
 
@@ -21,7 +20,7 @@ const UrokDetail = () => {
 
     const handleEditTheme = async () => {
         try {
-            await ScheduldeService.editLessonTopic(urok._id, inputUrokTopic);
+            await ScheduleService.editLessonTopic(urok._id, inputUrokTopic);
             setUrokTopic(inputUrokTopic);
             setEditedTheme(false);
             setInputUrokTopic('');
@@ -60,10 +59,6 @@ const UrokDetail = () => {
                         </span>
                     </p>
                 )}
-                
-                <div className="urok-detail__close" onClick={goBack}>
-                    <CloseSVG />
-                </div>
             </div>
             <InfoUrok urokInfo={urok}/>
             
