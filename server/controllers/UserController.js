@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import {validationResult} from "express-validator";
 
 import UserSchema from '../models/User.js';
+import AdminSchema from '../models/Admin.js'
 import TeacherSchema from '../models/Teacher.js';
 import StudentSchema from '../models/Student.js';
 
@@ -47,7 +48,7 @@ export const register = async (req, res) => {
             }).catch((error) => {
                 console.error('Ошибка при сохранении учителя:', error);
             });
-        }else{
+        }else if(req.body.userType == 'Student'){
              // Создание нового учителя с использованием TeacherSchema
              const student = new StudentSchema({
                 lastName: req.body.lastName,
@@ -81,7 +82,39 @@ export const register = async (req, res) => {
             }).catch((error) => {
                 console.error('Ошибка при сохранении ученика:', error);
             });
-        }
+        }else if(req.body.userType == 'Admin'){
+            // Создание нового учителя с использованием TeacherSchema
+            const admin = new AdminSchema({
+               lastName: req.body.lastName,
+               firstName: req.body.firstName,
+               lastLastName: req.body.lastLastName,
+           });
+
+           // Сохранение учителя в базе данных
+           admin.save().then((savedAdmin) => {
+               // Отправка ответа с данными пользователя
+               res.json(admin);
+
+               // Создание нового пользователя с использованием UserSchema
+               const user = new UserSchema({
+                 email: req.body.email,
+                 code: savedAdmin._id, // Использование идентификатора учителя в качестве кода
+                 passwordHash, // Используется хешированный пароль
+                 userType: 'Admin',
+               });
+             
+               // Сохранение пользователя в базе данных
+               user.save().then((savedUser) => {
+                   // Отправка ответа с данными пользователя
+                   res.json(user);
+                   console.log('Администратор сохранен:', savedAdmin, savedUser);
+               }).catch((error) => {
+                 console.error('Ошибка при сохранении пользователя:', error);
+               });
+           }).catch((error) => {
+               console.error('Ошибка при сохранении ученика:', error);
+           });
+       }
     } 
     catch (error) {
         console.log(error)
@@ -98,8 +131,10 @@ export const login = async(req, res) => {
 
         if(user.userType == "Teacher"){
             roler = await TeacherSchema.findOne({_id: user.code})
-        }else{
+        }else if(user.userType == "Student"){
             roler = await StudentSchema.findOne({_id: user.code})
+        }else if(user.userType == "Admin"){
+            roler = await AdminSchema.findOne({_id: user.code})
         }
 
         // Проверка наличия пользователя в базе данных

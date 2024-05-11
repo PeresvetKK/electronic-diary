@@ -24,7 +24,15 @@ const Header = ({isAuth, children, ...props}) => {
                     <div className="userbox__textbox">
                         <p className="userbox__name text-s font-m">{userName}</p>
                         <p className="userbox__role text-xs">
-                            {userType == 'Student' ? `ученик ${userNumberClass}${userLetterClass} класса` : "учитель"}
+                            {userType == 'Student'
+                                && `ученик ${userNumberClass}${userLetterClass} класса`
+                            }
+                            {userType == 'Teacher' 
+                                && "учитель"
+                            }
+                            {userType == 'Admin'
+                                && "администратор"
+                            }
                         </p>
                     </div>
                     <a href="#" className="userbox__icon">

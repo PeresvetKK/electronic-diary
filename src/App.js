@@ -12,6 +12,7 @@ import './style/App.scss';
 
 import Loyout from "./components/Loyout/Loyout"; 
 import Main from "./pages/Main/Main";
+import AdminMain from './pages/Admin/Main/AdminMain';
 import News from "./pages/News/News";
 import JournalUch from "./pages/Journal/JournalUch/JournalUch";
 import JournalTeacher from './pages/Journal/JournalTeacher/JournalTeacher';
@@ -19,6 +20,10 @@ import NotFound from './pages/NotFound/NotFound';
 import LoginPage from './pages/Login-Registration/LoginPage/LoginPage';
 import RegisterPage from './pages/Login-Registration/RegistrationPage/RegistrationPage';
 import UrokDetail from "./components/UrokDetail/UrokDetail";
+
+// админ
+import RegistedUser from './pages/Admin/RegistedUser/RegistedUser';
+import CreateClass from "./pages/Admin/CreateClass/CreateClass";
 
 function App() {
     // получает информацию - авторизован или нет
@@ -36,14 +41,25 @@ function App() {
                         : null
                     }
                     <Route path="/" element={<Loyout/>}>
-                        <Route index element={<Main/>}/>
+                        {console.log(role)}
                         {role === "Teacher"
-                            ?<>
+                            &&<>
+                                <Route index element={<Main/>}/>
                                 <Route path="/edit-lesson/:classNumber/:classLetter/:id" element={<UrokDetail/>}/>
                                 <Route path="journal" element={<JournalTeacher/>}/>
                              </> 
-                            :<>
+                        }
+                        {role === "Student"
+                            &&<>
+                                <Route index element={<Main/>}/>
                                 <Route path="journal" element={<JournalUch/>}/>
+                            </>
+                        }
+                        {role === "Admin"
+                            &&<>
+                               <Route index element={<AdminMain/>}/>
+                               <Route path="/admin/auth/register" element={<RegistedUser/>}/>
+                               <Route path="/admin/clases/create" element={<CreateClass/>}/>
                             </>
                         }
                         <Route path="news" element={<News/>}/>

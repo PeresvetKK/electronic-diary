@@ -8,6 +8,7 @@ export const UserService = {
                 "password": password,
             }
         )
+        console.log(response.data)
         return response.data
     },
     async getAll() {

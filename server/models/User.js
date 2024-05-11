@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     userType: {
         type: String,
         required: true,
-        enum: ['Teacher', 'Student']
+        enum: ['Teacher', 'Student', 'Admin']
     },
 },{
     timestamps: true,
