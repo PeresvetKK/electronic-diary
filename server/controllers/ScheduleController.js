@@ -1,109 +1,92 @@
 import TeacherSchema from '../models/Teacher.js';
 import ScheduleSchema from '../models/Schedule.js';
+import SchoolClass from '../models/SchoolClass.js';
 
 export const createSchedule = async (req, res) => {
     try {
-        // Получаем данные об учителе из запроса
-        const   lastName = req.body.teacher.lastName,
-                firstName = req.body.teacher.firstName,
-                lastLastName = req.body.teacher.lastLastName,
-                predmet = req.body.subject;
+        const { teacherId, subject, classId, dayOfWeek, lessonNumber, classroomNumber, date, topic } = req.body;
 
-        // Ищем учителя в базе данных на основе предоставленных данных
-        const existingTeacher = await TeacherSchema.findOne({
-            lastName,
-            firstName,
-            lastLastName,
-        });
-
+        // Проверяем, существует ли учитель с указанным ID
+        const existingTeacher = await TeacherSchema.findById(teacherId);
         if (!existingTeacher) {
             return res.status(404).json({ error: "Учитель не найден" });
         }
 
-        // Парсим дату из строки в объект Date
-        const lessonDate = new Date(req.body.date.split('.').reverse().join('-') + 'T00:00:00.000Z');
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClass.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
 
-        // Создаем объект урока с использованием существующего учителя, предмета и даты
+        // Парсим дату из строки в объект Date
+        const lessonDate = new Date(date.split('.').reverse().join('-') + 'T00:00:00.000Z');
+
+        // Создаем объект урока с использованием существующего учителя, предмета и класса
         const lesson = new ScheduleSchema({
-            dayOfWeek: req.body.dayOfWeek,
-            lessonNumber: req.body.lessonNumber,
-            classNumber: req.body.classNumber,
-            classLetter: req.body.classLetter,
-            subjectName: predmet,
+            dayOfWeek,
+            lessonNumber,
+            classNumber: schoolClass.classNumber,
+            classLetter: schoolClass.classLetter,
+            subjectName: subject,
             teacher: existingTeacher._id,
-            classroomNumber: req.body.classroomNumber,
-            date: lessonDate, // Добавляем дату
-            topic: req.body.topic
+            classroomNumber,
+            date: lessonDate,
+            topic,
         });
 
         // Сохраняем урок в базе данных
         const savedLesson = await lesson.save();
 
-        console.log("Урок добавлен в расписание:", savedLesson);
-        res.status(201).json({ lesson: savedLesson }); // Используйте статус 201 для созданных ресурсов
+        res.status(201).json({ lesson: savedLesson });
     } catch (error) {
         console.error("Ошибка при создании урока:", error);
         res.status(500).json({ error: "Ошибка сервера" });
     }
 };
 
-// Получение расписания для ученика
 export const getStudentSchedule = async (req, res) => {
     try {
-        // Получаем номер и букву класса из запроса
-        const { classNumber, classLetter, startDate, endDate } = req.params;
+        const { classId, startDate, endDate } = req.params;
+        
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClass.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
 
-        // Проверяем, присутствуют ли поля начальной и конечной даты в запросе
-        const query = {
-            classNumber,
-            classLetter
-        };
-
+        const query = { classNumber: schoolClass.classNumber, classLetter: schoolClass.classLetter };
         if (startDate && endDate) {
-            // Если поля начальной и конечной даты присутствуют, парсим их в объекты Date
             const start = new Date(startDate.split('.').reverse().join('-') + 'T00:00:00.000Z');
             const end = new Date(endDate.split('.').reverse().join('-') + 'T23:59:59.999Z');
 
-            // Добавляем поле даты в запрос в базу данных в диапазоне от начальной до конечной даты
             query.date = { $gte: start, $lte: end };
         }
 
-        // Ищем расписание для ученика
-        const studentSchedule = await ScheduleSchema.find(query)
-            .populate("teacher", "lastName firstName lastLastName"); // Загружаем данные по учителю
+        const studentSchedule = await ScheduleSchema.find(query).populate("teacher", "lastName firstName lastLastName");
+
         res.json({ studentSchedule });
     } catch (error) {
         console.error("Ошибка при получении расписания для ученика:", error);
         res.status(500).json({ error: "Ошибка сервера" });
     }
-}
+};
 
-// Получение расписания для учителя
 export const getTeacherSchedule = async (req, res) => {
     try {
-        const { lastName, firstName, lastLastName, startDate, endDate } = req.params;
-  
-        // Парсим даты из строкового формата в объекты Date
-        const start = new Date(startDate.split('.').reverse().join('-') + 'T00:00:00.000Z');
-        const end = new Date(endDate.split('.').reverse().join('-') + 'T23:59:59.999Z');
-  
-        // Ищем учителя в базе данных
-        const existingTeacher = await TeacherSchema.findOne({
-            lastName,
-            firstName,
-            lastLastName,
-        });
-  
+        const { teacherId, startDate, endDate } = req.params;
+
+        const existingTeacher = await TeacherSchema.findById(teacherId);
         if (!existingTeacher) {
             return res.status(404).json({ error: "Учитель не найден" });
         }
-  
-        // Ищем расписание для учителя в заданный промежуток времени
+
+        const start = new Date(startDate.split('.').reverse().join('-') + 'T00:00:00.000Z');
+        const end = new Date(endDate.split('.').reverse().join('-') + 'T23:59:59.999Z');
+
         const teacherSchedule = await ScheduleSchema.find({
             teacher: existingTeacher._id,
-            date: { $gte: start, $lte: end } // Фильтруем расписание по диапазону дат
-        })
-        .populate("teacher", "lastName firstName lastLastName"); // Загружаем данные по учителю
+            date: { $gte: start, $lte: end }
+        }).populate("teacher", "lastName firstName lastLastName");
 
         res.json({ teacherSchedule });
     } catch (error) {
@@ -111,16 +94,15 @@ export const getTeacherSchedule = async (req, res) => {
         res.status(500).json({ error: "Ошибка сервера" });
     }
 };
-// Изменение темы урока
+
 export const editLessonTopic = async (req, res) => {
     try {
         const { lessonId, newTopic } = req.body;
-        
-        // Находим урок по его ID и обновляем тему
+
         const updatedLesson = await ScheduleSchema.findByIdAndUpdate(
             lessonId,
             { topic: newTopic },
-            { new: true } // Возвращать обновленный документ
+            { new: true }
         );
 
         res.status(200).json({ updatedLesson });

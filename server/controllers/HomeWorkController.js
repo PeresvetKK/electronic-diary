@@ -1,39 +1,47 @@
 import HomeWorkSchema from '../models/HomeWork.js';
+import SchoolClassSchema from '../models/SchoolClass.js';
 
 export const createHomeWork = async (req, res) => {
     try {
-        const { homework, classNumber, classLetter, date, subject } = req.body;
+        const { homework, classId, date, subject } = req.body;
         // Если поля начальной и конечной даты присутствуют, парсим их в объекты Date
         const currentDate = new Date(date.split('.').reverse().join('-') + 'T00:00:00.000Z');
 
-        // Создание нового домашнего задания с использованием предмета
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClassSchema.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
+
+        // Создание нового домашнего задания с использованием предмета и класса
         const newHomeWork = new HomeWorkSchema({
-          homework,
-          classNumber,
-          classLetter,
-          date: currentDate,
-          subject: subject,
+            homework,
+            date: currentDate,
+            subject,
+            class: schoolClass._id, // Сохраняем ссылку на класс в домашнем задании
         });
-    
+
         // Сохранение домашнего задания в базе данных
         const savedHomeWork = await newHomeWork.save();
-    
+
         res.status(201).json({ homework: savedHomeWork });
-      } catch (error) {
+    } catch (error) {
         console.error("Ошибка при создании домашнего задания:", error);
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
-      }
+    }
 }
 
 export const getHomeWork = async (req, res) => {
     try {
-        let {classNumber, classLetter, startDate, endDate} = req.params;
-        classNumber = parseInt(classNumber)
+        const { classId, startDate, endDate } = req.params;
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClassSchema.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
+
         // Проверяем, присутствуют ли поля начальной и конечной даты в запросе
-        const query = {
-            classNumber,
-            classLetter
-        };
+        const query = { class: classId };
         if (startDate && endDate) {
             // Если поля начальной и конечной даты присутствуют, парсим их в объекты Date
             const start = new Date(startDate.split('.').reverse().join('-') + 'T00:00:00.000Z');
@@ -43,8 +51,8 @@ export const getHomeWork = async (req, res) => {
             query.date = { $gte: start, $lte: end };
         }
 
-        // Поиск домашнего задания по номеру, букве класса и интервалу даты
-        const homeWorkList = await HomeWorkSchema.find(query)
+        // Поиск домашнего задания по ID класса и интервалу даты
+        const homeWorkList = await HomeWorkSchema.find(query).populate("SchoolClass");
 
         res.status(200).json({ homeworkList: homeWorkList });
     } catch (error) {
@@ -55,17 +63,21 @@ export const getHomeWork = async (req, res) => {
 
 export const getCurrentDayHomeWork = async (req, res) => {
     try {
-        let {classNumber, classLetter, subject} = req.params;
-        classNumber = parseInt(classNumber);
+        const { classId, subject } = req.params;
+
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClassSchema.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
 
         // Формируем объект запроса
         const query = {
-            classNumber,
-            classLetter,
+            class: classId,
             subject
         };
         // Выполняем запрос к базе данных
-        const homeWorkList = await HomeWorkSchema.find(query)
+        const homeWorkList = await HomeWorkSchema.find(query).populate("SchoolClass");
 
         res.status(200).json({ homeworkList: homeWorkList });
     } catch (error) {
@@ -89,6 +101,7 @@ export const editHomeWork = async (req, res) => {
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 }
+
 export const deleteHomeWork = async (req, res) => {
     try {
         const { homeworkId } = req.params;

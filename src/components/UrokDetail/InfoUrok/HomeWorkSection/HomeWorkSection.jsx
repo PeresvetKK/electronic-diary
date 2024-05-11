@@ -13,8 +13,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
         const fetchData = async () => {
             try {
                 const data = await HomeWorkService.getCurrentDayHomeWork(
-                    urlParams.classNumber,
-                    urlParams.classLetter,
+                    urlParams.class,
                     urlParams._id
                 );
                 setHomeWorkArray(data);
@@ -54,7 +53,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
 
     const updateItemHomeWork = async (idHomeWork, value) => {
         try {
-            await HomeWorkService.putCurrentDayHomeWork(idHomeWork, value);
+            await HomeWorkService.editHomeWork(idHomeWork, value);
         } catch (error) {
             console.error('Ошибка при обновлении данных:', error);
         }
@@ -77,9 +76,9 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
         setCreatedId('emptyId');
     };
 
-    const createdItemHomeWork = async (homework, classNumber, classLetter, date, subject) => {
+    const createdItemHomeWork = async (homework, classId, date, subject) => {
         try {
-            const data = await HomeWorkService.postCreatedHomeWorkItem(homework, classNumber, classLetter, date, subject);
+            const data = await HomeWorkService.createHomeWork(homework, classId, date, subject);
             const newHomeWork = data.homework;
             const updatedHomeWorkArray = homeWorkArray.filter((item) => item._id !== 'emptyId');
             setHomeWorkArray([newHomeWork, ...updatedHomeWorkArray]);
@@ -89,7 +88,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
     };
 
     const createdHomeWork = (idHomeWork, value) => {
-        createdItemHomeWork(value, urokInfo.classNumber, urokInfo.classLetter, getFormatDate(urokInfo.date), urokInfo._id);
+        createdItemHomeWork(value, urokInfo.class, getFormatDate(urokInfo.date), urokInfo._id);
         setEditedHomeWork(null);
         setCreatedId(null);
         setValueInputHomeWork('');

@@ -18,12 +18,12 @@ const todayDate = formatDate(new Date())
 const tomorrowDate = formatDate(new Date(new Date().setDate(new Date().getDate() + 1)));
 
 const Schedule = ({children, title, role}) => {
-    const {userNumberClass, userLetterClass} = useSelector(state => state.user);
+    const {userInfo} = useSelector(state => state.user);
     const [schedule, setSchedule] = useState([])
     
     useEffect(() => {
         const fetchData = async () => {
-            const data = await ScheduleService.getSchedule(userNumberClass, userLetterClass)
+            const data = await ScheduleService.getSchedule(userInfo.class, todayDate, tomorrowDate)
             setSchedule(data.homeworkList)
         }
         fetchData()

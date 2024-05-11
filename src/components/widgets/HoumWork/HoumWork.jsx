@@ -14,11 +14,11 @@ const HoumWork = ({title}) => {
     }
     const todayDate = formatDate(new Date())
 
-    const {userNumberClass, userLetterClass} = useSelector(state => state.user);
+    const userInfo = useSelector(state => state.user);
     const [homeWork, setHomeWork] = useState([])
     useEffect(( ) => {
         const fetchData = async () => {
-            const data = await HomeWorkService.getHomeWork(userNumberClass, userLetterClass, todayDate, todayDate)
+            const data = await HomeWorkService.getHomeWork(userInfo.class, todayDate, todayDate)
             setHomeWork(data.homeworkList)
         }
 

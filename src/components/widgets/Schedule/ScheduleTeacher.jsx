@@ -20,16 +20,14 @@ const todayDate = formatDate(new Date())
 const tomorrowDate = formatDate(new Date(new Date().setDate(new Date().getDate() + 1)));
 
 const Schedule = ({title}) => {
-    const userName = useSelector(state => state.user.userName);
+    const userInfo = useSelector(state => state.user);
     const [schedule, setSchedule] = useState([])
     const [isFetching, setIsFetching] = useState(false)
 
     
     useEffect(() => {
         const fetchData = async () => {
-            // объединяю в одну строку ФИО
-            let userNameArray = userName.split(' ')
-            const data = await ScheduleService.getTeacherSchedule(userNameArray[0], userNameArray[1], userNameArray[2], todayDate, tomorrowDate)
+            const data = await ScheduleService.getTeacherSchedule(userInfo._id, todayDate, tomorrowDate)
             setSchedule(data.teacherSchedule)
             setIsFetching(true)
         }

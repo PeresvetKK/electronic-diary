@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const ScheduleSchema = new mongoose.Schema({
   dayOfWeek: { type: Number, required: true },
   lessonNumber: { type: Number, required: true },
-  classNumber: { type: Number, required: true },
-  classLetter: { type: String, required: true },
+  class: { type: mongoose.Schema.Types.ObjectId, ref: "Class", required: true }, // Ссылка на класс
   subjectName: { type: String, required: true },
   teacher: { type: mongoose.Schema.Types.ObjectId, ref: "Teacher", required: true },
   classroomNumber: { type: Number, required: true },

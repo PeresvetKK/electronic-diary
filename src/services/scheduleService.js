@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export const ScheduleService = {
-    async getSchedule(classNumber, classLetter) {
-        const response = await axios.get(`http://localhost:4444/schedule/getSchedule/${classNumber}/${classLetter}`);
+    async getSchedule(classId, startDate, endDate) {
+        const response = await axios.get(`http://localhost:4444/schedule/getSchedule/${classId}/${startDate}/${endDate}`);
         return response.data;
     },
 
-    async getTeacherSchedule(lastName, firstName, lastLastName, today, tomorrow) {
-        const response = await axios.get(`http://localhost:4444/schedule/getTeacherSchedule/${lastName}/${firstName}/${lastLastName}/${today}/${tomorrow}`);
+    async getTeacherSchedule(teacherId, startDate, endDate) {
+        const response = await axios.get(`http://localhost:4444/schedule/getTeacherSchedule/${teacherId}/${startDate}/${endDate}`);
         return response.data;
     },
 
