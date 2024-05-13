@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import {validationResult} from "express-validator";
 
 import UserSchema from '../models/User.js';
 import AdminSchema from '../models/Admin.js'
@@ -16,112 +15,109 @@ export const register = async (req, res) => {
         const passwordHash = await bcrypt.hash(password, salt);
 
         // Проверка типа пользователя
-        if(req.body.userType == 'Teacher'){
+        if (req.body.userType === 'Teacher') {
             // Создание нового учителя с использованием TeacherSchema
             const teacher = new TeacherSchema({
                 lastName: req.body.lastName,
                 firstName: req.body.firstName,
                 lastLastName: req.body.lastLastName,
+                classTeacherOf: req.body.classId,
             });
 
             // Сохранение учителя в базе данных
             teacher.save().then((savedTeacher) => {
                 // Отправка ответа с данными пользователя
-                res.json(teacher);
+                res.json(savedTeacher);
 
                 // Создание нового пользователя с использованием UserSchema
                 const user = new UserSchema({
-                  email: req.body.email,
-                  code: savedTeacher._id, // Использование идентификатора учителя в качестве кода
-                  passwordHash, // Используется хешированный пароль
-                  userType: 'Teacher',
+                    email: req.body.email,
+                    code: savedTeacher._id, // Использование идентификатора учителя в качестве кода
+                    passwordHash, // Используется хешированный пароль
+                    userType: 'Teacher',
                 });
-              
+
                 // Сохранение пользователя в базе данных
                 user.save().then((savedUser) => {
                     // Отправка ответа с данными пользователя
-                    res.json(user);
                     console.log('Учитель и пользователь сохранены:', savedTeacher, savedUser);
                 }).catch((error) => {
-                  console.error('Ошибка при сохранении пользователя:', error);
+                    console.error('Ошибка при сохранении пользователя:', error);
                 });
             }).catch((error) => {
                 console.error('Ошибка при сохранении учителя:', error);
             });
-        }else if(req.body.userType == 'Student'){
-             // Создание нового учителя с использованием TeacherSchema
-             const student = new StudentSchema({
+        } else if (req.body.userType === 'Student') {
+            // Создание нового учителя с использованием StudentSchema
+            const student = new StudentSchema({
                 lastName: req.body.lastName,
                 firstName: req.body.firstName,
                 lastLastName: req.body.lastLastName,
-                numberClass: req.body.numberClass,
-                letterClass: req.body.letterClass,
+                class: req.body.classId, // Предполагается, что вы передаете ID класса
             });
 
-            // Сохранение учителя в базе данных
+            // Сохранение студента в базе данных
             student.save().then((savedStudent) => {
                 // Отправка ответа с данными пользователя
-                res.json(student);
+                res.json(savedStudent);
 
                 // Создание нового пользователя с использованием UserSchema
                 const user = new UserSchema({
-                  email: req.body.email,
-                  code: savedStudent._id, // Использование идентификатора учителя в качестве кода
-                  passwordHash, // Используется хешированный пароль
-                  userType: 'Student',
+                    email: req.body.email,
+                    code: savedStudent._id, // Использование идентификатора студента в качестве кода
+                    passwordHash, // Используется хешированный пароль
+                    userType: 'Student',
                 });
-              
+
                 // Сохранение пользователя в базе данных
                 user.save().then((savedUser) => {
                     // Отправка ответа с данными пользователя
-                    res.json(user);
-                    console.log('Учитель и пользователь сохранены:', savedStudent, savedUser);
+                    console.log('Студент и пользователь сохранены:', savedStudent, savedUser);
                 }).catch((error) => {
-                  console.error('Ошибка при сохранении пользователя:', error);
+                    console.error('Ошибка при сохранении пользователя:', error);
                 });
             }).catch((error) => {
-                console.error('Ошибка при сохранении ученика:', error);
+                console.error('Ошибка при сохранении студента:', error);
             });
-        }else if(req.body.userType == 'Admin'){
-            // Создание нового учителя с использованием TeacherSchema
+        } else if (req.body.userType === 'Admin') {
+            // Создание нового администратора с использованием AdminSchema
             const admin = new AdminSchema({
-               lastName: req.body.lastName,
-               firstName: req.body.firstName,
-               lastLastName: req.body.lastLastName,
-           });
+                lastName: req.body.lastName,
+                firstName: req.body.firstName,
+                lastLastName: req.body.lastLastName,
+            });
 
-           // Сохранение учителя в базе данных
-           admin.save().then((savedAdmin) => {
-               // Отправка ответа с данными пользователя
-               res.json(admin);
+            // Сохранение администратора в базе данных
+            admin.save().then((savedAdmin) => {
+                // Отправка ответа с данными пользователя
+                res.json(savedAdmin);
 
-               // Создание нового пользователя с использованием UserSchema
-               const user = new UserSchema({
-                 email: req.body.email,
-                 code: savedAdmin._id, // Использование идентификатора учителя в качестве кода
-                 passwordHash, // Используется хешированный пароль
-                 userType: 'Admin',
-               });
-             
-               // Сохранение пользователя в базе данных
-               user.save().then((savedUser) => {
-                   // Отправка ответа с данными пользователя
-                   res.json(user);
-                   console.log('Администратор сохранен:', savedAdmin, savedUser);
-               }).catch((error) => {
-                 console.error('Ошибка при сохранении пользователя:', error);
-               });
-           }).catch((error) => {
-               console.error('Ошибка при сохранении ученика:', error);
-           });
-       }
-    } 
-    catch (error) {
-        console.log(error)
+                // Создание нового пользователя с использованием UserSchema
+                const user = new UserSchema({
+                    email: req.body.email,
+                    code: savedAdmin._id, // Использование идентификатора администратора в качестве кода
+                    passwordHash, // Используется хешированный пароль
+                    userType: 'Admin',
+                });
+
+                // Сохранение пользователя в базе данных
+                user.save().then((savedUser) => {
+                    // Отправка ответа с данными пользователя
+                    console.log('Администратор и пользователь сохранены:', savedAdmin, savedUser);
+                }).catch((error) => {
+                    console.error('Ошибка при сохранении пользователя:', error);
+                });
+            }).catch((error) => {
+                console.error('Ошибка при сохранении администратора:', error);
+            });
+        } else {
+            res.status(400).json({ message: 'Некорректный тип пользователя' });
+        }
+    } catch (error) {
+        console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
-
+};
 export const login = async(req, res) => {
     try {
         // Поиск пользователя по электронной почте в базе данных

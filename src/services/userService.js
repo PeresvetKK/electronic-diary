@@ -11,6 +11,36 @@ export const UserService = {
         console.log(response.data)
         return response.data
     },
+    async registedTeacher(data) {
+        const response = await axios.post(`http://localhost:4444/auth/register`,
+            {
+                "email": data.email,
+                "password": data.password,
+                "userType": data.userType,
+                "firstName": data.firstName,
+                "lastName": data.lastName,
+                "lastLastName": data.lastLastName,
+                "classId": null
+            }
+        )
+        console.log(response.data)
+        return response.data
+    },
+    async registedStudent(data) {
+        const response = await axios.post(`http://localhost:4444/auth/register`,
+            {
+                "email": data.email,
+                "password": data.password,
+                "userType": data.userType,
+                "firstName": data.firstName,
+                "lastName": data.lastName,
+                "lastLastName": data.lastLastName,
+                "classId": null
+            }
+        )
+        console.log(response.data)
+        return response.data
+    },
     async getAll() {
         const response = await axios.get(`http://localhost:4444/users/all`)
         return response.data;
