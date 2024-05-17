@@ -1,6 +1,6 @@
 import SchoolClassSchema from "../models/SchoolClass.js";
 import StudentSchema from "../models/Student.js";
-import ScheduleSchema from "../models/Schedule.js";
+import TeacherSchema from "../models/Teacher.js";
 
 // добавить класс
 export const createClass = async (req, res) => {
@@ -20,7 +20,7 @@ export const createClass = async (req, res) => {
         }
 
         // Создаем новый класс
-        const newClass = new SchoolClass({
+        const newClass = new SchoolClassSchema({
             classNumber,
             classLetter,
             students,
@@ -30,6 +30,16 @@ export const createClass = async (req, res) => {
         // Сохраняем новый класс в базе данных
         const savedClass = await newClass.save();
 
+        // Обновляем данные учителя
+        existingTeacher.classTeacherOf = savedClass._id;
+        await existingTeacher.save();
+
+        // Обновляем данные студентов
+        await StudentSchema.updateMany(
+            { _id: { $in: students } },
+            { $set: { class: savedClass._id } }
+        );
+
         res.status(201).json({ class: savedClass });
     } catch (error) {
         console.error("Ошибка при создании класса:", error);
@@ -37,114 +47,110 @@ export const createClass = async (req, res) => {
     }
 };
 
-// удалить класс
-export const deleteClass = async (req, res) => {
+// получить все классы
+export const getAllClasses = async (req, res) => {
     try {
-        const { classId } = req.params;
+        const classes = await SchoolClassSchema.find();
+        res.json(classes);
+    } catch (error) {
+        console.error("Ошибка при получении классов:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    }
+};
 
-        // Проверяем, существует ли класс с указанным ID
-        const existingClass = await SchoolClassSchema.findById(classId);
-        if (!existingClass) {
+// получить класс по id
+export const getClassById = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+        const classData = await SchoolClassSchema.findById(classId);
+
+        if (!classData) {
             return res.status(404).json({ error: "Класс не найден" });
         }
 
-        // Удаляем класс из базы данных
-        await existingClass.remove();
+        res.json(classData);
+    } catch (error) {
+        console.error("Ошибка при получении класса:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    }
+};
 
-        res.status(200).json({ message: "Класс успешно удален" });
+// удалить класс
+export const deleteClass = async (req, res) => {
+    try {
+        const classId = req.params.classId;
+        await SchoolClassSchema.findByIdAndDelete(classId);
+        res.json({ message: "Класс успешно удален" });
     } catch (error) {
         console.error("Ошибка при удалении класса:", error);
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 };
 
-// Получить все классы
-export const getAllClasses = async (req, res) => {
-    try {
-        const classes = await SchoolClassSchema.find().populate("students").populate("classTeacher");
-        res.status(200).json(classes);
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка при получении классов", error: error.message });
-    }
-};
-
-// Получить информацию о конкретном классе
-export const getClassById = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const schoolClass = await SchoolClassSchema.findById(id).populate("students").populate("classTeacher");
-        if (!schoolClass) {
-            return res.status(404).json({ message: "Класс не найден" });
-        }
-        res.status(200).json(schoolClass);
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка при получении информации о классе", error: error.message });
-    }
-};
-
-// Добавить ученика в класс
+// добавить ученика в класс
 export const addStudentToClass = async (req, res) => {
-    const { classId, studentId } = req.params;
     try {
-        const schoolClass = await SchoolClassSchema.findById(classId);
-        const student = await StudentSchema.findById(studentId);
+        const { classId, studentId } = req.params;
 
-        if (!schoolClass) {
+        const existingClass = await SchoolClassSchema.findById(classId);
+        if (!existingClass) {
             return res.status(404).json({ message: "Класс не найден" });
         }
-        if (!student) {
+
+        const existingStudent = await StudentSchema.findById(studentId);
+        if (!existingStudent) {
             return res.status(404).json({ message: "Ученик не найден" });
         }
-        if (schoolClass.students.includes(studentId)) {
-            return res.status(400).json({ message: "Ученик уже добавлен в класс" });
-        }
 
-        schoolClass.students.push(studentId);
-        await schoolClass.save();
+        existingClass.students.push(studentId);
+        await existingClass.save();
 
-        res.status(200).json({ message: "Ученик успешно добавлен в класс", schoolClass });
+        existingStudent.class = classId;
+        await existingStudent.save();
+
+        res.json({ message: "Ученик успешно добавлен в класс" });
     } catch (error) {
-        res.status(500).json({ message: "Ошибка при добавлении ученика в класс", error: error.message });
+        console.error("Ошибка при добавлении ученика в класс:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 };
 
-// Удалить ученика из класса
+// удалить ученика из класса
 export const removeStudentFromClass = async (req, res) => {
-    const { classId, studentId } = req.params;
     try {
-        const schoolClass = await SchoolClassSchema.findById(classId);
-        if (!schoolClass) {
+        const { classId, studentId } = req.params;
+
+        const existingClass = await SchoolClassSchema.findById(classId);
+        if (!existingClass) {
             return res.status(404).json({ message: "Класс не найден" });
         }
 
-        schoolClass.students.pull(studentId);
-        await schoolClass.save();
-
-        res.status(200).json({ message: "Ученик успешно удален из класса", schoolClass });
-    } catch (error) {
-        res.status(500).json({ message: "Ошибка при удалении ученика из класса", error: error.message });
-    }
-};
-
-// Получить классы, в которых ведет уроки учитель
-export const getClassesForTeacher = async (req, res) => {
-    const { teacherId } = req.params;
-    try {
-        const scheduleEntries = await ScheduleSchema.find({ teacher: teacherId }).select("classNumber classLetter");
-        const uniqueClasses = Array.from(new Set(scheduleEntries.map(entry => `${entry.classNumber}-${entry.classLetter}`)));
-        const classesInfo = [];
-
-        for (const uniqueClass of uniqueClasses) {
-            const [classNumber, classLetter] = uniqueClass.split("-");
-            const schoolClass = await SchoolClassSchema.findOne({ classNumber, classLetter }).populate("students").populate("classTeacher");
-            if (schoolClass) {
-                classesInfo.push(schoolClass);
-            }
+        const existingStudent = await StudentSchema.findById(studentId);
+        if (!existingStudent) {
+            return res.status(404).json({ message: "Ученик не найден" });
         }
 
-        res.status(200).json(classesInfo);
+        existingClass.students.pull(studentId);
+        await existingClass.save();
+
+        existingStudent.class = null;
+        await existingStudent.save();
+
+        res.json({ message: "Ученик успешно удален из класса" });
     } catch (error) {
-        res.status(500).json({ message: "Ошибка при получении классов для учителя", error: error.message });
+        console.error("Ошибка при удалении ученика из класса:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 };
 
+// получить все классы учителя
+export const getClassesForTeacher = async (req, res) => {
+    try {
+        const teacherId = req.params.teacherId;
+        const classes = await SchoolClassSchema.find({ classTeacher: teacherId });
+        res.json(classes);
+    } catch (error) {
+        console.error("Ошибка при получении классов учителя:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    }
+};

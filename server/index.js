@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import checkAuth from './utils/checkAuth.js';
 
-import { register, login, getMe, usersAll } from './controllers/UserController.js'
+import { register, login, getMe, getUsersByRole, assignClassToTeacher, assignClassToStudents, usersAll } from './controllers/UserController.js'
 import { createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic } from './controllers/ScheduleController.js';
 import { createHomeWork, getHomeWork, editHomeWork, getCurrentDayHomeWork, deleteHomeWork } from './controllers/HomeWorkController.js';
 import { createCommentForClass, getCommentsForClass, editCommentForClass, deleteCommentForClass } from './controllers/CommentForClassController.js';
@@ -25,6 +25,11 @@ app.use(express.json());
 app.post('/auth/register', register);
 app.post('/auth/login', login,)
 app.get('/auth/me', checkAuth, getMe)
+app.get('/auth/users/:userType', getUsersByRole);
+// Маршрут для назначения классного руководства учителя
+app.put('/assign-class-to-teacher', assignClassToTeacher);
+// Маршрут для назначения класса студентам
+app.put('/assign-class-to-students', assignClassToStudents);
 
 // администратор
 // расписание создать
@@ -80,7 +85,7 @@ app.delete('/comments/student/:commentId', deleteCommentForStudent);
 
 // Классы
 app.get('/classes', getAllClasses);
-app.post('/clases/create', createClass);
+app.post('/classes/create', createClass);
 app.get('/classes/:classId', getClassById);
 app.delete('/classes/delete/:classId', deleteClass);
 app.post('/classes/:classId/addStudent/:studentId', addStudentToClass);

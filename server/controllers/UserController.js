@@ -176,7 +176,6 @@ export const login = async(req, res) => {
         })
     }
 }
-
 export const getMe = async(req, res) => {
     try {
         // Поиск пользователя по его идентификатору (полученному из токена аутентификации)
@@ -201,7 +200,56 @@ export const getMe = async(req, res) => {
         })
     }
 }
-
+export const getUsersByRole = async (req, res) => {
+    try {
+        let users;
+        if (req.params.userType === 'Teacher') {
+            users = await TeacherSchema.find({ classTeacherOf: null });
+        } else if (req.params.userType === 'Student') {
+            users = await StudentSchema.find({ class: null });
+        } else {
+            return res.status(400).json({ message: 'Некорректный тип роли' });
+        }
+        res.json(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+export const assignClassToTeacher = async (req, res) => {
+    try {
+        const classId = req.body.classId;
+        const existingClass = await SchoolClassSchema.findById(classId);
+        if (!existingClass) {
+            return res.status(404).json({ message: 'Класс не найден' });
+        }
+        const teacherId = req.body.teacherId;
+        await TeacherSchema.findByIdAndUpdate(teacherId, { classTeacherOf: classId });
+        res.json({ message: 'Успешно обновлено' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+export const assignClassToStudents = async (req, res) => {
+    try {
+        const classId = req.body.classId;
+        const existingClass = await SchoolClassSchema.findById(classId);
+        if (!existingClass) {
+            return res.status(404).json({ message: 'Класс не найден' });
+        }
+        const studentIds = req.body.studentIds;
+        await Promise.all(
+            studentIds.map(async (studentId) => {
+                await StudentSchema.findByIdAndUpdate(studentId, { class: classId });
+            })
+        );
+        res.json({ message: 'Успешно обновлено' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 export const usersAll = async(req, res) => {
     try{
         res.json(

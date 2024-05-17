@@ -1,0 +1,15 @@
+.goback{
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+    svg{
+        width: 3.6rem;
+        path{
+            stroke: #2E5FFF;
+        }
+    }
+}
