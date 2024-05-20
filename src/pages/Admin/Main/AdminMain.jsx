@@ -17,7 +17,7 @@ const AdminMain = () => {
           <Link state={{ }} to={`/admin/clases/create`}>
             <Plitca>Добавить класс</Plitca>
           </Link>
-          <Link state={{ }} to={`/admin/auth/register`}>
+          <Link state={{ }} to={`/admin/classes`}>
             <Plitca>Все классы</Plitca>
           </Link>
         </div>

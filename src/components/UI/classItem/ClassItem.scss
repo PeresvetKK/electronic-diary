@@ -1,0 +1,33 @@
+.class-item{
+    border-radius: var(--round-edges, 20px);
+    border: 1px solid #DADADA;
+    background: #FFF;
+    padding: 2.4rem 3.2rem;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    &-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__title{
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #333;
+        }
+    }
+    &-main{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    &__item{
+        font-size: 1.6rem;
+        color: #BFC0C1;
+        span{
+            font-size: 1.6rem;
+            color: #333;
+        }
+    }
+}

@@ -24,6 +24,8 @@ import UrokDetail from "./components/UrokDetail/UrokDetail";
 // админ
 import RegistedUser from './pages/Admin/RegistedUser/RegistedUser';
 import CreateClass from "./pages/Admin/CreateClass/CreateClass";
+import ClassList from "./pages/Admin/ClassList/ClassList";
+import ClassPage from "./pages/Admin/ClassPage/ClassPage";
 
 function App() {
     // получает информацию - авторизован или нет
@@ -60,6 +62,8 @@ function App() {
                                <Route index element={<AdminMain/>}/>
                                <Route path="/admin/auth/register" element={<RegistedUser/>}/>
                                <Route path="/admin/clases/create" element={<CreateClass/>}/>
+                               <Route path="/admin/classes" element={<ClassList/>}/>
+                               <Route path="/admin/classes/:id" element={<ClassPage/>}/>
                             </>
                         }
                         <Route path="news" element={<News/>}/>

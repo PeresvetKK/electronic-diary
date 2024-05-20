@@ -1,0 +1,39 @@
+.class-page{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    .whitebox {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+    &-row{
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    &__text{
+        color: #333;
+        font-size: 2.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    &-box{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    &-item{
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        color: #333;
+        font-size: 1.6rem;
+        svg{
+            width: 2.4rem;
+            min-width: 2.4rem;
+            cursor: pointer;
+        }
+    }
+}

@@ -20,11 +20,12 @@ export const classService = {
         const response = await axios.delete(`http://localhost:4444/classes/delete/${classId}`);
         return response.data;
     },
-
-    async addStudentToClass(classId, studentId) {
-        const response = await axios.post(`http://localhost:4444/classes/${classId}/addStudent/${studentId}`);
-        return response.data;
-    },
+   async addStudentsToClass(classId, studentIds) {
+    const response = await axios.post(`http://localhost:4444/classes/${classId}/addStudents`, {
+        studentIds: studentIds
+    });
+    return response.data;
+},
 
     async removeStudentFromClass(classId, studentId) {
         const response = await axios.delete(`http://localhost:4444/classes/${classId}/removeStudent/${studentId}`);

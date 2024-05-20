@@ -10,7 +10,7 @@ import { createCommentForClass, getCommentsForClass, editCommentForClass, delete
 import { createCommentForStudent, getCommentsForStudent, editCommentForStudent, deleteCommentForStudent } from './controllers/CommentForStudentController.js';
 import { createMissed } from './controllers/MissedClassController.js';
 import { createGrade, getGrades } from './controllers/GradesLessonController.js';
-import { getAllClasses, getClassById, addStudentToClass, removeStudentFromClass, getClassesForTeacher, createClass, deleteClass } from './controllers/SchoolClassController.js';
+import { getAllClasses, getClassById, addStudentsToClass, removeStudentFromClass, getClassesForTeacher, createClass, deleteClass } from './controllers/SchoolClassController.js';
 
 mongoose
     .connect('mongodb+srv://koltyrin2309:2OSn7uc83diRJASg@cluster0.hmtdahv.mongodb.net/')
@@ -88,7 +88,7 @@ app.get('/classes', getAllClasses);
 app.post('/classes/create', createClass);
 app.get('/classes/:classId', getClassById);
 app.delete('/classes/delete/:classId', deleteClass);
-app.post('/classes/:classId/addStudent/:studentId', addStudentToClass);
+app.post('/classes/:classId/addStudents', addStudentsToClass);
 app.delete('/classes/:classId/removeStudent/:studentId', removeStudentFromClass);
 app.get('/classes/teacher/:teacherId', getClassesForTeacher);
 

@@ -1,0 +1,28 @@
+.class-list{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    .whitebox{
+        display: flex;
+        flex-direction: column;
+        gap: 2.8rem;
+    }
+}
+.class-list-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.class-list-item__delete{
+    width: 2.4rem;
+    cursor: pointer;
+}
+@media(max-width: 1280px){
+    .class-list-boxx{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media(max-width: 768px){
+    .class-list-box{
+        grid-template-columns: 1fr;
+    }
+}
