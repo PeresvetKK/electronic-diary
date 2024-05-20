@@ -23,11 +23,11 @@ const Schedule = ({title}) => {
     const userInfo = useSelector(state => state.user);
     const [schedule, setSchedule] = useState([])
     const [isFetching, setIsFetching] = useState(false)
-
+    console.log(userInfo)
     
     useEffect(() => {
         const fetchData = async () => {
-            const data = await ScheduleService.getTeacherSchedule(userInfo._id, todayDate, tomorrowDate)
+            const data = await ScheduleService.getTeacherSchedule(userInfo.id, todayDate, tomorrowDate)
             setSchedule(data.teacherSchedule)
             setIsFetching(true)
         }

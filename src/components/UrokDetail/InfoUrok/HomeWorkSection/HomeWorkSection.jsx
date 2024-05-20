@@ -8,12 +8,11 @@ import './HomeWorkSection.scss';
 
 const HomeworkSection = ({ urokInfo, urlParams }) => {
     const [homeWorkArray, setHomeWorkArray] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const data = await HomeWorkService.getCurrentDayHomeWork(
-                    urlParams.class,
+                    urlParams.class._id,
                     urlParams._id
                 );
                 setHomeWorkArray(data);
@@ -22,7 +21,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
             }
         };
         fetchData();
-    }, [urlParams._id, urlParams.classLetter, urlParams.classNumber]);
+    }, [urlParams._id, urlParams.class.classLetter, urlParams.class.classNumber]);
 
     const handleDelete = async (idHomeWork) => {
         await HomeWorkService.deleteHomeWork(idHomeWork);
@@ -88,7 +87,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
     };
 
     const createdHomeWork = (idHomeWork, value) => {
-        createdItemHomeWork(value, urokInfo.class, getFormatDate(urokInfo.date), urokInfo._id);
+        createdItemHomeWork(value, urlParams.class._id, getFormatDate(urlParams.date), urlParams._id);
         setEditedHomeWork(null);
         setCreatedId(null);
         setValueInputHomeWork('');

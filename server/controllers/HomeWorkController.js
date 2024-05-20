@@ -77,7 +77,7 @@ export const getCurrentDayHomeWork = async (req, res) => {
             subject
         };
         // Выполняем запрос к базе данных
-        const homeWorkList = await HomeWorkSchema.find(query).populate("SchoolClass");
+        const homeWorkList = await HomeWorkSchema.find(query);
 
         res.status(200).json({ homeworkList: homeWorkList });
     } catch (error) {

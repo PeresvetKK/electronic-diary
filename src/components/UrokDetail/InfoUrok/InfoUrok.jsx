@@ -12,7 +12,6 @@ import HomeWorkSection from './HomeWorkSection/HomeWorkSection.jsx';
 const InfoUrok = ({ urokInfo }) => {
     const navigate = useNavigate()
     const goBack = () => navigate(-1)
-
     const location = useLocation();
     const urlParams = location.state.urok;
 

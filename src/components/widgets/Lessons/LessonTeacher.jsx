@@ -31,12 +31,12 @@ const LessonTeacher = ({urok}) => {
                     <LessonItem
                         lesson={urok.subjectName} 
                         lessonType={urok.lessonType} 
-                        lessonClass={`${urok.classNumber} ${urok.classLetter}`}
+                        lessonClass={`${urok.class.classNumber} ${urok.class.classLetter}`}
                     />
                 </div>
                 <div className={s.item__cell}>
                     <div className={s.textbox__text}>
-                        Класс: <span>{`${urok.classNumber} ${urok.classLetter}`}</span>
+                        Класс: <span>{`${urok.class.classNumber} ${urok.class.classLetter}`}</span>
                     </div> 
                 </div>
                 <div className={s.item__cell}>
@@ -56,7 +56,7 @@ const LessonTeacher = ({urok}) => {
                             <ThreeDotsSVG/>
                         </div>
                         <div className={`dropdown-content ${isOpen ? 'dropdown-active' : ''}`}>
-                            <Link className='dropdown-content__item' state={{ urok: urok }} to={`/edit-lesson/${urok.classNumber}/${urok.classLetter}/${urok._id}`}>
+                            <Link className='dropdown-content__item' state={{ urok: urok }} to={`/edit-lesson/${urok.class.classNumber}/${urok.class.classLetter}/${urok._id}`}>
                                 <InfoSVG/>
                                 Страница урока
                             </Link>

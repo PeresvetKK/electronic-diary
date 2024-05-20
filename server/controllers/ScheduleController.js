@@ -1,6 +1,6 @@
 import TeacherSchema from '../models/Teacher.js';
 import ScheduleSchema from '../models/Schedule.js';
-import SchoolClass from '../models/SchoolClass.js';
+import SchoolClassSchema from '../models/SchoolClass.js';
 
 export const createSchedule = async (req, res) => {
     try {
@@ -13,7 +13,7 @@ export const createSchedule = async (req, res) => {
         }
 
         // Проверяем, существует ли класс с указанным ID
-        const schoolClass = await SchoolClass.findById(classId);
+        const schoolClass = await SchoolClassSchema.findById(classId);
         if (!schoolClass) {
             return res.status(404).json({ error: "Класс не найден" });
         }
@@ -25,8 +25,7 @@ export const createSchedule = async (req, res) => {
         const lesson = new ScheduleSchema({
             dayOfWeek,
             lessonNumber,
-            classNumber: schoolClass.classNumber,
-            classLetter: schoolClass.classLetter,
+            class: classId,
             subjectName: subject,
             teacher: existingTeacher._id,
             classroomNumber,
@@ -37,7 +36,10 @@ export const createSchedule = async (req, res) => {
         // Сохраняем урок в базе данных
         const savedLesson = await lesson.save();
 
-        res.status(201).json({ lesson: savedLesson });
+        // Популяризируем класс
+        const populatedLesson = await ScheduleSchema.findById(savedLesson._id).populate('class');
+
+        res.status(201).json({ lesson: populatedLesson });
     } catch (error) {
         console.error("Ошибка при создании урока:", error);
         res.status(500).json({ error: "Ошибка сервера" });
@@ -86,7 +88,7 @@ export const getTeacherSchedule = async (req, res) => {
         const teacherSchedule = await ScheduleSchema.find({
             teacher: existingTeacher._id,
             date: { $gte: start, $lte: end }
-        }).populate("teacher", "lastName firstName lastLastName");
+        }).populate("teacher", "lastName firstName lastLastName").populate("class");
 
         res.json({ teacherSchedule });
     } catch (error) {

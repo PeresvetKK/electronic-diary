@@ -13,7 +13,6 @@ const UrokDetail = () => {
     
     const location = useLocation();
     const urok = location.state.urok;
-
     const [editedTheme, setEditedTheme] = useState(false);
     const [uroktopic, setUrokTopic] = useState(urok.topic);
     const [inputUrokTopic, setInputUrokTopic] = useState(urok.topic);
@@ -36,7 +35,7 @@ const UrokDetail = () => {
                     <span>{getDayOfWeek(urok.dayOfWeek)}</span>
                     {getFormatDate(urok.date)}
                 </p>
-                <div className="urok-detail__text">{urok.subjectName} {urok.classNumber}{urok.classLetter} ({getTimesLessons(urok.lessonNumber)})</div>
+                <div className="urok-detail__text">{urok.subjectName} {urok.class.classNumber}{urok.class.classLetter} ({getTimesLessons(urok.lessonNumber)})</div>
                 {editedTheme ? (
                     <p className="urok-detail__text">
                         <Input
