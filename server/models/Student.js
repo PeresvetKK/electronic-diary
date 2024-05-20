@@ -5,7 +5,7 @@ const StudentSchema = new mongoose.Schema({
     lastName: { type: String, required: true },
     firstName: { type: String, required: true },
     lastLastName: { type: String },
-    class: { type: mongoose.Schema.Types.ObjectId, ref: "Class" }, // Ссылка на класс
+    class: { type: mongoose.Schema.Types.ObjectId, ref: "SchoolClass" },
 });
 
 export default mongoose.model('Student', StudentSchema);

@@ -3,22 +3,20 @@ import axios from "axios";
 export const HomeWorkService = {
     async getHomeWork(classId, startDate, endDate) {
         const response = await axios.get(`http://localhost:4444/homeWork/${classId}/${startDate}/${endDate}`);
-        return response.data;
+        return response.data.homeworkList; // Возвращаем список домашнего задания
     },
 
     async getCurrentDayHomeWork(classId, subject) {
         const response = await axios.get(`http://localhost:4444/homeWork/${classId}/${subject}`);
-        return response.data.homeworkList;
+        return response.data.homeworkList; // Возвращаем список домашнего задания
     },
 
-    async editHomeWork(homeworkId, updated) {
-        const response = await axios.put(`http://localhost:4444/editHomeWork/`, {
-            "homeworkId": homeworkId,
-            "updated": {
-                "homework": updated
-            }
+    async editHomeWork(homeworkId, updatedHomework) {
+        const response = await axios.put(`http://localhost:4444/homeWork/edit`, {
+            homeworkId,
+            updated: updatedHomework
         });
-        return response.data;
+        return response.data.updatedHomework; // Возвращаем обновленное домашнее задание
     },
 
     async createHomeWork(homework, classId, date, subject) {
@@ -28,11 +26,11 @@ export const HomeWorkService = {
             "date": date,
             "subject": subject
         });
-        return response.data;
+        return response.data.homework;
     },
 
-    async deleteHomeWork(homeWorkId) {
-        const response = await axios.delete(`http://localhost:4444/homeWork/${homeWorkId}`);
-        return response.data;
+    async deleteHomeWork(homeworkId) {
+        const response = await axios.delete(`http://localhost:4444/homeWork/${homeworkId}`);
+        return response.data; // Возвращаем сообщение об успешном удалении
     },
 };

@@ -1,10 +1,10 @@
 import HomeWorkSchema from '../models/HomeWork.js';
 import SchoolClassSchema from '../models/SchoolClass.js';
+import ScheduleSchema from '../models/Schedule.js';
 
 export const createHomeWork = async (req, res) => {
     try {
         const { homework, classId, date, subject } = req.body;
-        // Если поля начальной и конечной даты присутствуют, парсим их в объекты Date
         const currentDate = new Date(date.split('.').reverse().join('-') + 'T00:00:00.000Z');
 
         // Проверяем, существует ли класс с указанным ID
@@ -13,20 +13,55 @@ export const createHomeWork = async (req, res) => {
             return res.status(404).json({ error: "Класс не найден" });
         }
 
+        // Проверяем, существует ли расписание с указанным ID
+        const existingSchedule = await ScheduleSchema.findById(subject);
+        if (!existingSchedule) {
+            return res.status(404).json({ error: "Расписание не найдено" });
+        }
+
         // Создание нового домашнего задания с использованием предмета и класса
         const newHomeWork = new HomeWorkSchema({
             homework,
             date: currentDate,
-            subject,
-            class: schoolClass._id, // Сохраняем ссылку на класс в домашнем задании
+            subject: existingSchedule._id,
+            class: schoolClass._id,
         });
 
         // Сохранение домашнего задания в базе данных
         const savedHomeWork = await newHomeWork.save();
 
-        res.status(201).json({ homework: savedHomeWork });
+        // Популяризируем класс и расписание
+        const populatedHomeWork = await savedHomeWork.populate([{ path: 'class' }, { path: 'subject' }]);
+
+        res.status(201).json({ homework: populatedHomeWork });
     } catch (error) {
         console.error("Ошибка при создании домашнего задания:", error);
+        res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    }
+};
+
+export const getCurrentDayHomeWork = async (req, res) => {
+    try {
+        const { classId, subject } = req.params;
+
+        // Проверяем, существует ли класс с указанным ID
+        const schoolClass = await SchoolClassSchema.findById(classId);
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
+
+        // Формируем объект запроса
+        const query = {
+            class: classId,
+            subject
+        };
+
+        // Выполняем запрос к базе данных
+        const homeWorkList = await HomeWorkSchema.find(query).populate('class').populate('subject');
+
+        res.status(200).json({ homeworkList: homeWorkList });
+    } catch (error) {
+        console.error("Ошибка при получении домашнего задания:", error);
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 }
@@ -52,32 +87,7 @@ export const getHomeWork = async (req, res) => {
         }
 
         // Поиск домашнего задания по ID класса и интервалу даты
-        const homeWorkList = await HomeWorkSchema.find(query).populate("SchoolClass");
-
-        res.status(200).json({ homeworkList: homeWorkList });
-    } catch (error) {
-        console.error("Ошибка при получении домашнего задания:", error);
-        res.status(500).json({ error: "Внутренняя ошибка сервера" });
-    }
-}
-
-export const getCurrentDayHomeWork = async (req, res) => {
-    try {
-        const { classId, subject } = req.params;
-
-        // Проверяем, существует ли класс с указанным ID
-        const schoolClass = await SchoolClassSchema.findById(classId);
-        if (!schoolClass) {
-            return res.status(404).json({ error: "Класс не найден" });
-        }
-
-        // Формируем объект запроса
-        const query = {
-            class: classId,
-            subject
-        };
-        // Выполняем запрос к базе данных
-        const homeWorkList = await HomeWorkSchema.find(query);
+        const homeWorkList = await HomeWorkSchema.find(query).populate('class').populate('subject');
 
         res.status(200).json({ homeworkList: homeWorkList });
     } catch (error) {
@@ -93,7 +103,7 @@ export const editHomeWork = async (req, res) => {
             homeworkId,
             updated,
             { new: true } // Возвращать обновленный документ
-        );
+        ).populate('class').populate('subject');
 
         res.status(200).json({ updatedHomework: updatedHomeWork });
     } catch (error) {

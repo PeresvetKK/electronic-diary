@@ -11,7 +11,7 @@ import { createCommentForStudent, getCommentsForStudent, editCommentForStudent, 
 import { createMissed } from './controllers/MissedClassController.js';
 import { createGrade, getGrades } from './controllers/GradesLessonController.js';
 import { getAllClasses, getClassById, addStudentsToClass, removeStudentFromClass, getClassesForTeacher, createClass, deleteClass } from './controllers/SchoolClassController.js';
-
+import { getClassJournal } from './controllers/JournalController.js';
 mongoose
     .connect('mongodb+srv://koltyrin2309:2OSn7uc83diRJASg@cluster0.hmtdahv.mongodb.net/')
     .then(() => console.log('DB ok'))
@@ -21,76 +21,75 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-// регистрация, авторизация, авторизован ли
-app.post('/auth/register', register);
-app.post('/auth/login', login,)
-app.get('/auth/me', checkAuth, getMe)
-app.get('/auth/users/:userType', getUsersByRole);
-// Маршрут для назначения классного руководства учителя
-app.put('/assign-class-to-teacher', assignClassToTeacher);
-// Маршрут для назначения класса студентам
-app.put('/assign-class-to-students', assignClassToStudents);
-
 // администратор
-// расписание создать
-app.post('/schedule/newSchedule', createSchedule)
+    app.post('/auth/register', register);
+    app.post('/auth/login', login,)
+    app.get('/auth/me', checkAuth, getMe)
+    app.get('/auth/users/:userType', getUsersByRole);
+    // Маршрут для назначения классного руководства учителя
+    app.put('/assign-class-to-teacher', assignClassToTeacher);
+    // Маршрут для назначения класса студентам
+    app.put('/assign-class-to-students', assignClassToStudents);
+    // расписание создать
+    app.post('/schedule/newSchedule', createSchedule)
+
 
 // ученик
-// расписание на интервал даты
-app.get('/schedule/getSchedule/:classId/:startDate/:endDate', getStudentSchedule)
+    // расписание на интервал даты
+    app.get('/schedule/getSchedule/:classId/:startDate/:endDate', getStudentSchedule)
+    // получить дз на интервал
+    app.get('/homeWork/:classId/:startDate/:endDate', getHomeWork)
 
-// получить дз на интервал
-app.get('/homeWork/:classId/:startDate/:endDate', getHomeWork)
 
 // учитель
-// расписание на интервал даты
-app.get('/schedule/getTeacherSchedule/:teacherId/:startDate/:endDate', getTeacherSchedule)
-// Изменение темы урока
-app.put('/schedule/editLessonTopic', editLessonTopic);
+    // расписание на интервал даты
+    app.get('/schedule/getTeacherSchedule/:teacherId/:startDate/:endDate', getTeacherSchedule)
+    // Изменение темы урока
+    app.put('/schedule/editLessonTopic', editLessonTopic);
+    // создать дз
+    app.post('/homeWork/create', createHomeWork)
+    // редактировать дз
+    app.put("/homeWork/edit", editHomeWork);
+    // получить дз на интервал
+    app.get('/homeWork/:classId/:startDate/:endDate', getHomeWork)
+    // получить дз для конкретного предмета
+    app.get('/homeWork/:classId/:subject', getCurrentDayHomeWork)
+    // удалить дз
+    app.delete('/homeWork/:homeworkId', deleteHomeWork);
+    // пропуски
+    app.post("/missed/create", createMissed);
+    // отоюражение страницы журнала
+    app.get('/journal/:classId/:subjectId', getClassJournal);
+    // оценка
+    app.post('/students/createGrades', createGrade);
 
-// создать дз
-app.post('/homeWork/create', createHomeWork)
-// редактировать дз
-app.put("/homeWork/edit", editHomeWork);
-// получить дз на интервал
-app.get('/homeWork/:classId/:startDate/:endDate', getHomeWork)
-// получить дз для конкретного предмета
-app.get('/homeWork/:classId/:subject', getCurrentDayHomeWork)
-// удалить дз
-app.delete('/homeWork/:homeworkId', deleteHomeWork);
+
+// Классы
+    app.get('/classes', getAllClasses);
+    app.post('/classes/create', createClass);
+    app.get('/classes/:classId', getClassById);
+    app.delete('/classes/delete/:classId', deleteClass);
+    app.post('/classes/:classId/addStudents', addStudentsToClass);
+    app.delete('/classes/:classId/removeStudent/:studentId', removeStudentFromClass);
+    app.get('/classes/teacher/:teacherId', getClassesForTeacher);
 
 
-// пропуски
-app.post("/missed/create", createMissed);
-
-// оценка
-app.post('/students/createGrades', createGrade);
+// получить оценку 
 app.post('/students/getGrades/', getGrades);
 
-// Потом по id урока найти все оценки и комментарии для всех учеников
-// временно посылаю массив данных для отображения
 app.get('/users/all', usersAll);
 
 // Комментарии для класса
-app.post('/comments/class', createCommentForClass);
-app.get('/comments/class/:scheduleId', getCommentsForClass);
-app.put('/comments/class/:commentId', editCommentForClass);
-app.delete('/comments/class/:commentId', deleteCommentForClass);
+// app.post('/comments/class', createCommentForClass);
+// app.get('/comments/class/:scheduleId', getCommentsForClass);
+// app.put('/comments/class/:commentId', editCommentForClass);
+// app.delete('/comments/class/:commentId', deleteCommentForClass);
 
 // Комментарии для студента
-app.post('/comments/student', createCommentForStudent);
-app.get('/comments/student/:studentId/:scheduleId', getCommentsForStudent);
-app.put('/comments/student/:commentId', editCommentForStudent);
-app.delete('/comments/student/:commentId', deleteCommentForStudent);
-
-// Классы
-app.get('/classes', getAllClasses);
-app.post('/classes/create', createClass);
-app.get('/classes/:classId', getClassById);
-app.delete('/classes/delete/:classId', deleteClass);
-app.post('/classes/:classId/addStudents', addStudentsToClass);
-app.delete('/classes/:classId/removeStudent/:studentId', removeStudentFromClass);
-app.get('/classes/teacher/:teacherId', getClassesForTeacher);
+// app.post('/comments/student', createCommentForStudent);
+// app.get('/comments/student/:studentId/:scheduleId', getCommentsForStudent);
+// app.put('/comments/student/:commentId', editCommentForStudent);
+// app.delete('/comments/student/:commentId', deleteCommentForStudent);
 
 app.listen(4444, (err) => {
     // если сервер не смог запуститься

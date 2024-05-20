@@ -60,10 +60,10 @@ const LessonTeacher = ({urok}) => {
                                 <InfoSVG/>
                                 Страница урока
                             </Link>
-                            <div className="dropdown-content__item">
+                            <Link className="dropdown-content__item" to={`/journal/${urok.class._id}/${urok.subjectName}`}>
                                 <BlackJournalSVG/>
                                 Журнал класса
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

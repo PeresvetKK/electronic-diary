@@ -48,7 +48,7 @@ function App() {
                             &&<>
                                 <Route index element={<Main/>}/>
                                 <Route path="/edit-lesson/:classNumber/:classLetter/:id" element={<UrokDetail/>}/>
-                                <Route path="journal" element={<JournalTeacher/>}/>
+                                <Route path="/journal/:classId/:subjectId" element={<JournalTeacher/>}/>
                              </> 
                         }
                         {role === "Student"
