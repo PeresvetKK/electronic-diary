@@ -7,10 +7,9 @@ const LessonGradeSchema = new mongoose.Schema({
     required: true
   },
   grade: {
-    type: Number,
+    type: String,
     required: true,
-    min: 1,
-    max: 5
+    enum: ['1', '2', '3', '4', '5', 'Н'], // Возможные значения для оценки
   },
   date: { type: Date, required: true },
   subject: {
@@ -20,7 +19,6 @@ const LessonGradeSchema = new mongoose.Schema({
   },
   comment: {
     type: String,
-    required: true,
     default: ""
   }
 });

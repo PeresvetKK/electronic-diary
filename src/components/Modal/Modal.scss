@@ -19,16 +19,19 @@
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal {
     z-index: 100;
     background: white;
     position: relative;
-    margin: 1.75rem auto;
-    border-radius: 3px;
+    margin: 0;
+    border-radius: 1.6rem;
     max-width: 500px;
-    padding: 2rem;
+    padding: 2.4rem;
 }
 
 .modal-header {
@@ -52,7 +55,6 @@ button {
     border: none;
     border-radius: 3px;
     padding: .3rem 1rem;
-    margin-left: .5rem;
 }
 
 .button-default {

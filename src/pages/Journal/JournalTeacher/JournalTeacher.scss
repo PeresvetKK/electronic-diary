@@ -1,27 +1,155 @@
-.table-section{
-    width: 100%;
-    background: #fff;
-    border-radius: 0 0 8px 8px;
+.journal{
     display: flex;
     flex-direction: column;
-    gap: 4rem;
-    background: var(--newWhite);
+    gap: 2.4rem;
+    &-header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #E9EDF5;
+        padding: 16px 8px;
+    }
+    &-main{
+        display: grid;
+        grid-template-columns: 240px 1fr 150px;
+    }
+    .whitebox {
+        padding: 0;
+    }
 }
-.journal-header{
-    width: 100%;
+
+.journal-coll{
+    border-right: 1px solid #E9EDF5;
+    &__title{
+        border-bottom: 1px solid #E9EDF5;
+        font-size: 16px;
+        color: #464F60;
+        font-weight: 600;
+        padding: 8px;
+        height: 41px;
+    }
+    &-list{
+        display: flex;
+        flex-direction: column;
+        &__item{
+            height: 40px;
+            font-size: 16px;
+            color: #464F60;
+            padding: 8px;
+            border-bottom: 1px solid #E9EDF5;
+            background: #fefefe;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+.journal-sr{
+    border-right: none;
+}
+.journal-students,
+.journal-sr{
+    padding-top: 36px;
+    background: #F7F9FC;
+}
+.journal-lessons{
     display: flex;
-    justify-content: space-between;
+    background: #F7F9FC;
+    &-box{
+        border-bottom: 1px solid #E9EDF5;
+        &:last-child{
+            border-right: none;
+        }
+    }
+    &-month{
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: capitalize;
+        background: #F7F9FC;
+        border-bottom: 1px solid #E9EDF5;
+        border-right: 1px solid #E9EDF5;
+        color: #464F60;
+        letter-spacing: 2px;
+        padding: 8px;
+        text-align: center;
+    }
+    &-days{
+        display: flex;
+        background: #F7F9FC;
+        &__item{
+            border-right: 1px solid #E9EDF5;
+        }
+        &__day{
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &-urok{
+        &__student{
+            height: 40px;
+            border-top: 1px solid #E9EDF5;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #fefefe;
+            &:hover{
+                border: 2px solid var(--blue);
+            }
+        }
+        &__student.disabled{
+            cursor: no-drop;
+            background: #F7F9FC;
+            &:hover{
+                border: none;
+                border-top: 1px solid #E9EDF5;
+            }
+        }
+    }
+    &-day-students{
+        width: 40px;
+    }
 }
-.journal-time{
-    flex: 1;
+.grade-form-row{
+    display: flex;
+    gap: 0.8rem;
+    input{
+        position: absolute;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    label{
+        font-size: 2rem;
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.8rem;
+        border: 1px solid #E9EDF5;
+        background: #fefefe;
+        color: #464F60;
+        &:hover{
+            border: 2px solid var(--blue);
+        }
+        &:has(input:checked){
+            background: var(--blue);
+            border: 1px solid var(--blue);
+            color: #fff;
+        }
+    }
 }
-.journal-cabinet{
-    flex: 1;
-}
-.journal-number{
-    padding: 0;
-    justify-content: center;
-    svg{
-        width: 2.4rem;
+.modal{
+    .btn{
+        width: 100%;
     }
 }

@@ -8,10 +8,9 @@ import { createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic
 import { createHomeWork, getHomeWork, editHomeWork, getCurrentDayHomeWork, deleteHomeWork } from './controllers/HomeWorkController.js';
 import { createCommentForClass, getCommentsForClass, editCommentForClass, deleteCommentForClass } from './controllers/CommentForClassController.js';
 import { createCommentForStudent, getCommentsForStudent, editCommentForStudent, deleteCommentForStudent } from './controllers/CommentForStudentController.js';
-import { createMissed } from './controllers/MissedClassController.js';
-import { createGrade, getGrades } from './controllers/GradesLessonController.js';
+
 import { getAllClasses, getClassById, addStudentsToClass, removeStudentFromClass, getClassesForTeacher, createClass, deleteClass } from './controllers/SchoolClassController.js';
-import { getClassJournal } from './controllers/JournalController.js';
+import { addGrade, getClassJournal, updateGrade } from './controllers/JournalController.js';
 mongoose
     .connect('mongodb+srv://koltyrin2309:2OSn7uc83diRJASg@cluster0.hmtdahv.mongodb.net/')
     .then(() => console.log('DB ok'))
@@ -56,12 +55,12 @@ app.use(express.json());
     app.get('/homeWork/:classId/:subject', getCurrentDayHomeWork)
     // удалить дз
     app.delete('/homeWork/:homeworkId', deleteHomeWork);
-    // пропуски
-    app.post("/missed/create", createMissed);
     // отоюражение страницы журнала
     app.get('/journal/:classId/:subjectId', getClassJournal);
+    app.post('/grade/create/class/:classId/subject/:subjectId/student/:studentId', addGrade);
+    app.put('/grade/update/class/:classId/subject/:subjectId/student/:studentId/:gradeId', updateGrade);
     // оценка
-    app.post('/students/createGrades', createGrade);
+    // app.post('/students/createGrades', createGrade);
 
 
 // Классы
@@ -75,7 +74,7 @@ app.use(express.json());
 
 
 // получить оценку 
-app.post('/students/getGrades/', getGrades);
+// app.post('/students/getGrades/', getGrades);
 
 app.get('/users/all', usersAll);
 
