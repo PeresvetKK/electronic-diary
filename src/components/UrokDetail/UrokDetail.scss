@@ -1,10 +1,16 @@
+.detail{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    height: 100%;
+}
 .urok-detail{
     background: #F2F2F2;
-    display: grid;
     padding: 0;
-    grid-template-rows: 1fr 6fr;
-    gap: 2rem;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
     &__title{
         width: 100%;
         display: flex;    
@@ -16,6 +22,7 @@
         gap: 0.2rem;
         padding: 2rem;
         position: relative;
+        height: fit-content;
     }
     .table-header p{
         padding: 0 2rem;

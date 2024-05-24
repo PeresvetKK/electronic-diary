@@ -56,7 +56,7 @@ const LessonTeacher = ({urok}) => {
                             <ThreeDotsSVG/>
                         </div>
                         <div className={`dropdown-content ${isOpen ? 'dropdown-active' : ''}`}>
-                            <Link className='dropdown-content__item' state={{ urok: urok }} to={`/edit-lesson/${urok.class.classNumber}/${urok.class.classLetter}/${urok._id}`}>
+                            <Link className='dropdown-content__item' to={`/edit-lesson/${urok.class.classNumber}/${urok.class.classLetter}/${urok._id}`}>
                                 <InfoSVG/>
                                 Страница урока
                             </Link>

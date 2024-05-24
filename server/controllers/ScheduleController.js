@@ -113,3 +113,26 @@ export const editLessonTopic = async (req, res) => {
         res.status(500).json({ error: "Внутренняя ошибка сервера" });
     }
 };
+
+export const getLessonDetails = async (req, res) => {
+    try {
+        const { classNumber, classLetter, lessonId } = req.params;
+
+        // Найти класс по номеру и букве
+        const schoolClass = await SchoolClassSchema.findOne({ classNumber, classLetter }).populate('students');
+        if (!schoolClass) {
+            return res.status(404).json({ error: "Класс не найден" });
+        }
+
+        // Найти урок по ID
+        const lesson = await ScheduleSchema.findById(lessonId).populate('teacher').populate('class');
+        if (!lesson) {
+            return res.status(404).json({ error: "Урок не найден" });
+        }
+
+        res.status(200).json(lesson);
+    } catch (error) {
+        console.error("Ошибка при получении информации об уроке:", error);
+        res.status(500).json({ error: "Ошибка сервера" });
+    }
+};

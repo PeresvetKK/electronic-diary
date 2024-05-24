@@ -4,7 +4,7 @@ import cors from 'cors';
 import checkAuth from './utils/checkAuth.js';
 
 import { register, login, getMe, getUsersByRole, assignClassToTeacher, assignClassToStudents, usersAll } from './controllers/UserController.js'
-import { createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic } from './controllers/ScheduleController.js';
+import { createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic, getLessonDetails } from './controllers/ScheduleController.js';
 import { createHomeWork, getHomeWork, editHomeWork, getCurrentDayHomeWork, deleteHomeWork } from './controllers/HomeWorkController.js';
 import { createCommentForClass, getCommentsForClass, editCommentForClass, deleteCommentForClass } from './controllers/CommentForClassController.js';
 import { createCommentForStudent, getCommentsForStudent, editCommentForStudent, deleteCommentForStudent } from './controllers/CommentForStudentController.js';
@@ -43,6 +43,8 @@ app.use(express.json());
 // учитель
     // расписание на интервал даты
     app.get('/schedule/getTeacherSchedule/:teacherId/:startDate/:endDate', getTeacherSchedule)
+    // открыть конкретный урок
+    app.get('/schedule/lesson/:classNumber/:classLetter/:lessonId', getLessonDetails);
     // Изменение темы урока
     app.put('/schedule/editLessonTopic', editLessonTopic);
     // создать дз

@@ -3,7 +3,7 @@ import './JournalTeacher.scss';
 import WhiteBox from '../../../components/UI/whiteBox/WhiteBox';
 import PageTitle from '../../../components/UI/pageTitle/PageTitle';
 import GoBack from '../../../components/UI/goBack/GoBack';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { journalService } from '../../../services/journalService';
 import { getFormatDate } from '../../../hooks/getFormatDate';
 import Modal from '../../../components/Modal/Modal';
@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { FormControlLabel, Input, MenuItem, Radio, RadioGroup, TextField } from '@mui/material';
 import Form from '../../../components/UI/form/Form';
 import Button from '../../../components/UI/button/Button';
-
+import MainLoader from '../../../components/Loader/MainLoader/MainLoader';
 
 const Journal = () => {
     const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Journal = () => {
     const {classId, subjectId} = useParams();
     const [classInfo, setClassInfo] = useState({})
     const { isShowing, toggle } = useModal();
+    const [loader, setLoader] = useState(false);
     const { 
         register,
         formState: {
@@ -62,6 +63,7 @@ const Journal = () => {
         toggle()
     }
     const createNewGrade = async () => {
+        setLoader(true)
         try {
             var response;
             if(grade.grade == null){
@@ -80,6 +82,7 @@ const Journal = () => {
             const data = await journalService.fetchClassJournal(grade.classId, classInfo.subject);
             setClassInfo(data);
             setGrade({});
+            setLoader(false)
         } catch (error) {
             console.error('Ошибка при обновлении журнала класса:', error);
         }
@@ -100,9 +103,10 @@ const Journal = () => {
     return (
         <section className="section journal">
             <GoBack onClick={() => goBack()}/>
+            {loader && <MainLoader/>}
             {Object.keys(classInfo).length == 0
                 ?<WhiteBox>
-                    <PageTitle>Загрузка</PageTitle>
+                    <MainLoader/>
                 </WhiteBox>
 
                 :<WhiteBox>
@@ -118,7 +122,6 @@ const Journal = () => {
                                 ))}
                             </div>
                         </div>    
-
                         <div className="journal-coll journal-lessons">
                             {/* Проходимся по каждому месяцу */}
                             {classInfo.lessonsByMonth.map((month, monthNumber) => (
@@ -128,7 +131,11 @@ const Journal = () => {
                                         {/* Проходимся по каждому уроку */}
                                         {month.lessons.map((lesson, index) => (
                                             <div key={index} className="journal-lessons-days__item">
-                                                <div className="journal-lessons-days__day">{getFormatDate(lesson.date).split('.')[0]}</div>
+                                                <Link className="journal-lessons-days__day"
+                                                    to={`/edit-lesson/${classInfo.classNumber}/${classInfo.classLetter}/${lesson.id}`}
+                                                >
+                                                    {getFormatDate(lesson.date).split('.')[0]}
+                                                </Link>
                                                 <div className="journal-lessons-day-students">
                                                     {/* Проходимся по каждой оценке */}
                                                     {lesson.grades.map((grade, gradeIndex) => (

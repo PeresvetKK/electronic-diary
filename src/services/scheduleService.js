@@ -6,6 +6,11 @@ export const ScheduleService = {
         return response.data;
     },
 
+    async getLessonDetails(classNumber, classLetter, lessonId) {
+        const response = await axios.get(`http://localhost:4444/schedule/lesson/${classNumber}/${classLetter}/${lessonId}`);
+        return response.data;
+    },
+
     async getTeacherSchedule(teacherId, startDate, endDate) {
         const response = await axios.get(`http://localhost:4444/schedule/getTeacherSchedule/${teacherId}/${startDate}/${endDate}`);
         return response.data;

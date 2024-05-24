@@ -6,7 +6,7 @@ import { HomeWorkService } from '../../../../services/homeWorkService';
 import { getFormatDate } from '../../../../hooks/getFormatDate';
 import './HomeWorkSection.scss';
 
-const HomeworkSection = ({ urokInfo, urlParams }) => {
+const HomeworkSection = ({ urokInfo }) => {
     const [homeWorkArray, setHomeWorkArray] = useState([]);
     const [editedHomeWork, setEditedHomeWork] = useState(null);
     const [valueInputHomeWork, setValueInputHomeWork] = useState('');
@@ -16,8 +16,8 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
         const fetchData = async () => {
             try {
                 const data = await HomeWorkService.getCurrentDayHomeWork(
-                    urlParams.class._id,
-                    urlParams._id
+                    urokInfo.class._id,
+                    urokInfo._id
                 );
                 setHomeWorkArray(data);
             } catch (error) {
@@ -25,7 +25,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
             }
         };
         fetchData();
-    }, [urlParams._id, urlParams.class.classLetter, urlParams.class.classNumber]);
+    }, [urokInfo._id, urokInfo.class.classLetter, urokInfo.class.classNumber]);
 
     const handleDelete = async (idHomeWork) => {
         try {
@@ -60,9 +60,9 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
             {
                 _id: 'emptyId',
                 homework: '',
-                class: urlParams.class._id,
-                date: getFormatDate(urlParams.date),
-                subject: urlParams._id,
+                class: urokInfo.class._id,
+                date: getFormatDate(urokInfo.date),
+                subject: urokInfo._id,
             },
             ...homeWorkArray,
         ];
@@ -83,7 +83,7 @@ const HomeworkSection = ({ urokInfo, urlParams }) => {
     };
 
     const createdHomeWork = (idHomeWork, value) => {
-        createdItemHomeWork(value, urlParams.class._id, getFormatDate(urlParams.date), urlParams._id);
+        createdItemHomeWork(value, urokInfo.class._id, getFormatDate(urokInfo.date), urokInfo._id);
         setEditedHomeWork(null);
         setCreatedId(null);
         setValueInputHomeWork('');
