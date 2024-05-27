@@ -20,6 +20,9 @@ const AdminMain = () => {
           <Link state={{ }} to={`/admin/classes`}>
             <Plitca>Все классы</Plitca>
           </Link>
+          <Link to={'/schedule'}>
+            <Plitca>Расписание</Plitca>
+          </Link>
         </div>
     </WhiteBox>
   )

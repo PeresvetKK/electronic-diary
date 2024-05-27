@@ -16,7 +16,7 @@ const HomeworkSchema = new mongoose.Schema({
   },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Schedule",
+    ref: "Lesson",
     required: true,
   },
 });

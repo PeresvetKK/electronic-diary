@@ -134,6 +134,7 @@ const Journal = () => {
                                                 <Link className="journal-lessons-days__day"
                                                     to={`/edit-lesson/${classInfo.classNumber}/${classInfo.classLetter}/${lesson.id}`}
                                                 >
+                                                    {console.log(lesson)}
                                                     {getFormatDate(lesson.date).split('.')[0]}
                                                 </Link>
                                                 <div className="journal-lessons-day-students">

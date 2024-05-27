@@ -1,0 +1,84 @@
+.schedule-page{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+.schedule{
+    border: 1px solid #3333;
+    border-radius: 0.8rem;
+    margin-top: 2.4rem;
+    &-day{
+        display: flex;
+        border-bottom: 1px solid #3333;
+        &__name{
+            position: relative;
+            padding: 8px 29px;
+            background: var(--blue);
+            color: #fff;
+            span{
+                font-size: 16px;
+                text-transform: uppercase;
+                font-weight: 600;
+                display: block;
+            }
+        }
+    }
+    &-numbers{
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #3333;
+        padding-top: 4.4rem;
+        padding-top: 4.4rem;
+        border-left: 1px solid #3333;
+        &__item{
+            font-size: 16px;
+            font-weight: 600;
+            height: 11rem;
+            width: 3rem;
+            padding: .8rem;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #3333;
+            &:first-child{
+                border-top: 1px solid #3333;
+            }
+            &:last-child{
+                border-bottom: none;
+            }
+        }
+    }
+    &-class{
+        border-right: 1px solid #3333;
+        &__name{
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #3333;
+        }
+    }
+    &-lesson{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        border-bottom: 1px solid #3333;
+        padding: 8px;
+        height: 11rem;
+        &__classroom{
+            margin-top: auto;
+        }
+        
+        p{
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}
+
+.schedule-day-classes{
+    display: flex;
+    .schedule-class{
+        width: 28rem;
+    }
+}

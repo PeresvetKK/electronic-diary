@@ -26,6 +26,7 @@ import RegistedUser from './pages/Admin/RegistedUser/RegistedUser';
 import CreateClass from "./pages/Admin/CreateClass/CreateClass";
 import ClassList from "./pages/Admin/ClassList/ClassList";
 import ClassPage from "./pages/Admin/ClassPage/ClassPage";
+import Schedule from "./pages/Admin/Schedule/Schedule";
 
 function App() {
     // получает информацию - авторизован или нет
@@ -64,6 +65,7 @@ function App() {
                                <Route path="/admin/clases/create" element={<CreateClass/>}/>
                                <Route path="/admin/classes" element={<ClassList/>}/>
                                <Route path="/admin/classes/:id" element={<ClassPage/>}/>
+                               <Route path='/schedule' element={<Schedule/>}/>
                             </>
                         }
                         <Route path="news" element={<News/>}/>

@@ -57,11 +57,11 @@ const UrokDetail = () => {
             <section className='urok-detail'>
                 <div className='urok-detail__title'>
                     <p className='urok-detail__date'>
-                        <span>{getDayOfWeek(urok.dayOfWeek)}</span>
+                        <span>{getDayOfWeek(urok.scheduleItem.dayOfWeek)}</span>
                         {getFormatDate(urok.date)}
                     </p>
                     <div className="urok-detail__text">
-                        {urok.subjectName} {urok.class.classNumber}{urok.class.classLetter} ({getTimesLessons(urok.lessonNumber)})
+                        {urok.scheduleItem.subjectName} {urok.scheduleItem.class.classNumber}{urok.scheduleItem.class.classLetter} ({getTimesLessons(urok.scheduleItem.lessonNumber)})
                     </div>
                     {editedTheme ? (
                         <p className="urok-detail__text">

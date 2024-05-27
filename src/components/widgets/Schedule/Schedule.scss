@@ -1,4 +1,4 @@
-.schudle-block{
+.schedule-block{
     min-width: 40rem;
     flex: 0;
     &__items{
@@ -7,15 +7,19 @@
         gap: 1rem;
     }
 }
-.schudle-block-teacher{
+.schedule-block-teacher{
     flex: auto;
     width: 100%;
     .schudle-block__items{
         max-height: 100%;
     }
 }
+.block-widget__header{
+    justify-content: flex-start;
+    gap: 8px;
+}
 @media (max-width: 1150px){
-    .schudle-block{
+    .schedule-block{
         flex: 1;
     }
 }

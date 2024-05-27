@@ -23,26 +23,26 @@ const LessonTeacher = ({urok}) => {
             <div className={s.textbox}>
                 <div className={s.item__cell}>
                     <NumberUrok
-                        urokCount={urok.lessonNumber} 
-                        urokStartEnd={getTimesLessons(urok.lessonNumber)}
+                        urokCount={urok.scheduleItem.lessonNumber} 
+                        urokStartEnd={getTimesLessons(urok.scheduleItem.lessonNumber)}
                     />
                 </div>
                 <div className={s.item__cell}>
                     <LessonItem
-                        lesson={urok.subjectName} 
+                        lesson={urok.scheduleItem.subjectName} 
                         lessonType={urok.lessonType} 
-                        lessonClass={`${urok.class.classNumber} ${urok.class.classLetter}`}
+                        lessonClass={`${urok.scheduleItem.class.classNumber} ${urok.scheduleItem.class.classLetter}`}
                     />
                 </div>
                 <div className={s.item__cell}>
                     <div className={s.textbox__text}>
-                        Класс: <span>{`${urok.class.classNumber} ${urok.class.classLetter}`}</span>
+                        Класс: <span>{`${urok.scheduleItem.class.classNumber} ${urok.scheduleItem.class.classLetter}`}</span>
                     </div> 
                 </div>
                 <div className={s.item__cell}>
-                    {urok.classroomNumber !== '' && urok.classroomNumber !== null 
+                    {urok.scheduleItem.classroomNumber !== '' && urok.scheduleItem.classroomNumber !== null 
                         ? <div className={s.textbox__text}>
-                            Кабинет: <span>{urok.classroomNumber}</span>
+                            Кабинет: <span>{urok.scheduleItem.classroomNumber}</span>
                           </div> 
                         : null
                     }
@@ -56,11 +56,11 @@ const LessonTeacher = ({urok}) => {
                             <ThreeDotsSVG/>
                         </div>
                         <div className={`dropdown-content ${isOpen ? 'dropdown-active' : ''}`}>
-                            <Link className='dropdown-content__item' to={`/edit-lesson/${urok.class.classNumber}/${urok.class.classLetter}/${urok._id}`}>
+                            <Link className='dropdown-content__item' to={`/edit-lesson/${urok.scheduleItem.class.classNumber}/${urok.scheduleItem.class.classLetter}/${urok._id}`}>
                                 <InfoSVG/>
                                 Страница урока
                             </Link>
-                            <Link className="dropdown-content__item" to={`/journal/${urok.class._id}/${urok.subjectName}`}>
+                            <Link className="dropdown-content__item" to={`/journal/${urok.scheduleItem.class._id}/${urok.scheduleItem.subjectName}`}>
                                 <BlackJournalSVG/>
                                 Журнал класса
                             </Link>
@@ -70,7 +70,7 @@ const LessonTeacher = ({urok}) => {
             </div>
             <div className={s.peremena}>
                 <RunManSVG></RunManSVG>
-                <p className={s.peremena__text}>Перемена {getPeremenaSize(urok.lessonNumber)} минут</p>
+                <p className={s.peremena__text}>Перемена {getPeremenaSize(urok.scheduleItem.lessonNumber)} минут</p>
                 </div>
         </div>
     )

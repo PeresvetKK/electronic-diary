@@ -14,7 +14,7 @@ const LessonGradeSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Schedule', // Ссылка на модель предмета
+    ref: 'Lesson', // Ссылка на модель предмета
     required: true
   },
   comment: {

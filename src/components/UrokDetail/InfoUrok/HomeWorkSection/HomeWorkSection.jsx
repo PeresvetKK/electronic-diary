@@ -16,7 +16,7 @@ const HomeworkSection = ({ urokInfo }) => {
         const fetchData = async () => {
             try {
                 const data = await HomeWorkService.getCurrentDayHomeWork(
-                    urokInfo.class._id,
+                    urokInfo.scheduleItem.class._id,
                     urokInfo._id
                 );
                 setHomeWorkArray(data);
@@ -25,7 +25,7 @@ const HomeworkSection = ({ urokInfo }) => {
             }
         };
         fetchData();
-    }, [urokInfo._id, urokInfo.class.classLetter, urokInfo.class.classNumber]);
+    }, [urokInfo._id, urokInfo.scheduleItem.class.classLetter, urokInfo.scheduleItem.class.classNumber]);
 
     const handleDelete = async (idHomeWork) => {
         try {
@@ -60,7 +60,7 @@ const HomeworkSection = ({ urokInfo }) => {
             {
                 _id: 'emptyId',
                 homework: '',
-                class: urokInfo.class._id,
+                class: urokInfo.scheduleItem.class._id,
                 date: getFormatDate(urokInfo.date),
                 subject: urokInfo._id,
             },
@@ -83,7 +83,7 @@ const HomeworkSection = ({ urokInfo }) => {
     };
 
     const createdHomeWork = (idHomeWork, value) => {
-        createdItemHomeWork(value, urokInfo.class._id, getFormatDate(urokInfo.date), urokInfo._id);
+        createdItemHomeWork(value, urokInfo.scheduleItem.class._id, getFormatDate(urokInfo.date), urokInfo._id);
         setEditedHomeWork(null);
         setCreatedId(null);
         setValueInputHomeWork('');

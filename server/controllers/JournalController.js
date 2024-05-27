@@ -86,7 +86,6 @@ export const getClassJournal = async (req, res) => {
     }
 };
 
-
 export const addGrade = async (req, res) => {
     try {
         const { studentId, subjectId } = req.params;

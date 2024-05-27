@@ -4,10 +4,16 @@ import cors from 'cors';
 import checkAuth from './utils/checkAuth.js';
 
 import { register, login, getMe, getUsersByRole, assignClassToTeacher, assignClassToStudents, usersAll } from './controllers/UserController.js'
-import { createSchedule, getStudentSchedule, getTeacherSchedule, editLessonTopic, getLessonDetails } from './controllers/ScheduleController.js';
+import {
+    createScheduleItems,
+    getSchedule,
+    generateWeeklyLessons,
+    getTeacherLessonsByDate,
+    getClassLessonsByDate,
+    editLessonTopic,
+    getLessonDetails,
+  } from "./controllers/ScheduleController.js";
 import { createHomeWork, getHomeWork, editHomeWork, getCurrentDayHomeWork, deleteHomeWork } from './controllers/HomeWorkController.js';
-import { createCommentForClass, getCommentsForClass, editCommentForClass, deleteCommentForClass } from './controllers/CommentForClassController.js';
-import { createCommentForStudent, getCommentsForStudent, editCommentForStudent, deleteCommentForStudent } from './controllers/CommentForStudentController.js';
 
 import { getAllClasses, getClassById, addStudentsToClass, removeStudentFromClass, getClassesForTeacher, createClass, deleteClass } from './controllers/SchoolClassController.js';
 import { addGrade, getClassJournal, updateGrade } from './controllers/JournalController.js';
@@ -30,23 +36,25 @@ app.use(express.json());
     // Маршрут для назначения класса студентам
     app.put('/assign-class-to-students', assignClassToStudents);
     // расписание создать
-    app.post('/schedule/newSchedule', createSchedule)
-
+    app.post("/schedule", createScheduleItems);
+    // расписание получить
+    app.get("/schedule", getSchedule);
+    // создать уроки на неделю
+    app.post("/generate-lessons", generateWeeklyLessons);
 
 // ученик
     // расписание на интервал даты
-    app.get('/schedule/getSchedule/:classId/:startDate/:endDate', getStudentSchedule)
+    app.get("/lessons/class/:classId/:date", getClassLessonsByDate);
     // получить дз на интервал
     app.get('/homeWork/:classId/:startDate/:endDate', getHomeWork)
 
-
 // учитель
     // расписание на интервал даты
-    app.get('/schedule/getTeacherSchedule/:teacherId/:startDate/:endDate', getTeacherSchedule)
+    app.get("/lessons/teacher/:teacherId/:date", getTeacherLessonsByDate);
     // открыть конкретный урок
-    app.get('/schedule/lesson/:classNumber/:classLetter/:lessonId', getLessonDetails);
+    app.get("/lesson/:classNumber/:classLetter/:lessonId", getLessonDetails); 
     // Изменение темы урока
-    app.put('/schedule/editLessonTopic', editLessonTopic);
+    app.put("/lesson/topic", editLessonTopic);
     // создать дз
     app.post('/homeWork/create', createHomeWork)
     // редактировать дз
@@ -61,9 +69,6 @@ app.use(express.json());
     app.get('/journal/:classId/:subjectId', getClassJournal);
     app.post('/grade/create/class/:classId/subject/:subjectId/student/:studentId', addGrade);
     app.put('/grade/update/class/:classId/subject/:subjectId/student/:studentId/:gradeId', updateGrade);
-    // оценка
-    // app.post('/students/createGrades', createGrade);
-
 
 // Классы
     app.get('/classes', getAllClasses);
@@ -74,24 +79,7 @@ app.use(express.json());
     app.delete('/classes/:classId/removeStudent/:studentId', removeStudentFromClass);
     app.get('/classes/teacher/:teacherId', getClassesForTeacher);
 
-
-// получить оценку 
-// app.post('/students/getGrades/', getGrades);
-
 app.get('/users/all', usersAll);
-
-// Комментарии для класса
-// app.post('/comments/class', createCommentForClass);
-// app.get('/comments/class/:scheduleId', getCommentsForClass);
-// app.put('/comments/class/:commentId', editCommentForClass);
-// app.delete('/comments/class/:commentId', deleteCommentForClass);
-
-// Комментарии для студента
-// app.post('/comments/student', createCommentForStudent);
-// app.get('/comments/student/:studentId/:scheduleId', getCommentsForStudent);
-// app.put('/comments/student/:commentId', editCommentForStudent);
-// app.delete('/comments/student/:commentId', deleteCommentForStudent);
-
 app.listen(4444, (err) => {
     // если сервер не смог запуститься
     if (err) {

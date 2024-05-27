@@ -146,26 +146,6 @@ const RegistedUser = () => {
                         {errors?.userType && <p className="form-error">Выберите тип пользователя</p>}
                     </div>
 
-                    {/* {userType === 'Student' 
-                        && 
-                        <TextField
-                            select
-                            fullWidth
-                            defaultValue=""
-                            label="Select"
-                            inputProps={register('studentSelect', {
-                                required: false,
-                            })}
-                            error={!!errors?.studentSelect}
-                            helperText={errors?.studentSelect?.message}
-                        >
-                            {studentsList.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    } */}
                     <Button type="submit" dasabled={isValid ? 'false' : 'true'}>Создать пользователя</Button>
                 </Form>
             </WhiteBox>

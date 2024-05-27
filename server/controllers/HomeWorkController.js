@@ -1,6 +1,6 @@
 import HomeWorkSchema from '../models/HomeWork.js';
 import SchoolClassSchema from '../models/SchoolClass.js';
-import ScheduleSchema from '../models/Schedule.js';
+import LessonSchema from '../models/Lesson.js';
 
 export const createHomeWork = async (req, res) => {
     try {
@@ -14,7 +14,7 @@ export const createHomeWork = async (req, res) => {
         }
 
         // Проверяем, существует ли расписание с указанным ID
-        const existingSchedule = await ScheduleSchema.findById(subject);
+        const existingSchedule = await LessonSchema.findById(subject);
         if (!existingSchedule) {
             return res.status(404).json({ error: "Расписание не найдено" });
         }
